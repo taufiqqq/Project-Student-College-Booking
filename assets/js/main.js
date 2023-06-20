@@ -240,3 +240,8 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
 });
+
+function loginError(){
+  var message = "Wrong Username or Password";
+  alert(message);
+}
