@@ -95,6 +95,8 @@ section {
   color: var(--color-primary);
 }
 
+
+
 /*--------------------------------------------------------------
 # Breadcrumbs
 --------------------------------------------------------------*/
@@ -785,7 +787,8 @@ section {
 # Stats Counter Section
 --------------------------------------------------------------*/
 .stats-counter {
-  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../img/UTM-skyview.jpg") center center; /* error */
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../img/UTM-skyview.jpg") center center;
+  /* error */
   background-size: cover;
   padding: 100px 0;
 }
@@ -1652,4 +1655,33 @@ section {
 
 .footer .credits a {
   color: #fff;
+}
+
+
+/* ----------------StudentRoom.php---------------------- */
+.sidebar {
+  width: 300px;
+  background-color: #f1f1f1;
+  padding: 20px;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.row {
+  display: flex;
+  margin-bottom: 20px;
+}
+.left {
+  flex: 1;
+  margin-right: 20px;
+}
+.right {
+  flex: 2;
+}
+img {
+  width: 100%;
+  height: auto;
 }

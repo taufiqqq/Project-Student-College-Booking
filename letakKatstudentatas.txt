@@ -1,0 +1,25 @@
+<?php
+include("connection.php");
+session_start();
+
+if (!isset($_SESSION['username']) || $_SESSION['userRole'] !== 'student') {
+    header('Location: index.php');
+    exit();
+}
+
+$sess_username = $_SESSION['username'];
+
+// Prepare and execute the query using a prepared statement
+$stmt = $conn->prepare("SELECT * FROM student, course, relative WHERE student.username = ?");
+$stmt->bind_param("s", $sess_username);
+$stmt->execute();
+$student_result = $stmt->get_result();
+
+// Fetch the result
+if ($student_result->num_rows > 0) {
+    $student_row = $student_result->fetch_assoc();
+}
+
+// Close the statement
+$stmt->close();
+?>;

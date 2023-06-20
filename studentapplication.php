@@ -1,3 +1,29 @@
+<?php
+include("connection.php");
+session_start();
+
+if (!isset($_SESSION['username']) || $_SESSION['userRole'] !== 'student') {
+  header('Location: index.php');
+  exit();
+}
+
+$sess_username = $_SESSION['username'];
+
+// Prepare and execute the query using a prepared statement
+$stmt = $conn->prepare("SELECT * FROM student WHERE username = ?");
+$stmt->bind_param("s", $sess_username);
+$stmt->execute();
+$student_result = $stmt->get_result();
+
+// Fetch the result
+if ($student_result->num_rows > 0) {
+  $student_row = $student_result->fetch_assoc();
+}
+
+// Close the statement
+$stmt->close();
+?>;
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -50,45 +76,23 @@
 
       <nav id="navbar" class="navbar">
         <ul>
-          <li><a href="#">Home</a></li>
+          <li><a href="studenthome.php">Home</a></li>
           <li><a href="studentroom.php">Book Room</a></li>
-          <li><a href="studentapplication.php">Application</a></li>
+          <li><a href="studentapplication.php">My Application</a></li>
 
-          <li class="dropdown"><a href="#"><span>Drop Down</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
-            <ul>
-              <li><a href="#">Drop Down 1</a></li>
-              <li class="dropdown"><a href="#"><span>Deep Drop Down</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
-                <ul>
-                  <li><a href="#">Deep Drop Down 1</a></li>
-                  <li><a href="#">Deep Drop Down 2</a></li>
-                  <li><a href="#">Deep Drop Down 3</a></li>
-                  <li><a href="#">Deep Drop Down 4</a></li>
-                  <li><a href="#">Deep Drop Down 5</a></li>
-                </ul>
-              </li>
-              <li><a href="#">Drop Down 2</a></li>
-              <li><a href="#">Drop Down 3</a></li>
-              <li><a href="#">Drop Down 4</a></li>
-            </ul>
-          </li>
+
         </ul>
       </nav><!-- .navbar -->
 
 
-      <a class="btn-book-a-table" href="#book-a-table">Log Out</a>
+      <!-- <a class="btn-book-a-table" href="#book-a-table">Log Out</a> -->
 
       <nav id="navbar" class="navbar">
-        <ul class="dropdown"><a href="#"><span>Drop Down</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
+        <ul class="dropdown"><a class="btn-book-a-table" href="#book-a-table"><span>Drop Down</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
           <ul>
             <li><a href="#">Drop Down 1</a></li>
             <li class="dropdown"><a href="#"><span>Deep Drop Down</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
-              <ul>
-                <li><a href="#">Deep Drop Down 1</a></li>
-                <li><a href="#">Deep Drop Down 2</a></li>
-                <li><a href="#">Deep Drop Down 3</a></li>
-                <li><a href="#">Deep Drop Down 4</a></li>
-                <li><a href="#">Deep Drop Down 5</a></li>
-              </ul>
+
             </li>
             <li><a href="#">Drop Down 2</a></li>
             <li><a href="#">Drop Down 3</a></li>
@@ -110,10 +114,10 @@
       <div class="container">
 
         <div class="d-flex justify-content-between align-items-center">
-          <h2>Sample Inner Page</h2>
+          <h2>Manage Hostel Booking Applications</h2>
           <ol>
-            <li><a href="index.html">Home</a></li>
-            <li>Sample Inner Page</li>
+            <li><a href="studenthome.php">Home</a></li>
+            <li>Student's College Application Status</li>
           </ol>
         </div>
 
@@ -123,9 +127,43 @@
     <section class="sample-page">
       <div class="container" data-aos="fade-up">
 
-        <p>
-          You can duplicate this sample page and create any number of inner pages you like!
-        </p>
+        <div class="scrollable">
+          <?php
+          // Retrieve student applications from the database (replace with your database logic)
+          $applications = getStudentApplications(); //get data from database/student room
+
+          // Display each application
+          foreach ($applications as $application) {
+            $studentName = $application['student_name'];
+            $roomType = $application['room_type'];
+            $status = $application['status'];
+            $applicationId = $application['id'];
+
+            echo "<div>";
+            echo "<h3>$studentName</h3>";
+            echo "<p>Room Type: $roomType</p>";
+            echo "<p>Status: $status</p>";
+
+            // Display approve or reject button only if the status is pending
+            if ($status === 'pending') {
+              echo "<form action='process_application.php' method='post'>";
+              echo "<input type='hidden' name='application_id' value='$applicationId'>";
+              echo "<input type='radio' name='status_$applicationId' value='approved'> Approve";
+              echo "<input type='radio' name='status_$applicationId' value='rejected'> Reject";
+              echo "<input type='submit' value='Submit'>";
+              echo "</form>";
+            }
+
+            echo "</div>";
+          }
+          ?>
+
+          <!-- Button to approve all applications -->
+          <form action="process_all_applications.php" method="post">
+            <input type="hidden" name="action" value="approve_all">
+            <input type="submit" value="Approve All">
+          </form>
+        </div>
 
       </div>
     </section>

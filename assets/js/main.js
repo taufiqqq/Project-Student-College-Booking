@@ -239,9 +239,10 @@ document.addEventListener('DOMContentLoaded', () => {
     aos_init();
   });
 
+
 });
 
-function loginError(){
-  var message = "Wrong Username or Password";
-  alert(message);
-}
+  function loginError(){
+    var message = "Wrong Username or Password";
+    alert(message);
+  }
