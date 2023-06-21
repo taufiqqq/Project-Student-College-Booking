@@ -19,6 +19,7 @@ CREATE TABLE Student (
   password VARCHAR(255),
   email VARCHAR(100),
   name VARCHAR(100),
+  matricnum VARCHAR(10),
   gender ENUM('Male', 'Female'),
   phone VARCHAR(20)
 )";
@@ -31,6 +32,7 @@ CREATE TABLE Manager (
   email VARCHAR(100),
   name VARCHAR(100),
   gender ENUM('Male', 'Female'),
+  staffnum VARCHAR(10),
   phone VARCHAR(20),
   collegeHandled VARCHAR(100)
 )";
@@ -38,8 +40,8 @@ CREATE TABLE Manager (
 // SQL query to create the College table
 $sqlCollege = "
 CREATE TABLE College (
-  Name VARCHAR(100) NOT NULL,
-  Location VARCHAR(100),
+  name VARCHAR(100) NOT NULL,
+  location VARCHAR(100),
   PRIMARY KEY (Name)
 )";
 
@@ -61,11 +63,14 @@ CREATE TABLE Booking (
   collegeName VARCHAR(100),
   roomName INT,
   dateBook DATE,
+  username VARCHAR(50),
+  status ENUM('Pending', 'Rejected', 'Approved'),
   FOREIGN KEY (collegeName) REFERENCES College(Name),
-  FOREIGN KEY (roomName) REFERENCES Room(id)
-)";
+  FOREIGN KEY (roomName) REFERENCES Room(id),
+  FOREIGN KEY (username) REFERENCES Student(username)
+);";
 
-// Execute the SQL queries to create the tables
+// Execute the SQL queries to create,
 mysqli_query($conn, $sqlAdmin);
 mysqli_query($conn, $sqlStudent);
 mysqli_query($conn, $sqlManager);

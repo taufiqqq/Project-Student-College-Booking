@@ -2,7 +2,7 @@
 include("connection.php");
 session_start();
 include("studentauthentication.php")
-  ?>
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -65,7 +65,7 @@ include("studentauthentication.php")
       </nav><!-- .navbar -->
 
       <nav id="navbar" class="navbar">
-        <ul class="dropdown"><a class="btn-book-a-table" href="#book-a-table"><span>Username Kamu</span> <i
+        <ul class="dropdown"><a class="btn-book-a-table"><span><?php echo $username; ?></span> <i
               class="bi bi-chevron-down dropdown-indicator"></i></a>
           <ul>
             <li><a href="#">Profile</a></li>

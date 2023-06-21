@@ -56,6 +56,24 @@ h6 {
   font-family: var(--font-secondary);
 }
 
+
+.main .btn-book-a-table,
+.main .btn-book-a-table:focus {
+  font-size: 14px;
+  color: #fff;
+  background: var(--color-primary);
+  padding: 8px 20px;
+  margin-left: 30px;
+  border-radius: 50px;
+  transition: 0.3s;
+}
+
+.main .btn-book-a-table:hover,
+.main .btn-book-a-table:focus:hover {
+  color: #fff;
+  background: rgba(206, 18, 18, 0.8);
+}
+
 /*--------------------------------------------------------------
 # Sections & Section Header
 --------------------------------------------------------------*/
@@ -298,6 +316,7 @@ section {
   color: #fff;
   background: rgba(206, 18, 18, 0.8);
 }
+
 
 section {
   scroll-margin-top: 90px;
@@ -1664,24 +1683,29 @@ section {
   background-color: #f1f1f1;
   padding: 20px;
 }
-
-.content {
+.containerflexbox {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
 }
+
 .row {
   display: flex;
-  margin-bottom: 20px;
 }
-.left {
+
+.column {
   flex: 1;
-  margin-right: 20px;
+  padding: 20px;
+  
 }
-.right {
-  flex: 2;
+
+.right input[type="submit"] {
+  align-self: flex-end;
 }
-img {
-  width: 100%;
-  height: auto;
+
+.column:first-child {
+  flex-basis: 40%;
+}
+
+.column:last-child {
+  flex-basis: 60%;
 }

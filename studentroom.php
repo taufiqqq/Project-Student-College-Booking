@@ -67,8 +67,9 @@ include("studentauthentication.php");
             <!-- <a class="btn-book-a-table" href="#book-a-table">Log Out</a> -->
 
             <nav id="navbar" class="navbar">
-                <ul class="dropdown"><a class="btn-book-a-table" href="#book-a-table"><span>Username Kamu</span> <i
-                            class="bi bi-chevron-down dropdown-indicator"></i></a>
+                <ul class="dropdown"><a class="btn-book-a-table"><span><span>
+                                <?php echo $username; ?>
+                            </span><i class="bi bi-chevron-down dropdown-indicator"></i></a>
                     <ul>
                         <li><a href="#">Profile</a></li>
                         <li><a href="#">Settings</a></li>
@@ -126,100 +127,110 @@ include("studentauthentication.php");
                     <div class="col-lg-3">
                         <div class="sidebar">
                             <h2>Choose College </h2>
+                            <br>
                             <form>
                                 <label>
-                                    <input type="radio" name="college" value="College A">
+                                    <input type="radio" name="college" value="KTDI">
                                     Kolej Tun Dr Ismail
                                 </label>
                                 <br><br>
                                 <label>
-                                    <input type="radio" name="college" value="College B">
-                                    Kolej Busuk
+                                    <input type="radio" name="college" value="KTHO">
+                                    Kolej Tun Hussien Onn
                                 </label>
                                 <br><br>
                                 <label>
-                                    <input type="radio" name="college" value="College C">
-                                    Kolej Busuk
+                                    <input type="radio" name="college" value="KTF">
+                                    Kolej Tun Fatimah
                                 </label>
                                 <br><br>
                                 <label>
-                                    <input type="radio" name="college" value="College D">
-                                    Kolej Busuk
+                                    <input type="radio" name="college" value="KTR">
+                                    Kolej Tun Razak
                                 </label>
                                 <br><br>
                                 <label>
-                                    <input type="radio" name="college" value="College D">
-                                    Kolej Busuk
+                                    <input type="radio" name="college" value="KTC">
+                                    Kolej Tun Canselor
                                 </label>
                                 <br><br>
                                 <label>
-                                    <input type="radio" name="college" value="College D">
-                                    Kolej Busuk
+                                    <input type="radio" name="college" value="KRP">
+                                    Kolej Rahman Putra
                                 </label>
                                 <br><br>
                                 <label>
-                                    <input type="radio" name="college" value="College D">
-                                    Kolej Busuk
+                                    <input type="radio" name="college" value="KDOJ">
+                                    Kolej Data Onn Jaafar
                                 </label>
                                 <br><br>
                                 <label>
-                                    <input type="radio" name="college" value="College D">
-                                    Kolej Busuk
+                                    <input type="radio" name="college" value="KP">
+                                    Kolej Perdana
                                 </label>
                                 <br><br>
                                 <label>
-                                    <input type="radio" name="college" value="College D">
-                                    Kolej Busuk
+                                    <input type="radio" name="college" value="KDSE">
+                                    Kolej Datin Seri Endon
+                                </label>
+                                <br><br>
+                                <label>
+                                    <input type="radio" name="college" value="K9">
+                                    Kolej 09 & 10
                                 </label>
                                 <br>
-
+                            </form>
                         </div>
                     </div>
                     <div class="col-lg-9">
-
                         <div class="content">
                             <h2>Choose Your Room</h2>
-                            <div class="row">
-                                <div class="left">
-                                    <img src="hotel-image-1.jpg" alt="Hotel Image 1">
+                            <form action="">
+                            <div class="containerflexbox">
+                                <div class="row">
+                                    <div class="column">
+                                    <img src="assets/img/KTDI-1.jpg" alt="Hotel Image 1" width="350" height="300">
+                                    </div>
+                                    <div class="column">
+                                        <h2>Single Room With Bathroom</h2><br>
+                                        <p><strong>Price per day:</strong> RM4</p>
+                                        <p><strong>Rating:</strong> 4.5/5</p>
+                                        <p><strong>Vacant:</strong></p>
+                                        <input type="radio" name="college" value="SRB">
+                                        Choose Single Bath Room
+                                    </div>
                                 </div>
-                                <div class="right">
-                                    <h2>Hotel Name: Hotel ABC</h2>
-                                    <p><strong>Location:</strong> City XYZ</p>
-                                    <p><strong>Price per Night:</strong> $100</p>
-                                    <p><strong>Rating:</strong> 4.5/5</p>
-                                    <p><strong>Description:</strong> Lorem ipsum dolor sit amet, consectetur
-                                        adipiscing elit.</p>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="left">
-                                    <img src="hotel-image-2.jpg" alt="Hotel Image 2">
-                                </div>
-                                <div class="right">
-                                    <h2>Hotel Name: Hotel DEF</h2>
-                                    <p><strong>Location:</strong> City UVW</p>
-                                    <p><strong>Price per Night:</strong> $150</p>
-                                    <p><strong>Rating:</strong> 4.2/5</p>
-                                    <p><strong>Description:</strong> Lorem ipsum dolor sit amet, consectetur
-                                        adipiscing elit.</p>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="left">
-                                    <img src="hotel-image-3.jpg" alt="Hotel Image 3">
-                                </div>
-                                <div class="right">
-                                    <h2>Hotel Name: Hotel GHI</h2>
-                                    <p><strong>Location:</strong> City PQR</p>
-                                    <p><strong>Price per Night:</strong> $120</p>
-                                    <p><strong>Rating:</strong> 4.7/5</p>
-                                    <p><strong>Description:</strong> Lorem ipsum dolor sit amet, consectetur
-                                        adipiscing elit.</p>
-                                </div>
-                            </div>
-                        </div>
 
+                                <div class="row">
+                                    <div class="column">
+                                    <img src="assets/img/KTDI-1.jpg" alt="Hotel Image 1" width="350" height="300">
+                                    </div>
+                                    <div class="column">
+                                        <h2>Single Room With Bathroom</h2><br>
+                                        <p><strong>Price per day:</strong> RM4</p>
+                                        <p><strong>Rating:</strong> 4.5/5</p>
+                                        <p><strong>Vacant:</strong></p>
+                                        <input type="radio" name="college" value="SR">
+                                        Choose Single Room
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="column">
+                                    <img src="assets/img/KTDI-1.jpg" alt="Hotel Image 1" width="350" height="300">
+                                    </div>
+                                    <div class="column">
+                                    <h2>Single Room With Bathroom</h2>
+                                        <p><strong>Price per day:</strong> RM4</p>
+                                        <p><strong>Rating:</strong> 4.5/5</p>
+                                        <p><strong>Vacant:</strong></p>
+                                        <input type="radio" name="college" value="DB">
+                                        Choose Double Room
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
                     </div>
                     </form>
             </section>

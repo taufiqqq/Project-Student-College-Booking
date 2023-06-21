@@ -1,6 +1,6 @@
 <?php 
-// Check if the user is not logged in as a student
-if (!isset($_SESSION['username']) || $_SESSION['userRole'] !== 'student') {
+// Check if the user is not logged in as a admin
+if (!isset($_SESSION['username']) || $_SESSION['userRole'] !== 'admin') {
     header('Location: index.php');
     exit();
 }
@@ -36,17 +36,15 @@ if (isset($_SESSION['last_activity'])) {
 
 $sess_username = $_SESSION['username'];
 
-
 // Prepare and execute the query using a prepared statement
-$stmt = $conn->prepare("SELECT * FROM student WHERE username = ?");
+$stmt = $conn->prepare("SELECT * FROM admin WHERE username = ?");
 $stmt->bind_param("s", $sess_username);
 $stmt->execute();
-$student_result = $stmt->get_result();
+$admin_result = $stmt->get_result();
 
 // Fetch the result
-if ($student_result->num_rows > 0) {
-    $student_row = $student_result->fetch_assoc();
-    $username = $student_row["username"];
+if ($admin_result->num_rows > 0) {
+    $admin_row = $admin_result->fetch_assoc();
 }
 
 // Close the statement

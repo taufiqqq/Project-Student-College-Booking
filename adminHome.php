@@ -1,3 +1,9 @@
+<?php
+include("connection.php");
+session_start();
+include("adminauthentication.php")
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -53,12 +59,12 @@
                     <li>
                         <ul class="dropdown"><a href="#book-a-table"><span>Feature</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
                             <ul>
-                                <li><a href="#">Create User</a></li>
-                                <li><a href="#">Edit User</a></li>
-                                <li><a href="#">Delete User</a></li>
+                                <li><a href="adminCreateUser">Create User</a></li>
+                                <li><a href="adminEditUser">Edit User</a></li>
+                                <li><a href="adminDeleteUser">Delete User</a></li>
                                 <li class="dropdown"><a href="#"><span>View</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
                                     <ul>
-                                        <li><a href="">student</a></li>
+                                        <li><a href="studenthome.php">student</a></li>
                                         <li><a href="">manager</a></li>
                                     </ul>
                                 </li>
@@ -72,11 +78,11 @@
             <!-- <a class="btn-book-a-table" href="#book-a-table">Log Out</a> -->
 
             <nav id="navbar" class="navbar">
-                <ul class="dropdown"><a class="btn-book-a-table" href="#book-a-table"><span>Admin</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
+                <ul class="dropdown"><a class="btn-book-a-table" href="#book-a-table"><span>Admin</span><i class="bi bi-chevron-down dropdown-indicator"></i></a>
                     <ul>
-                        <li><a href="#">drop 1</a></li>
+                        <li><a href=""></a></li>
                         <li><a href="#">drop 2</a></li>
-                        <li><a href="#">drop 3</a></li>
+                        <li><a href="logout.php">Logout</a></li>
                     </ul>
                 </ul>
             </nav>
@@ -87,31 +93,28 @@
         </div>
     </header><!-- End Header -->
 
-    <main id="main">
+    <main id="main" class="main">
         <div class="breadcrumbs">
             <div class="container">
                 <div class="d-flex justify-content-between align-items-center">
                     <h2>
                         Please select any activities :<br>
                     </h2>
-                    <ul>
-                        <li>
-                            <a href="">Create User</a>
-                        </li>
-                        <li>
-                            <a href="">Edit User</a>
-                        </li>
-                        <li>
-                            <a href="">Delete User</a>
-                        </li>
-                        <li class="dropdown"><a href="#"><span>View</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
-                            <ul>
-                                <li><a href="">student</a></li>
-                                <li><a href="">manager</a></li>
-                            </ul>
-                        </li>
                 </div>
             </div>
+        </div>
+        <div>
+            <ul><a class="btn-book-a-table" href="adminCreateUser.php"><span>Create User</span></a></ul><br>
+            <ul><a class="btn-book-a-table" href="adminEditUser.php"><span>Edit User</span></a></ul><br>
+            <ul><a class="btn-book-a-table" href="adminDeleteUSer"><span>Delete User</span></ul><br>
+            <ul class="dropdown"><a class="btn-book-a-table" href="#book-a-table"><span>View</span></a>
+                <ul>
+                    <li><a href="studenthome.php">Student</a></li>
+                    <li><a href="#">manager</a></li>
+                </ul>
+            </ul>
+            <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
+            <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
         </div>
     </main>
 

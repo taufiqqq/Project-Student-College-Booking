@@ -1,29 +1,7 @@
 <?php
 include("connection.php");
 session_start();
-include("studentauthentication.php");
-
-// Retrieve the hostel application with the latest non-rejected status
-$sql = "SELECT * FROM hostel_applications WHERE student_id = ? AND status != 'Rejected' ORDER BY id DESC LIMIT 1";
-$stmt = $conn->prepare($sql);
-$stmt->bind_param("s", $studentId);
-$stmt->execute();
-
-$result = $stmt->get_result();
-
-// Check if the latest application is rejected
-if ($result->num_rows > 0) {
-    $row = $result->fetch_assoc();
-    if ($row['status'] == 'Rejected') {
-        // If the latest application is rejected, retrieve all rejected applications
-        $sqlRejected = "SELECT * FROM hostel_applications WHERE student_id = ? AND status = 'Rejected'";
-        $stmtRejected = $conn->prepare($sqlRejected);
-        $stmtRejected->bind_param("s", $studentId);
-        $stmtRejected->execute();
-
-        $rejectedApplications = $stmtRejected->get_result();
-    }
-}
+include("studentauthentication.php")
 ?>
 
 <!DOCTYPE html>
@@ -81,6 +59,8 @@ if ($result->num_rows > 0) {
           <li><a href="studenthome.php">Home</a></li>
           <li><a href="studentroom.php">Book Room</a></li>
           <li><a href="studentapplication.php">My Application</a></li>
+
+
         </ul>
       </nav><!-- .navbar -->
 
@@ -88,7 +68,7 @@ if ($result->num_rows > 0) {
       <!-- <a class="btn-book-a-table" href="#book-a-table">Log Out</a> -->
 
       <nav id="navbar" class="navbar">
-        <ul class="dropdown"><a class="btn-book-a-table"><span><?php echo $username; ?></span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
+        <ul class="dropdown"><a class="btn-book-a-table"><span>Username Kamu</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
           <ul>
             <li><a href="#">Drop Down 1</a></li>
             <li class="dropdown"><a href="#"><span>Deep Drop Down</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
@@ -114,7 +94,7 @@ if ($result->num_rows > 0) {
       <div class="container">
 
         <div class="d-flex justify-content-between align-items-center">
-          <h2>Hostel Booking Application</h2>
+          <h2>Manage Hostel Booking Applications</h2>
           <ol>
             <li><a href="studenthome.php">Home</a></li>
             <li>Student's College Application Status</li>
@@ -127,31 +107,43 @@ if ($result->num_rows > 0) {
     <section class="sample-page">
       <div class="container" data-aos="fade-up">
 
-      <?php if ($result->num_rows > 0 && $row['status'] == 'Rejected') { ?>
-        <h3>Rejected Applications:</h3>
-        <ul>
-            <?php while ($rejectedRow = $rejectedApplications->fetch_assoc()) { ?>
-                <li>Application ID: <?php echo $rejectedRow['id']; ?> | Student Name: <?php echo $rejectedRow['student_name']; ?></li>
-            <?php } ?>
-        </ul>
-    <?php } ?>
+        <div class="scrollable">
+          <?php
+          // Retrieve student applications from the database (replace with your database logic)
+          $applications = getStudentApplications(); //get data from database/student room
+          $sql = "SELECT username FROM Student WHERE username==$input";
+          // Display each application
+          foreach ($applications as $application) {
+            $studentName = $application['student_name'];
+            $roomType = $application['room_type'];
+            $status = $application['status'];
+            $applicationId = $application['id'];
 
-    <?php if ($result->num_rows > 0) { ?>
-        <table>
-            <tr>
-                <th>Application ID</th>
-                <th>Student Name</th>
-                <th>Status</th>
-            </tr>
-            <tr>
-                <td><?php echo $row['id']; ?></td>
-                <td><?php echo $row['student_name']; ?></td>
-                <td><?php echo $row['status']; ?></td>
-            </tr>
-        </table>
-    <?php } else { ?>
-        <p>No hostel application found.</p>
-    <?php } ?>
+            echo "<div>";
+            echo "<h3>$studentName</h3>";
+            echo "<p>Room Type: $roomType</p>";
+            echo "<p>Status: $status</p>";
+
+            // Display approve or reject button only if the status is pending
+            if ($status === 'pending') {
+              echo "<form action='process_application.php' method='post'>";
+              echo "<input type='hidden' name='application_id' value='$applicationId'>";
+              echo "<input type='radio' name='status_$applicationId' value='approved'> Approve";
+              echo "<input type='radio' name='status_$applicationId' value='rejected'> Reject";
+              echo "<input type='submit' value='Submit'>";
+              echo "</form>";
+            }
+
+            echo "</div>";
+          }
+          ?>
+
+          <!-- Button to approve all applications -->
+          <form action="process_all_applications.php" method="post">
+            <input type="hidden" name="action" value="approve_all">
+            <input type="submit" value="Approve All">
+          </form>
+        </div>
 
       </div>
     </section>
