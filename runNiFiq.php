@@ -35,6 +35,7 @@ CREATE TABLE Manager (
   staffnum VARCHAR(10),
   phone VARCHAR(20),
   collegeHandled VARCHAR(100)
+  FOREIGN KEY (collegeHandled) REFERENCES College(name)
 )";
 
 // SQL query to create the College table
@@ -42,31 +43,31 @@ $sqlCollege = "
 CREATE TABLE College (
   name VARCHAR(100) NOT NULL,
   location VARCHAR(100),
-  PRIMARY KEY (Name)
+  PRIMARY KEY (name)
 )";
 
 // SQL query to create the Room table
 $sqlRoom = "
 CREATE TABLE Room (
-  id INT AUTO_INCREMENT PRIMARY KEY,
-  collegeName VARCHAR(100),
+  collegename VARCHAR(100),
   roomType ENUM('onePerson', 'twoPerson', 'onePersonBathroom'),
+  gender ENUM('Male', 'Female'),
   pricing DECIMAL(10,2),
   availability INT,
-  FOREIGN KEY (collegeName) REFERENCES College(Name)
+  FOREIGN KEY (collegename) REFERENCES College(name)
 )";
 
 // SQL query to create the Booking table
 $sqlBooking = "
 CREATE TABLE Booking (
   id INT AUTO_INCREMENT PRIMARY KEY,
-  collegeName VARCHAR(100),
-  roomName INT,
+  collegename VARCHAR(100),
+  roomreference _______,
   dateBook DATE,
   username VARCHAR(50),
   status ENUM('Pending', 'Rejected', 'Approved'),
-  FOREIGN KEY (collegeName) REFERENCES College(Name),
-  FOREIGN KEY (roomName) REFERENCES Room(id),
+  FOREIGN KEY (collegename) REFERENCES College(name),
+  FOREIGN KEY (___________)
   FOREIGN KEY (username) REFERENCES Student(username)
 );";
 
@@ -96,18 +97,23 @@ INSERT INTO Student (username, password, email, name, gender, phone)
 VALUES ('student', 'password', 'student@gmail.com', 'STUDENTIAL', 'Male', '111')
 ";
 
+$insertManager = "
+INSERT INTO Manager (username, password, email, name, gender, phone)
+VALUES ('manager', 'password', 'manager@gmail.com', 'MANAGERNAMA', 'Male', '555', 'KTDI')
+";
+
 $insertCollege = "
-INSERT INTO College (Name, Location)
+INSERT INTO College (name, Location)
 VALUES ('KTDI', 'Jalan Resak')
 ";
 
 $insertRoom = "
-INSERT INTO Room (collegeName, roomType, pricing, availability)
+INSERT INTO Room (collegename, roomType, pricing, availability)
 VALUES ('KTDI', 'onePerson', 4.00, 32)
 ";
 
 $insertBooking = "
-INSERT INTO Booking (collegeName, roomName, dateBook)
+INSERT INTO Booking (collegename, roomname, dateBook)
 VALUES ('KTDI', 1, CURDATE())
 ";
 

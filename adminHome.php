@@ -93,6 +93,7 @@ include("adminauthentication.php")
         </div>
     </header><!-- End Header -->
 
+    <!--main-->
     <main id="main" class="main">
         <div class="breadcrumbs">
             <div class="container">
@@ -104,17 +105,18 @@ include("adminauthentication.php")
             </div>
         </div>
         <div>
-            <ul><a class="btn-book-a-table" href="adminCreateUser.php"><span>Create User</span></a></ul><br>
-            <ul><a class="btn-book-a-table" href="adminEditUser.php"><span>Edit User</span></a></ul><br>
-            <ul><a class="btn-book-a-table" href="adminDeleteUSer"><span>Delete User</span></ul><br>
-            <ul class="dropdown"><a class="btn-book-a-table" href="#book-a-table"><span>View</span></a>
+            <ul><a class="btn-book-a-table" href="adminCreateUser.php"><span>Create User</span></a></ul>
+            <ul><a class="btn-book-a-table" href="adminEditUser.php"><span>Edit User</span></a></ul>
+            <ul><a class="btn-book-a-table" href="adminDeleteUSer"><span>Delete User</span></ul>
+            <ul class="dropdown"><a class="btn-book-a-table" href="#book-a-table">View<i class="bi bi-chevron-down dropdown-indicator"></i></a>
                 <ul>
                     <li><a href="studenthome.php">Student</a></li>
                     <li><a href="#">manager</a></li>
                 </ul>
             </ul>
-            <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
-            <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
+
+            <!-- <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
+            <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i> -->
         </div>
     </main>
 

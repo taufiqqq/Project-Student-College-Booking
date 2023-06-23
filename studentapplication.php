@@ -1,29 +1,7 @@
 <?php
 include("connection.php");
 session_start();
-include("studentauthentication.php");
-
-// Retrieve the hostel application with the latest non-rejected status
-$sql = "SELECT * FROM hostel_applications WHERE student_id = ? AND status != 'Rejected' ORDER BY id DESC LIMIT 1";
-$stmt = $conn->prepare($sql);
-$stmt->bind_param("s", $studentId);
-$stmt->execute();
-
-$result = $stmt->get_result();
-
-// Check if the latest application is rejected
-if ($result->num_rows > 0) {
-    $row = $result->fetch_assoc();
-    if ($row['status'] == 'Rejected') {
-        // If the latest application is rejected, retrieve all rejected applications
-        $sqlRejected = "SELECT * FROM hostel_applications WHERE student_id = ? AND status = 'Rejected'";
-        $stmtRejected = $conn->prepare($sqlRejected);
-        $stmtRejected->bind_param("s", $studentId);
-        $stmtRejected->execute();
-
-        $rejectedApplications = $stmtRejected->get_result();
-    }
-}
+include("studentauthentication.php")
 ?>
 
 <!DOCTYPE html>
@@ -127,15 +105,15 @@ if ($result->num_rows > 0) {
     <section class="sample-page">
       <div class="container" data-aos="fade-up">
 
-      <?php if ($result->num_rows > 0 && $row['status'] == 'Rejected') { ?>
+
+<!--       <?php if ($result->num_rows > 0 && $row['status'] == 'Rejected') { ?>
         <h3>Rejected Applications:</h3>
         <ul>
             <?php while ($rejectedRow = $rejectedApplications->fetch_assoc()) { ?>
-                <li>Application ID: <?php echo $rejectedRow['id']; ?> | Student Name: <?php echo $rejectedRow['student_name']; ?></li>
+                <li>Application ID: <?php echo $rejectedRow['id']; ?> | Student Name: <?php echo $rejectedRow['username']; ?></li>
             <?php } ?>
         </ul>
     <?php } ?>
-
     <?php if ($result->num_rows > 0) { ?>
         <table>
             <tr>
@@ -145,16 +123,72 @@ if ($result->num_rows > 0) {
             </tr>
             <tr>
                 <td><?php echo $row['id']; ?></td>
-                <td><?php echo $row['student_name']; ?></td>
+                <td><?php echo $row['username']; ?></td>
                 <td><?php echo $row['status']; ?></td>
             </tr>
         </table>
     <?php } else { ?>
         <p>No hostel application found.</p>
     <?php } ?>
+ -->
 
-      </div>
-    </section>
+ <?php 
+    $idBooking = "SELECT id FROM Booking WHERE studenteusername == sess_username" != null;
+
+    $usernameBookA = "SELECT username FROM Booking WHERE studenteusername == sess_username";
+    $idBookA = "SELECT id FROM Booking WHERE studenteusername == sess_username && status==approved";
+    $dateBookA = "SELECT dateBook FROM Booking WHERE studenteusername == sess_username && status==approved";
+    $collegeRoomBookA = "SELECT collegename, roomreference FROM Booking WHERE studenteusername == sess_username && status==approved";
+    $statusBookA = "SELECT status FROM Booking WHERE studenteusername == sess_username && status==approved";
+
+    $usernameBookP = "SELECT username FROM Booking WHERE studenteusername == sess_username";
+    $idBookP = "SELECT id FROM Booking WHERE studenteusername == sess_username && status==pending";
+    $dateBookP = "SELECT dateBook FROM Booking WHERE studenteusername == sess_username && status==pending";
+    $collegeRoomBookP = "SELECT collegename, roomreference FROM Booking WHERE studenteusername == sess_username && status==pending";
+    $statusBookP = "SELECT status FROM Booking WHERE studenteusername == sess_username && status==pending";
+
+    $usernameBookR = "SELECT username FROM Booking WHERE studenteusername == sess_username";
+    $idBookR = "SELECT id FROM Booking WHERE studenteusername == sess_username && status==rejected";
+    $dateBookR = "SELECT dateBook FROM Booking WHERE studenteusername == sess_username && status==rejected";
+    $collegeRoomBookR = "SELECT collegename, roomreference FROM Booking WHERE studenteusername == sess_username && status==rejected";
+    $statusBookR = "SELECT status FROM Booking WHERE studenteusername == sess_username && status==rejected";
+ ?>
+<?php if ($idBooking) { ?>
+  <table>
+    <tr>
+      <th>Application ID: </th>
+      <th>Student Name: </th>
+      <th>Booking Date: </th>
+      <th>College and room: </th>
+      <th>Status: </th>
+    </tr>
+    <tr>
+      <td><?php echo $usernameBookA ?></td>
+      <td><?php echo $idBookA ?></td>
+      <td><?php echo $dateBookA ?></td>
+      <td><?php echo $collegeRoomBookA ?></td>
+      <td><?php echo $statusBookA ?></td>
+    </tr>
+    <tr>
+      <td><?php echo $usernameBookP; ?></td>
+      <td><?php echo $idBookP; ?></td>
+      <td><?php echo $dateBookP ?></td>
+      <td><?php echo $collegeRoomBookP; ?></td>
+      <td><?php echo $statusBookP; ?></td>
+    </tr>
+    <tr>
+      <td><?php echo $usernameBookR; ?></td>
+      <td><?php echo $idBookR; ?></td>
+      <td><?php echo $dateBookR ?></td>
+      <td><?php echo $collegeRoomBookR; ?></td>
+      <td><?php echo $statusBookR; ?></td>
+    </tr>
+  </table>
+<?php } else { ?>
+        <p>No hostel application found.</p>
+<?php } ?>
+  </div>
+</section>
 
   </main><!-- End #main -->
 

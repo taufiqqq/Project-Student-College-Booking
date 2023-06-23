@@ -128,7 +128,7 @@ include("studentauthentication.php");
                         <div class="sidebar">
                             <h2>Choose College </h2>
                             <br>
-                            <form>
+                            <form action="" method="post">
                                 <label>
                                     <input type="radio" name="college" value="KTDI">
                                     Kolej Tun Dr Ismail
@@ -179,62 +179,65 @@ include("studentauthentication.php");
                                     Kolej 09 & 10
                                 </label>
                                 <br>
-                            </form>
+
                         </div>
                     </div>
                     <div class="col-lg-9">
                         <div class="content">
                             <h2>Choose Your Room</h2>
-                            <form action="">
+
                             <div class="containerflexbox">
                                 <div class="row">
                                     <div class="column">
-                                    <img src="assets/img/KTDI-1.jpg" alt="Hotel Image 1" width="350" height="300">
+                                        <img src="assets/img/KTDI-1.jpg" alt="Hotel Image 1" width="350" height="300">
                                     </div>
                                     <div class="column">
                                         <h2>Single Room With Bathroom</h2><br>
                                         <p><strong>Price per day:</strong> RM4</p>
                                         <p><strong>Rating:</strong> 4.5/5</p>
                                         <p><strong>Vacant:</strong></p>
-                                        <input type="radio" name="college" value="SRB">
+                                        <input type="radio" name="room" value="SRB">
                                         Choose Single Bath Room
                                     </div>
                                 </div>
 
                                 <div class="row">
                                     <div class="column">
-                                    <img src="assets/img/KTDI-1.jpg" alt="Hotel Image 1" width="350" height="300">
+                                        <img src="assets/img/KTDI-1.jpg" alt="Hotel Image 1" width="350" height="300">
                                     </div>
                                     <div class="column">
                                         <h2>Single Room With Bathroom</h2><br>
                                         <p><strong>Price per day:</strong> RM4</p>
                                         <p><strong>Rating:</strong> 4.5/5</p>
                                         <p><strong>Vacant:</strong></p>
-                                        <input type="radio" name="college" value="SR">
+                                        <input type="radio" name="room" value="SR">
                                         Choose Single Room
                                     </div>
                                 </div>
 
                                 <div class="row">
                                     <div class="column">
-                                    <img src="assets/img/KTDI-1.jpg" alt="Hotel Image 1" width="350" height="300">
+                                        <img src="assets/img/KTDI-1.jpg" alt="Hotel Image 1" width="350" height="300">
                                     </div>
                                     <div class="column">
-                                    <h2>Single Room With Bathroom</h2>
+                                        <h2>Single Room With Bathroom</h2>
                                         <p><strong>Price per day:</strong> RM4</p>
                                         <p><strong>Rating:</strong> 4.5/5</p>
                                         <p><strong>Vacant:</strong></p>
-                                        <input type="radio" name="college" value="DB">
+                                        <input type="radio" name="room" value="DB">
                                         Choose Double Room
                                     </div>
                                 </div>
+                                <input type="submit" value="Submit">
                             </div>
-
+                            
                         </div>
                     </div>
                     </form>
             </section>
         </main>
+
+
 
         <footer id="footer" class="footer">
             <!-- Footer content goes here -->

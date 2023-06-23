@@ -7,6 +7,7 @@ if (!$conn) {
     die("Error when connecting to MySQL: " . mysqli_connect_error());
 }
 
+
 // Create the 'project' database if it doesn't exist
 $createDBQuery = "CREATE DATABASE IF NOT EXISTS project";
 if (mysqli_query($conn, $createDBQuery)) {
