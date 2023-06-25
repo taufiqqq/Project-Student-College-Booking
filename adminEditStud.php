@@ -97,33 +97,12 @@ include("adminauthentication.php")
                 <div class="container">
                     <div class="d-flex justify-content-between align-items-center">
                         <h1>
-                            Edit User Page<br>
+                            Edit Student Page<br>
                         </h1>
                     </div>
                 </div>
             </div>
-            <form id="userTypeForm" method="POST">
-                <br><br>
-                <p>Please select type of user:</p>
-                <div>
-                    <input type="radio" id="stud" name="user_type" value="Student">
-                    <label for="stud">Student</label>
-                </div>
-                <div>
-                    <input type="radio" id="manager" name="user_type" value="Manager">
-                    <label for="manager">Manager</label>
-                </div>
-                <div>
-                    <input type="submit" value="Submit">
-                </div>
-            </form>
-
-            <?php
-            if (isset($_POST['user_type'])) {
-                $userType = $_POST['user_type'];
-                echo "Selected User Type: " . $userType;
-            }
-            ?>
+            
         </div>
     </main>
 
@@ -195,22 +174,6 @@ include("adminauthentication.php")
 
     </footer><!-- End Footer -->
     <!-- End Footer -->
-    <script>
-        document.getElementById("userTypeForm").addEventListener("submit", function() {
-            var selectedValue = document.querySelector('input[name="user_type"]:checked').value;
-            var actionUrl;
-
-            if (selectedValue === "Student") {
-                actionUrl = "adminEditStud.php";
-            } else if (selectedValue === "Manager") {
-                actionUrl = "adminEditManager.php";
-            }
-
-            if (actionUrl) {
-                document.getElementById("userTypeForm").action = actionUrl;
-            }
-        });
-    </script>
 </body>
 
 </html>

@@ -1,4 +1,4 @@
-<?php 
+<?php
 include("connection.php");
 session_start();
 include("studentauthentication.php");
@@ -15,8 +15,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $bookingResult = mysqli_query($conn, $bookingQuery);
 
     if ($bookingResult && mysqli_num_rows($bookingResult) > 0) {
-        // User already has a pending or accepted booking, reject the new booking
-        echo "You already have a pending or accepted booking. Please wait for the current booking status or contact the administration for assistance.";
+        // User already has a pending or accepted booking, display alert and redirect
+        echo "<script>alert('You already have a pending or accepted booking. Please wait for the current booking status or contact the administration for assistance.');</script>";
+        echo "<script>window.location.href = 'studentapplication.php';</script>";
+        exit();
     } else {
         // Check room availability
         $availabilityQuery = "SELECT availability FROM Room WHERE collegename = '$college' AND roomType = '$room' AND gender = '$gender'";
@@ -28,18 +30,28 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                     VALUES ('$college', '$room', '$gender', '$dateBook', '$username', 'Pending')";
 
             if (mysqli_query($conn, $sql)) {
-                // Booking submitted successfully, reduce room availability by 1
-                
-                echo "Booking submitted successfully.";
+                // Booking submitted successfully, display alert and redirect
+                echo "<script>alert('Booking submitted successfully.');</script>";
+                echo "<script>window.location.href = 'studentapplication.php';</script>";
+                exit();
             } else {
-                echo "Error submitting booking: " . mysqli_error($conn);
+                // Error submitting booking, display alert and redirect
+                echo "<script>alert('Error submitting booking: " . mysqli_error($conn) . "');</script>";
+                echo "<script>window.location.href = 'studentroom.php';</script>";
+                exit();
             }
         } else {
-            echo "Fully booked, please choose another room or college.";
+            // Fully booked, display alert and redirect
+            echo "<script>alert('Fully booked, please choose another room or college.');</script>";
+            echo "<script>window.location.href = 'studentroom.php';</script>";
+            exit();
         }
     }
 }
 ?>
+
+
+
 <!-- 
 $reduceAvailabilityQuery = "UPDATE Room SET availability = availability - 1 WHERE collegename = '$college' AND roomType = '$room' AND gender = '$gender'";
                 mysqli_query($conn, $reduceAvailabilityQuery);

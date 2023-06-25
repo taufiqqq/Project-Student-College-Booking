@@ -21,7 +21,9 @@ include("managerauthentication.php")
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600;1,700&family=Amatic+SC:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600;1,700&family=Amatic+SC:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
+    rel="stylesheet">
 
   <!-- Vendor CSS Files -->
   <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -56,41 +58,55 @@ include("managerauthentication.php")
 
       <nav id="navbar" class="navbar">
         <ul>
-          <li><a href="studenthome.php">Home</a></li>
-          <li><a href="studentroom.php">Book Room</a></li>
-          <li><a href="studentapplication.php">My Application</a></li>
-
-
+          <li><a href="managerhome.php">Home</a></li>
+          <li><a href="managerapplication.php">Student Application</a></li>
         </ul>
       </nav><!-- .navbar -->
 
-
-      <!-- <a class="btn-book-a-table" href="#book-a-table">Log Out</a> -->
-
       <nav id="navbar" class="navbar">
-        <ul class="dropdown"><a class="btn-book-a-table"><span>Username Kamu</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
+        <ul class="dropdown"><a class="btn-book-a-table"><span>Manager</span> <i
+              class="bi bi-chevron-down dropdown-indicator"></i></a>
           <ul>
-            <li><a href="#">Drop Down 1</a></li>
-            <li class="dropdown"><a href="#"><span>Deep Drop Down</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
-
-            </li>
-            <li><a href="#">Drop Down 2</a></li>
-            <li><a href="#">Drop Down 3</a></li>
-            <li><a href="#">Drop Down 4</a></li>
+            <li><a href="#">Profile</a></li>
+            <li><a href="#">Settings</a></li>
+            <li><a href="#">Tak tau</a></li>
+            <li><a href="logout.php">Log Out</a></li>
           </ul>
         </ul>
       </nav>
-
       <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
       <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
 
     </div>
   </header><!-- End Header -->
 
+  <!-- ======= Hero Section ======= -->
+  <section id="hero" class="hero d-flex align-items-center section-bg">
+    <div class="container">
+      <div class="row justify-content-between gy-5">
+        <div
+          class="col-lg-5 order-2 order-lg-1 d-flex flex-column justify-content-center align-items-center align-items-lg-start text-center text-lg-start">
+          <h2 data-aos="fade-up">Welcome to<br>UTM Colleges</h2>
+          <p data-aos="fade-up" data-aos-delay="100">Book your college now! Ranging from KTDI, KTR, KDSE choose your own
+            option</p>
+          <div class="d-flex" data-aos="fade-up" data-aos-delay="200">
+            <a href="#book-a-table" class="btn-book-a-table">Book Your Room Now</a>
+            <a href="https://www.youtube.com/watch?v=sesHjlVW1R0&ab_channel=MUHAMMADTAUFIQBINJURIMIA21EC0095"
+              class="glightbox btn-watch-video d-flex align-items-center"><i class="bi bi-play-circle"></i><span>Watch
+                Video</span></a>
+          </div>
+        </div>
+        <div class="col-lg-5 order-1 order-lg-2 text-center text-lg-start">
+          <img src="assets/img/KTDI-1.jpg" class="img-fluid" alt="" data-aos="zoom-out" data-aos-delay="300">
+        </div>
+      </div>
+    </div>
+  </section><!-- End Hero Section -->
+
   <main id="main">
 
-    <!-- ======= Breadcrumbs ======= -->
-    <div class="breadcrumbs">
+  <!-- ======= Breadcrumbs ======= -->
+  <div class="breadcrumbs">
       <div class="container">
 
         <div class="d-flex justify-content-between align-items-center">
@@ -107,43 +123,70 @@ include("managerauthentication.php")
     <section class="sample-page">
       <div class="container" data-aos="fade-up">
 
-        <div class="scrollable">
-          <?php
-          // Retrieve student applications from the database (replace with your database logic)
-          $applications = getStudentApplications(); //get data from database/student room
-          $sql = "SELECT username FROM Student WHERE username==$input";
-          // Display each application
-          foreach ($applications as $application) {
-            $studentName = $application['student_name'];
-            $roomType = $application['room_type'];
-            $status = $application['status'];
-            $applicationId = $application['id'];
+      <?php 
+  $pendingBookingsQuery = mysqli_query($conn, "SELECT username, id, dateBook, collegename, roomType, status FROM Booking WHERE status = 'pending'");
+  $hasPendingBookings = mysqli_num_rows($pendingBookingsQuery) > 0;
 
-            echo "<div>";
-            echo "<h3>$studentName</h3>";
-            echo "<p>Room Type: $roomType</p>";
-            echo "<p>Status: $status</p>";
+  if (isset($_POST['submit'])) {
+    $bookingStatus = $_POST['booking_status'];
+    
+    foreach ($bookingStatus as $bookingId => $status) {
+      $updateQuery = "UPDATE Booking SET status = '$status' WHERE id = '$bookingId'";
+      mysqli_query($conn, $updateQuery);
+    }
+  }
+?>
 
-            // Display approve or reject button only if the status is pending
-            if ($status === 'pending') {
-              echo "<form action='process_application.php' method='post'>";
-              echo "<input type='hidden' name='application_id' value='$applicationId'>";
-              echo "<input type='radio' name='status_$applicationId' value='approved'> Approve";
-              echo "<input type='radio' name='status_$applicationId' value='rejected'> Reject";
-              echo "<input type='submit' value='Submit'>";
-              echo "</form>";
-            }
-
-            echo "</div>";
-          }
-          ?>
-
-          <!-- Button to approve all applications -->
-          <form action="process_all_applications.php" method="post">
-            <input type="hidden" name="action" value="approve_all">
-            <input type="submit" value="Approve All">
-          </form>
-        </div>
+<?php if ($hasPendingBookings) { ?>
+  <h2>Pending Bookings</h2>
+  <form method="post" action="">
+    <table style="margin: 20px; padding: 10px;">
+      <tr>
+        <th style="padding: 10px;">Application ID</th>
+        <th style="padding: 10px;">Student Name</th>
+        <th style="padding: 10px;">Booking Date</th>
+        <th style="padding: 10px;">College and Room</th>
+        <th style="padding: 10px;">Status</th>
+        <th style="padding: 10px;">Action</th>
+      </tr>
+      <?php while ($row = mysqli_fetch_assoc($pendingBookingsQuery)) { ?>
+        <tr>
+          <td style="padding: 10px;">
+            <?php echo $row['id']; ?>
+          </td>
+          <td style="padding: 10px;">
+            <?php echo $row['username']; ?>
+          </td>
+          <td style="padding: 10px;">
+            <?php echo $row['dateBook']; ?>
+          </td>
+          <td style="padding: 10px;">
+            <span>
+              <?php echo $row['roomType']; ?>
+            </span>
+            <span>
+              <?php echo $row['collegename']; ?>
+            </span>
+          </td>
+          <td style="padding: 10px;">
+            <?php echo $row['status']; ?>
+          </td>
+          <td style="padding: 10px;">
+            <label>
+              <input type="radio" name="booking_status[<?php echo $row['id']; ?>]" value="approved"> Approve
+            </label>
+            <label>
+              <input type="radio" name="booking_status[<?php echo $row['id']; ?>]" value="rejected"> Reject
+            </label>
+          </td>
+        </tr>
+      <?php } ?>
+    </table>
+    <button type="submit" name="submit">Submit</button>
+  </form>
+<?php } else {?>
+  <p>No hostel application found.</p>
+        <?php } ?>
 
       </div>
     </section>
@@ -219,7 +262,8 @@ include("managerauthentication.php")
   </footer><!-- End Footer -->
   <!-- End Footer -->
 
-  <a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+  <a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i
+      class="bi bi-arrow-up-short"></i></a>
 
   <div id="preloader"></div>
 

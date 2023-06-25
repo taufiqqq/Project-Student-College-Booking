@@ -1,42 +1,23 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <title>Change Picture Example</title>
-    <script>
-        function changePicture() {
-            // Get the selected radio button value
-            var selectedValue = document.querySelector('input[name="myRadio"]:checked').value;
-
-            // Determine the corresponding image source based on the selected value
-            var imageSrc;
-            if (selectedValue === 'option1') {
-                imageSrc = 'assets/img/KTDI-1.jpg';
-            } else if (selectedValue === 'option2') {
-                imageSrc = 'assets/img/KTC-1.jpg';
-            }
-
-            // Update the image source
-            document.getElementById('myImage').src = imageSrc;
-        }
-    </script>
-</head>
 <body>
 
-<h2>Choose an Option:</h2>
-<form>
-    <label>
-        <input type="radio" name="myRadio" value="option1" onchange="changePicture()">
-        Option 1
-    </label>
-    <br><br>
-    <label>
-        <input type="radio" name="myRadio" value="option2" onchange="changePicture()">
-        Option 2
-    </label>
-</form>
+<script>
+// This function will be triggered when the form is submitted
+function handleSubmit() {
+  // Display an alert box
+  alert("Form submitted successfully!");
+}
+</script>
 
-<!-- Display the image -->
-<img id="myImage" src="" alt="Selected Image">
+<form onsubmit="handleSubmit()">
+  <!-- Form fields go here -->
+  <input type="text" name="name" placeholder="Enter your name" required>
+  <input type="email" name="email" placeholder="Enter your email" required>
+  
+  <!-- Submit button -->
+  <input type="submit" value="Submit">
+</form>
 
 </body>
 </html>

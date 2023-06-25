@@ -66,7 +66,7 @@ include("adminauthentication.php")
                                 <li class="dropdown"><a href="#"><span>View</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
                                     <ul>
                                         <li><a href="studenthome.php">student</a></li>
-                                        <li><a href="">manager</a></li>
+                                        <li><a href="managerhome.php">manager</a></li>
                                     </ul>
                                 </li>
                             </ul>
@@ -81,8 +81,6 @@ include("adminauthentication.php")
             <nav id="navbar" class="navbar">
                 <ul class="dropdown"><a class="btn-book-a-table" href="#book-a-table"><span>Admin</span><i class="bi bi-chevron-down dropdown-indicator"></i></a>
                     <ul>
-                        <li><a href=""></a></li>
-                        <li><a href="#">drop 2</a></li>
                         <li><a href="logout.php">Logout</a></li>
                     </ul>
                 </ul>
@@ -178,7 +176,7 @@ include("adminauthentication.php")
 
             // Close the database connection
             $stmt->close();
-        }
+            }
             ?>
 
             <!--stud = username, pass, email, nama, matric, gender, no fon

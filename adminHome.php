@@ -80,8 +80,6 @@ include("adminauthentication.php")
             <nav id="navbar" class="navbar">
                 <ul class="dropdown"><a class="btn-book-a-table" href="#book-a-table"><span>Admin</span><i class="bi bi-chevron-down dropdown-indicator"></i></a>
                     <ul>
-                        <li><a href=""></a></li>
-                        <li><a href="#">drop 2</a></li>
                         <li><a href="logout.php">Logout</a></li>
                     </ul>
                 </ul>

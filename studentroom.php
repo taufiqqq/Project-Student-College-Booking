@@ -100,122 +100,122 @@ include("studentauthentication.php");
                 </div>
             </div>
 
-            <section class="container" data-aos="fade-up">
-                <div class="row">
-                    <div class="col-lg-3">
-                        <div class="sidebar">
-                            <h2>Choose College </h2>
+            <section class="container" data-aos="fade-up"></section>
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="sidebar">
+                        <h2>Choose College </h2>
+                        <br>
+                        <form action="submitApplication.php" method="POST">
+                            <label>
+                                <input type="radio" onClick="changePic() " name="college" value="KTDI" required>
+                                Kolej Tun Dr Ismail
+                            </label>
+                            <br><br>
+                            <label>
+                                <input type="radio" onClick="changePic() " name="college" value="KTHO" required>
+                                Kolej Tun Hussien Onn
+                            </label>
+                            <br><br>
+                            <label>
+                                <input type="radio" onClick="changePic() " name="college" value="KTF" required>
+                                Kolej Tun Fatimah
+                            </label>
+                            <br><br>
+                            <label>
+                                <input type="radio" onClick="changePic() " name="college" value="KTR" required>
+                                Kolej Tun Razak
+                            </label>
+                            <br><br>
+                            <label>
+                                <input type="radio" onClick="changePic() " name="college" value="KTC" required>
+                                Kolej Tun Canselor
+                            </label>
+                            <br><br>
+                            <label>
+                                <input type="radio" onClick="changePic() " name="college" value="KRP" required>
+                                Kolej Rahman Putra
+                            </label>
+                            <br><br>
+                            <label>
+                                <input type="radio" onClick="changePic() " name="college" value="KDOJ" required>
+                                Kolej Data Onn Jaafar
+                            </label>
+                            <br><br>
+                            <label>
+                                <input type="radio" onClick="changePic() " name="college" value="KP" required>
+                                Kolej Perdana
+                            </label>
+                            <br><br>
+                            <label>
+                                <input type="radio" onClick="changePic() " name="college" value="KDSE" required>
+                                Kolej Datin Seri Endon
+                            </label>
+                            <br><br>
+                            <label>
+                                <input type="radio" onClick="changePic() " name="college" value="K9K10" required>
+                                Kolej 09 & 10
+                            </label>
                             <br>
-                            <form action="submitApplication.php" method="POST">
-                                <label>
-                                    <input type="radio" onClick="changePic() " name="college" value="KTDI" required>
-                                    Kolej Tun Dr Ismail
-                                </label>
-                                <br><br>
-                                <label>
-                                    <input type="radio" onClick="changePic() " name="college" value="KTHO" required>
-                                    Kolej Tun Hussien Onn
-                                </label>
-                                <br><br>
-                                <label>
-                                    <input type="radio" onClick="changePic() " name="college" value="KTF" required>
-                                    Kolej Tun Fatimah
-                                </label>
-                                <br><br>
-                                <label>
-                                    <input type="radio" onClick="changePic() " name="college" value="KTR" required>
-                                    Kolej Tun Razak
-                                </label>
-                                <br><br>
-                                <label>
-                                    <input type="radio" onClick="changePic() " name="college" value="KTC" required>
-                                    Kolej Tun Canselor
-                                </label>
-                                <br><br>
-                                <label>
-                                    <input type="radio" onClick="changePic() " name="college" value="KRP" required>
-                                    Kolej Rahman Putra
-                                </label>
-                                <br><br>
-                                <label>
-                                    <input type="radio" onClick="changePic() " name="college" value="KDOJ" required>
-                                    Kolej Data Onn Jaafar
-                                </label>
-                                <br><br>
-                                <label>
-                                    <input type="radio" onClick="changePic() " name="college" value="KP" required>
-                                    Kolej Perdana
-                                </label>
-                                <br><br>
-                                <label>
-                                    <input type="radio" onClick="changePic() " name="college" value="KDSE" required>
-                                    Kolej Datin Seri Endon
-                                </label>
-                                <br><br>
-                                <label>
-                                    <input type="radio" onClick="changePic() " name="college" value="K9K10" required>
-                                    Kolej 09 & 10
-                                </label>
-                                <br>
 
-                        </div>
                     </div>
-                    <div class="col-lg-9">
-                        <div class="content">
-                            <h2>Choose Your Room</h2>
+                </div>
+                <div class="col-lg-9">
+                    <div class="content">
+                        <h2>Choose Your Room</h2>
 
-                            <div class="containerflexbox">
-                                <div class="row">
-                                    <div class="column">
-                                        <img id="room-img" src="assets/img/KTDI-1.jpg" alt="Hotel Image 1" width="350" height="300">
-                                    </div>
-                                    <div class="column">
-                                        <h2>Single Room With Bathroom</h2><br>
-                                        <p><strong>Price per day:</strong> RM8</p>
-                                        <p><strong>Rating:</strong> 5.0/5</p>
-                                        <p><strong id="singleB"></strong></p>
-                                        <input type="radio" name="room" value="onePersonBathroom"  required>
-                                        Choose Single Bath Room
-                                    </div>
+                        <div class="containerflexbox">
+                            <div class="row">
+                                <div class="column">
+                                    <img id="room-img" src="assets/img/KTDI-1.jpg" alt="Hotel Image 1" width="350" height="300">
                                 </div>
-
-                                <div class="row">
-                                    <div class="column">
-                                        <img id="room-img2" src="assets/img/KTDI-1.jpg" alt="Hotel Image 1" width="350" height="300">
-                                    </div>
-                                    <div class="column">
-                                        <h2>Single Room </h2><br>
-                                        <p><strong>Price per day:</strong> RM6</p>
-                                        <p><strong>Rating:</strong> 4.0/5</p>
-                                        <p><strong>Vacancy : </strong><strong id="single"></strong></p>
-
-                                        <input type="radio" name="room" value="onePerson"  required>
-                                        Choose Single Room
-                                    </div>
+                                <div class="column">
+                                    <h2>Single Room With Bathroom</h2><br>
+                                    <p><strong>Price per day:</strong> RM8</p>
+                                    <p><strong>Rating:</strong> 5.0/5</p>
+                                    <p><strong id="singleB"></strong></p>
+                                    <input type="radio" name="room" value="onePersonBathroom" required>
+                                    Choose Single Bath Room
                                 </div>
-
-                                <div class="row">
-                                    <div class="column">
-                                        <img id="room-img3" src="assets/img/KTDI-1.jpg" alt="Hotel Image 1" width="350" height="300">
-                                    </div>
-                                    <div class="column">
-                                        <h2>Double Room</h2>
-                                        <p><strong>Price per day:</strong> RM4</p>
-                                        <p><strong>Rating:</strong> 3.0/5</p>
-                                        <p><strong id="double">
-                                            </strong></p>
-                                        <input type="radio" name="room" value="twoPerson"  required>
-                                        Choose Double Room
-                                    </div>
-                                </div>
-                                <input type="submit" value="Submit">
-
                             </div>
+
+                            <div class="row">
+                                <div class="column">
+                                    <img id="room-img2" src="assets/img/KTDI-1.jpg" alt="Hotel Image 1" width="350" height="300">
+                                </div>
+                                <div class="column">
+                                    <h2>Single Room </h2><br>
+                                    <p><strong>Price per day:</strong> RM6</p>
+                                    <p><strong>Rating:</strong> 4.0/5</p>
+                                    <p><strong>Vacancy : </strong><strong id="single"></strong></p>
+
+                                    <input type="radio" name="room" value="onePerson" required>
+                                    Choose Single Room
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="column">
+                                    <img id="room-img3" src="assets/img/KTDI-1.jpg" alt="Hotel Image 1" width="350" height="300">
+                                </div>
+                                <div class="column">
+                                    <h2>Double Room</h2>
+                                    <p><strong>Price per day:</strong> RM4</p>
+                                    <p><strong>Rating:</strong> 3.0/5</p>
+                                    <p><strong id="double">
+                                        </strong></p>
+                                    <input type="radio" name="room" value="twoPerson" required>
+                                    Choose Double Room
+                                </div>
+                            </div>
+                            <input type="submit" value="Submit">
+
                         </div>
                     </div>
+                </div>
 
-                    </form>
-            </section>
+                </form>
+                </section>
         </main>
 
 
@@ -321,10 +321,6 @@ include("studentauthentication.php");
     <script src="assets/js/main.js"></script>
     <script>
         window.onload = function() {
-            /* $stmt = $conn->prepare('SELECT gender FROM Student WHERE username=?');
-            $stmt->bind_param('s', $username);
-            $stmt->execute(); ?>" */
-
             var doubleroom = document.getElementById("double");
             var singleroom = document.getElementById("single");
             var singleroombathroom = document.getElementById("singleB");
@@ -333,7 +329,6 @@ include("studentauthentication.php");
             doubleroom.textContent = "Pick a College First";
             singleroombathroom.textContent = "Pick a College First";
         };
-
 
         function changePic() {
             var doubleroom = document.getElementById("double");
@@ -371,7 +366,7 @@ include("studentauthentication.php");
                 img.src = "assets/img/ktho-image.jpg";
                 img2.src = "assets/img/ktho-image.jpg";
                 img3.src = "assets/img/ktho-image.jpg";
-                
+
                 singleroom.textContent = "Vacancy: " + "<?php echo mysqli_query($conn, 'SELECT availability FROM Room WHERE collegename = "KTHO" AND roomType = "onePerson" AND gender="' . $gender . '"')->fetch_assoc()['availability']; ?>";
                 doubleroom.textContent = "Vacancy: " + "<?php echo mysqli_query($conn, 'SELECT availability FROM Room WHERE collegename = "KTHO" AND roomType = "twoPerson" AND gender="' . $gender . '"')->fetch_assoc()['availability']; ?>";
                 singleroombathroom.textContent = "Vacancy: " + "<?php echo mysqli_query($conn, 'SELECT availability FROM Room WHERE collegename = "KTHO" AND roomType = "onePersonBathroom" AND gender="' . $gender . '"')->fetch_assoc()['availability']; ?>";
@@ -381,7 +376,7 @@ include("studentauthentication.php");
                 img.src = "assets/img/ktc-image.jpg";
                 img2.src = "assets/img/ktc-image.jpg";
                 img3.src = "assets/img/ktc-image.jpg";
-                
+
                 singleroom.textContent = "Vacancy: " + "<?php echo mysqli_query($conn, 'SELECT availability FROM Room WHERE collegename = "KTC" AND roomType = "onePerson" AND gender="' . $gender . '"')->fetch_assoc()['availability']; ?>";
                 doubleroom.textContent = "Vacancy: " + "<?php echo mysqli_query($conn, 'SELECT availability FROM Room WHERE collegename = "KTC" AND roomType = "twoPerson" AND gender="' . $gender . '"')->fetch_assoc()['availability']; ?>";
                 singleroombathroom.textContent = "Vacancy: " + "<?php echo mysqli_query($conn, 'SELECT availability FROM Room WHERE collegename = "KTC" AND roomType = "onePersonBathroom" AND gender="' . $gender . '"')->fetch_assoc()['availability']; ?>";
@@ -390,7 +385,7 @@ include("studentauthentication.php");
                 img.src = "assets/img/k9k10-image.jpg";
                 img2.src = "assets/img/k9k10-image.jpg";
                 img3.src = "assets/img/k9k10-image.jpg";
-                
+
                 singleroom.textContent = "Vacancy: " + "<?php echo mysqli_query($conn, 'SELECT availability FROM Room WHERE collegename = "K9K10" AND roomType = "onePerson" AND gender="' . $gender . '"')->fetch_assoc()['availability']; ?>";
                 doubleroom.textContent = "Vacancy: " + "<?php echo mysqli_query($conn, 'SELECT availability FROM Room WHERE collegename = "K9K10" AND roomType = "twoPerson" AND gender="' . $gender . '"')->fetch_assoc()['availability']; ?>";
                 singleroombathroom.textContent = "Vacancy: " + "<?php echo mysqli_query($conn, 'SELECT availability FROM Room WHERE collegename = "K9K10" AND roomType = "onePersonBathroom" AND gender="' . $gender . '"')->fetch_assoc()['availability']; ?>";
@@ -399,7 +394,7 @@ include("studentauthentication.php");
                 img.src = "assets/img/krp-image.jpg";
                 img2.src = "assets/img/krp-image.jpg";
                 img3.src = "assets/img/krp-image.jpg";
-                
+
                 singleroom.textContent = "Vacancy: " + "<?php echo mysqli_query($conn, 'SELECT availability FROM Room WHERE collegename = "KRP" AND roomType = "onePerson" AND gender="' . $gender . '"')->fetch_assoc()['availability']; ?>";
                 doubleroom.textContent = "Vacancy: " + "<?php echo mysqli_query($conn, 'SELECT availability FROM Room WHERE collegename = "KRP" AND roomType = "twoPerson" AND gender="' . $gender . '"')->fetch_assoc()['availability']; ?>";
                 singleroombathroom.textContent = "Vacancy: " + "<?php echo mysqli_query($conn, 'SELECT availability FROM Room WHERE collegename = "KRP" AND roomType = "onePersonBathroom" AND gender="' . $gender . '"')->fetch_assoc()['availability']; ?>";
@@ -408,7 +403,7 @@ include("studentauthentication.php");
                 img.src = "assets/img/ktr-image.jpg";
                 img2.src = "assets/img/ktr-image.jpg";
                 img3.src = "assets/img/ktr-image.jpg";
-                
+
                 singleroom.textContent = "Vacancy: " + "<?php echo mysqli_query($conn, 'SELECT availability FROM Room WHERE collegename = "KDSE" AND roomType = "onePerson" AND gender="' . $gender . '"')->fetch_assoc()['availability']; ?>";
                 doubleroom.textContent = "Vacancy: " + "<?php echo mysqli_query($conn, 'SELECT availability FROM Room WHERE collegename = "KDSE" AND roomType = "twoPerson" AND gender="' . $gender . '"')->fetch_assoc()['availability']; ?>";
                 singleroombathroom.textContent = "Vacancy: " + "<?php echo mysqli_query($conn, 'SELECT availability FROM Room WHERE collegename = "KDSE" AND roomType = "onePersonBathroom" AND gender="' . $gender . '"')->fetch_assoc()['availability']; ?>";
@@ -417,7 +412,7 @@ include("studentauthentication.php");
                 img.src = "assets/img/ktr-image.jpg";
                 img2.src = "assets/img/ktr-image.jpg";
                 img3.src = "assets/img/ktr-image.jpg";
-                
+
                 singleroom.textContent = "Vacancy: " + "<?php echo mysqli_query($conn, 'SELECT availability FROM Room WHERE collegename = "KDOJ" AND roomType = "onePerson" AND gender="' . $gender . '"')->fetch_assoc()['availability']; ?>";
                 doubleroom.textContent = "Vacancy: " + "<?php echo mysqli_query($conn, 'SELECT availability FROM Room WHERE collegename = "KDOJ" AND roomType = "twoPerson" AND gender="' . $gender . '"')->fetch_assoc()['availability']; ?>";
                 singleroombathroom.textContent = "Vacancy: " + "<?php echo mysqli_query($conn, 'SELECT availability FROM Room WHERE collegename = "KDOJ" AND roomType = "onePersonBathroom" AND gender="' . $gender . '"')->fetch_assoc()['availability']; ?>";
@@ -426,7 +421,7 @@ include("studentauthentication.php");
                 img.src = "assets/img/ktr-image.jpg";
                 img2.src = "assets/img/ktr-image.jpg";
                 img3.src = "assets/img/ktr-image.jpg";
-                
+
                 singleroom.textContent = "Vacancy: " + "<?php echo mysqli_query($conn, 'SELECT availability FROM Room WHERE collegename = "KP" AND roomType = "onePerson" AND gender="' . $gender . '"')->fetch_assoc()['availability']; ?>";
                 doubleroom.textContent = "Vacancy: " + "<?php echo mysqli_query($conn, 'SELECT availability FROM Room WHERE collegename = "KP" AND roomType = "twoPerson" AND gender="' . $gender . '"')->fetch_assoc()['availability']; ?>";
                 singleroombathroom.textContent = "Vacancy: " + "<?php echo mysqli_query($conn, 'SELECT availability FROM Room WHERE collegename = "KP" AND roomType = "onePersonBathroom" AND gender="' . $gender . '"')->fetch_assoc()['availability']; ?>";
@@ -435,14 +430,13 @@ include("studentauthentication.php");
                 img.src = "assets/img/ktr-image.jpg";
                 img2.src = "assets/img/ktr-image.jpg";
                 img3.src = "assets/img/ktr-image.jpg";
-                
+
                 singleroom.textContent = "Vacancy: " + "<?php echo mysqli_query($conn, 'SELECT availability FROM Room WHERE collegename = "KTF" AND roomType = "onePerson" AND gender="' . $gender . '"')->fetch_assoc()['availability']; ?>";
                 doubleroom.textContent = "Vacancy: " + "<?php echo mysqli_query($conn, 'SELECT availability FROM Room WHERE collegename = "KTF" AND roomType = "twoPerson" AND gender="' . $gender . '"')->fetch_assoc()['availability']; ?>";
                 singleroombathroom.textContent = "Vacancy: " + "<?php echo mysqli_query($conn, 'SELECT availability FROM Room WHERE collegename = "KTF" AND roomType = "onePersonBathroom" AND gender="' . $gender . '"')->fetch_assoc()['availability']; ?>";
 
-            } else {
-            }
-         }
+            } else {}
+        }
     </script>
 
 </body>

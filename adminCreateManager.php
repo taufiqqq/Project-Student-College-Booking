@@ -1,3 +1,9 @@
+<?php
+include("connection.php");
+session_start();
+include("adminauthentication.php")
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -59,7 +65,7 @@
                                 <li class="dropdown"><a href="#"><span>View</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
                                     <ul>
                                         <li><a href="studenthome.php">student</a></li>
-                                        <li><a href="">manager</a></li>
+                                        <li><a href="managerhome.php">manager</a></li>
                                     </ul>
                                 </li>
                             </ul>
@@ -74,8 +80,6 @@
             <nav id="navbar" class="navbar">
                 <ul class="dropdown"><a class="btn-book-a-table" href="#book-a-table"><span>Admin</span><i class="bi bi-chevron-down dropdown-indicator"></i></a>
                     <ul>
-                        <li><a href=""></a></li>
-                        <li><a href="#">drop 2</a></li>
                         <li><a href="logout.php">Logout</a></li>
                     </ul>
                 </ul>
@@ -99,13 +103,13 @@
                     </div>
                 </div>
             </div>
-            <form action="adminCreateManager.php" method="POST">
+            <form id="adminCreateManager" method="POST">
                 <br><br>
                 <p>Please Fill In Those Information:</p>
                 <table>
                     <tr>
                         <td><label for="username">Username:</label></td>
-                        <td><input type="text" id="username" name="name"></td>
+                        <td><input type="text" id="username" name="username"></td>
                     </tr>
                     <tr>
                         <td><label for="passuser">Password:</label></td>
@@ -131,8 +135,8 @@
                         </td>
                     </tr>
                     <tr>
-                        <td><label for="stuffnum">Staff Number:</label></td>
-                        <td><input type="text" id="stuffnum" name="stuff_number"></td>
+                        <td><label for="staffnum">Staff Number:</label></td>
+                        <td><input type="text" id="stuffnum" name="staff_number"></td>
                     </tr>
                     <tr>
                         <td><label for="nofon">No. Phone:</label></td>
@@ -143,41 +147,41 @@
                             <p>College:</p>
                         </td>
                         <td>
-                            <input type="radio" id="ktdi" name="college" value="Kolej Tun Dr Ismail">
+                            <input type="radio" id="ktdi" name="college" value="KTDI">
                             <label for="ktdi">Kolej Tun Dr Ismail</label>
                             <br>
-                            <input type="radio" id="ktho" name="college" value="Kolej Tun Hussein Onn">
+                            <input type="radio" id="ktho" name="college" value="KTHO">
                             <label for="ktho">Kolej Tun Hussein Onn</label>
                             <br>
-                            <input type="radio" id="ktf" name="ktf" value="Kolej Tun Fatimah">
+                            <input type="radio" id="ktf" name="college" value="KTF">
                             <label for="female">Kolej Tun Fatimah</label>
                             <br>
-                            <input type="radio" id="ktr" name="ktr" value="Kolej Tun Razak">
+                            <input type="radio" id="ktr" name="college" value="KTR">
                             <label for="female">Kolej Tun Razak</label>
                             <br>
-                            <input type="radio" id="ktc" name="ktc" value="Kolej Tun Canselor">
+                            <input type="radio" id="ktc" name="college" value="KTC">
                             <label for="female">Kolej Tun Canselor</label>
                             <br>
-                            <input type="radio" id="krp" name="krp" value="Kolej Rahman Putra">
+                            <input type="radio" id="krp" name="college" value="KRP">
                             <label for="female">Kolej Rahman Putra</label>
                             <br>
-                            <input type="radio" id="kdoj" name="kdoj" value="Kolej Dato Onn Jaafar">
+                            <input type="radio" id="kdoj" name="college" value="KDOJ">
                             <label for="female">Kolej Dato Onn Jaafar</label>
                             <br>
-                            <input type="radio" id="kp" name="kp" value="Kolej Perdana">
+                            <input type="radio" id="kp" name="college" value="KP">
                             <label for="female">Kolej Perdana</label>
                             <br>
-                            <input type="radio" id="kdse" name="kdse" value="Kolej Dato Seri Endon">
+                            <input type="radio" id="kdse" name="college" value="KDSE">
                             <label for="female">Kolej Dato Seri Endon</label>
                             <br>
-                            <input type="radio" id="k9k10" name="k9k10" value="Kolej 09 & 10">
+                            <input type="radio" id="k9k10" name="college" value="K9K10">
                             <label for="female">Kolej 09 & 10</label>
                             <br>
                         </td>
                     </tr>
                 </table>
                 <div>
-                    <input type="submit" value="Submit">
+                    <input type="submit" value="Submit" name = "submit">
                 </div>
             </form>
             <?php
@@ -188,28 +192,29 @@
                 $email = $_POST['email'];
                 $name = $_POST['name'];
                 $gender = $_POST['gender'];
-                $staffnum = $_POST['stuff_number'];
+                $staffnum = $_POST['staff_number'];
                 $nofon = $_POST['phone_number'];
                 $kolej = $_POST['college'];
 
-            // Sanitize and validate input (e.g., using filter_var, regex, etc.)
+                // Sanitize and validate input (e.g., using filter_var, regex, etc.)
 
-            // Prepare and execute the SQL query
-            $stmt = $conn->prepare('INSERT INTO Student (username, password, email, name, staff number, gender, phone, college) VALUES (?, ?, ?, ?, ?, ?, ?)');
-            $stmt->bind_param('sssssss', $username, $password, $email, $name, $staffnum, $gender, $nofon, $kolej);
 
-            $stmt->execute();
+                // Prepare and execute the SQL query
+                $stmt = $conn->prepare('INSERT INTO Manager (username, password, email, name, gender, staffnum, phone, collegeHandled) VALUES (?, ?, ?, ?, ?, ?, ?, ?)');
+                $stmt->bind_param('ssssssss', $username, $password, $email, $name, $gender, $staffnum, $nofon, $kolej);
 
-            // Check if the query was successful
-            if ($stmt->affected_rows > 0) {
-                echo 'Data inserted successfully.';
-            } else {
-                echo 'Error inserting data.';
+                $stmt->execute();
+
+                // Check if the query was successful
+                if ($stmt->affected_rows > 0) {
+                    echo 'Data inserted successfully.';
+                } else {
+                    echo 'Error inserting data.';
+                }
+
+                // Close the database connection
+                $stmt->close();
             }
-
-            // Close the database connection
-            $stmt->close();
-        }
             ?>
         </div>
         <!--stud = username, pass, email, nama, matric, gender, no fon
