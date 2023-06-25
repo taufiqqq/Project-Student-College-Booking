@@ -3,6 +3,8 @@ include("connection.php");
 session_start();
 include("adminauthentication.php")
 ?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -99,45 +101,90 @@ include("adminauthentication.php")
                 <div class="container">
                     <div class="d-flex justify-content-between align-items-center">
                         <h1>
-                            Create User Page<br>
+                            Create Student Page<br>
                         </h1>
                     </div>
                 </div>
             </div>
-            <form id="userTypeForm" method="POST">
+            <form id="adminCreateStud" method="POST">
                 <br><br>
-                <p>Please select type of user:</p>
+                <p>Please Fill In Those Information:</p>
+                <table>
+                    <tr>
+                        <td><label for="username">Username:</label></td>
+                        <td><input type="text" id="username" name="username"></td>
+                    </tr>
+                    <tr>
+                        <td><label for="passuser">Password:</label></td>
+                        <td><input type="password" id="passuser" name="password"></td>
+                    </tr>
+                    <tr>
+                        <td><label for="emailuser">Email:</label></td>
+                        <td><input type="text" id="emailuser" name="email"></td>
+                    </tr>
+                    <tr>
+                        <td><label for="name">Name:</label></td>
+                        <td><input type="text" id="name" name="name"></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>Gender:</p>
+                        </td>
+                        <td>
+                            <input type="radio" id="male" name="gender" value="Male">
+                            <label for="male">Male</label>
+                            <input type="radio" id="female" name="gender" value="Female">
+                            <label for="female">Female</label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label for="matric">Matric Number:</label></td>
+                        <td><input type="text" id="matric" name="matric_number"></td>
+                    </tr>
+                    <tr>
+                        <td><label for="nofon">No. Phone:</label></td>
+                        <td><input type="number" id="nofon" name="phone_number"></td>
+                    </tr>
+                </table>
                 <div>
-                    <input type="radio" id="stud" name="user_type" value="Student">
-                    <label for="stud">Student</label>
-                </div>
-                <div>
-                    <input type="radio" id="manager" name="user_type" value="Manager">
-                    <label for="manager">Manager</label>
-                </div>
-                <!-- <div>
-                    <label for="username">Name:</label>
-                    <input type="text" id="username" name="name">
-                </div>
-                <div>
-                    <label for="passuser">Password:</label>
-                    <input type="password" id="passuser" name="password">
-                </div> -->
-                <div>
-                    <input type="submit" value="Submit">
+                    <input type="submit" value="Submit" name="submit">
                 </div>
             </form>
-
             <?php
-            if (isset($_POST['user_type'])) {
-                $userType = $_POST['user_type'];
-                echo "Selected User Type: " . $userType;
+            // Retrieve form input values
+            if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['submit'])) {
+                $username = $_POST['username'];
+                $password = $_POST['password'];
+                $email = $_POST['email'];
+                $name = $_POST['name'];
+                $gender = $_POST['gender'];
+                $matric = $_POST['matric_number'];
+                $nofon = $_POST['phone_number'];
+
+            // Sanitize and validate input (e.g., using filter_var, regex, etc.)
+
+            // Prepare and execute the SQL query
+            $stmt = $conn->prepare('INSERT INTO Student (username, password, email, name, matricnum, gender, phone) VALUES (?, ?, ?, ?, ?, ?, ?)');
+            $stmt->bind_param('sssssss', $username, $password, $email, $name, $matric, $gender, $nofon);
+
+            $stmt->execute();
+
+            // Check if the query was successful
+            if ($stmt->affected_rows > 0) {
+                echo 'Data inserted successfully.';
+            } else {
+                echo 'Error inserting data.';
             }
+
+            // Close the database connection
+            $stmt->close();
+        }
             ?>
 
             <!--stud = username, pass, email, nama, matric, gender, no fon
 manager = username, pass, email, nama, gender, stafnum, fon, kolej(radio)-->
         </div>
+
     </main>
 
     <!-- ======= Footer ======= -->
@@ -208,22 +255,6 @@ manager = username, pass, email, nama, gender, stafnum, fon, kolej(radio)-->
 
     </footer><!-- End Footer -->
     <!-- End Footer -->
-    <script>
-        document.getElementById("userTypeForm").addEventListener("submit", function() {
-            var selectedValue = document.querySelector('input[name="user_type"]:checked').value;
-            var actionUrl;
-
-            if (selectedValue === "Student") {
-                actionUrl = "adminCreateStud.php";
-            } else if (selectedValue === "Manager") {
-                actionUrl = "adminCreateManager.php";
-            }
-
-            if (actionUrl) {
-                document.getElementById("userTypeForm").action = actionUrl;
-            }
-        });
-    </script>
 </body>
 
 </html>

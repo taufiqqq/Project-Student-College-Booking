@@ -1,7 +1,7 @@
 <?php
 include("connection.php");
 session_start();
-include("studentauthentication.php")
+include("studentauthentication.php");
 ?>
 
 <!DOCTYPE html>
@@ -21,7 +21,9 @@ include("studentauthentication.php")
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600;1,700&family=Amatic+SC:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600;1,700&family=Amatic+SC:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
+    rel="stylesheet">
 
   <!-- Vendor CSS Files -->
   <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -66,15 +68,18 @@ include("studentauthentication.php")
       <!-- <a class="btn-book-a-table" href="#book-a-table">Log Out</a> -->
 
       <nav id="navbar" class="navbar">
-        <ul class="dropdown"><a class="btn-book-a-table"><span><?php echo $username; ?></span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
+        <ul class="dropdown"><a class="btn-book-a-table"><span>
+              <?php echo $username; ?>
+            </span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
           <ul>
             <li><a href="#">Drop Down 1</a></li>
-            <li class="dropdown"><a href="#"><span>Deep Drop Down</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
+            <li class="dropdown"><a href="#"><span>Deep Drop Down</span> <i
+                  class="bi bi-chevron-down dropdown-indicator"></i></a>
 
             </li>
             <li><a href="#">Drop Down 2</a></li>
             <li><a href="#">Drop Down 3</a></li>
-            <li><a href="#">Drop Down 4</a></li>
+            <li><a href="logout.php">Log Out</a></li>
           </ul>
         </ul>
       </nav>
@@ -101,94 +106,164 @@ include("studentauthentication.php")
 
       </div>
     </div><!-- End Breadcrumbs -->
-
     <section class="sample-page">
       <div class="container" data-aos="fade-up">
 
+        <?php
+        $idBooking = mysqli_query($conn, "SELECT id FROM Booking WHERE username = '" . $username . "'") != null;
 
-<!--       <?php if ($result->num_rows > 0 && $row['status'] == 'Rejected') { ?>
-        <h3>Rejected Applications:</h3>
-        <ul>
-            <?php while ($rejectedRow = $rejectedApplications->fetch_assoc()) { ?>
-                <li>Application ID: <?php echo $rejectedRow['id']; ?> | Student Name: <?php echo $rejectedRow['username']; ?></li>
-            <?php } ?>
-        </ul>
-    <?php } ?>
-    <?php if ($result->num_rows > 0) { ?>
-        <table>
-            <tr>
-                <th>Application ID</th>
-                <th>Student Name</th>
-                <th>Status</th>
-            </tr>
-            <tr>
-                <td><?php echo $row['id']; ?></td>
-                <td><?php echo $row['username']; ?></td>
-                <td><?php echo $row['status']; ?></td>
-            </tr>
-        </table>
-    <?php } else { ?>
-        <p>No hostel application found.</p>
-    <?php } ?>
- -->
+        $usernameBookA = mysqli_query($conn, "SELECT username FROM Booking WHERE username = '" . $username . "' AND status = 'approved'");
+        $idBookA = mysqli_query($conn, "SELECT id FROM Booking WHERE username = '" . $username . "' AND status = 'approved'");
+        $dateBookA = mysqli_query($conn, "SELECT dateBook FROM Booking WHERE username = '" . $username . "' AND status = 'approved'");
+        $collegeRoomBookA = mysqli_query($conn, "SELECT collegename, roomType FROM Booking WHERE username = '" . $username . "' AND status = 'approved'");
+        $statusBookA = mysqli_query($conn, "SELECT status FROM Booking WHERE username = '" . $username . "' AND status = 'approved'");
 
- <?php 
-    $idBooking = "SELECT id FROM Booking WHERE studenteusername == sess_username" != null;
+        $usernameBookP = mysqli_query($conn, "SELECT username FROM Booking WHERE username = '" . $username . "' AND status = 'pending'");
+        $idBookP = mysqli_query($conn, "SELECT id FROM Booking WHERE username = '" . $username . "' AND status = 'pending'");
+        $dateBookP = mysqli_query($conn, "SELECT dateBook FROM Booking WHERE username = '" . $username . "' AND status = 'pending'");
+        $collegeRoomBookP = mysqli_query($conn, "SELECT collegename, roomType FROM Booking WHERE username = '" . $username . "' AND status = 'pending'");
+        $statusBookP = mysqli_query($conn, "SELECT status FROM Booking WHERE username = '" . $username . "' AND status = 'pending'");
 
-    $usernameBookA = "SELECT username FROM Booking WHERE studenteusername == sess_username";
-    $idBookA = "SELECT id FROM Booking WHERE studenteusername == sess_username && status==approved";
-    $dateBookA = "SELECT dateBook FROM Booking WHERE studenteusername == sess_username && status==approved";
-    $collegeRoomBookA = "SELECT collegename, roomreference FROM Booking WHERE studenteusername == sess_username && status==approved";
-    $statusBookA = "SELECT status FROM Booking WHERE studenteusername == sess_username && status==approved";
+        $usernameBookR = mysqli_query($conn, "SELECT username FROM Booking WHERE username = '" . $username . "' AND status = 'rejected'");
+        $idBookR = mysqli_query($conn, "SELECT id FROM Booking WHERE username = '" . $username . "' AND status = 'rejected'");
+        $dateBookR = mysqli_query($conn, "SELECT dateBook FROM Booking WHERE username = '" . $username . "' AND status = 'rejected'");
+        $collegeRoomBookR = mysqli_query($conn, "SELECT collegename, roomType FROM Booking WHERE username = '" . $username . "' AND status = 'rejected'");
+        $statusBookR = mysqli_query($conn, "SELECT status FROM Booking WHERE username = '" . $username . "' AND status = 'rejected'");
 
-    $usernameBookP = "SELECT username FROM Booking WHERE studenteusername == sess_username";
-    $idBookP = "SELECT id FROM Booking WHERE studenteusername == sess_username && status==pending";
-    $dateBookP = "SELECT dateBook FROM Booking WHERE studenteusername == sess_username && status==pending";
-    $collegeRoomBookP = "SELECT collegename, roomreference FROM Booking WHERE studenteusername == sess_username && status==pending";
-    $statusBookP = "SELECT status FROM Booking WHERE studenteusername == sess_username && status==pending";
+        // Check if any approved bookings found
+        $hasApprovedBookings = mysqli_num_rows($usernameBookA) > 0;
 
-    $usernameBookR = "SELECT username FROM Booking WHERE studenteusername == sess_username";
-    $idBookR = "SELECT id FROM Booking WHERE studenteusername == sess_username && status==rejected";
-    $dateBookR = "SELECT dateBook FROM Booking WHERE studenteusername == sess_username && status==rejected";
-    $collegeRoomBookR = "SELECT collegename, roomreference FROM Booking WHERE studenteusername == sess_username && status==rejected";
-    $statusBookR = "SELECT status FROM Booking WHERE studenteusername == sess_username && status==rejected";
- ?>
-<?php if ($idBooking) { ?>
-  <table>
-    <tr>
-      <th>Application ID: </th>
-      <th>Student Name: </th>
-      <th>Booking Date: </th>
-      <th>College and room: </th>
-      <th>Status: </th>
-    </tr>
-    <tr>
-      <td><?php echo $usernameBookA ?></td>
-      <td><?php echo $idBookA ?></td>
-      <td><?php echo $dateBookA ?></td>
-      <td><?php echo $collegeRoomBookA ?></td>
-      <td><?php echo $statusBookA ?></td>
-    </tr>
-    <tr>
-      <td><?php echo $usernameBookP; ?></td>
-      <td><?php echo $idBookP; ?></td>
-      <td><?php echo $dateBookP ?></td>
-      <td><?php echo $collegeRoomBookP; ?></td>
-      <td><?php echo $statusBookP; ?></td>
-    </tr>
-    <tr>
-      <td><?php echo $usernameBookR; ?></td>
-      <td><?php echo $idBookR; ?></td>
-      <td><?php echo $dateBookR ?></td>
-      <td><?php echo $collegeRoomBookR; ?></td>
-      <td><?php echo $statusBookR; ?></td>
-    </tr>
-  </table>
-<?php } else { ?>
-        <p>No hostel application found.</p>
-<?php } ?>
-  </div>
-</section>
+        // Check if any pending bookings found
+        $hasPendingBookings = mysqli_num_rows($usernameBookP) > 0;
+
+        // Check if any rejected bookings found
+        $hasRejectedBookings = mysqli_num_rows($usernameBookR) > 0;
+        ?>
+        <?php if ($idBooking) { ?>
+          <?php if ($hasApprovedBookings) { ?>
+            <h2>Approved Bookings</h2>
+            <table style="margin: 20px; padding: 10px;">
+              <tr>
+                <th style="padding: 10px;">Application ID</th>
+                <th style="padding: 10px;">Student Name</th>
+                <th style="padding: 10px;">Booking Date</th>
+                <th style="padding: 10px;">College and Room</th>
+                <th style="padding: 10px;">Status</th>
+              </tr>
+              <?php while ($row = mysqli_fetch_assoc($usernameBookA)) { ?>
+                <tr>
+                  <td style="padding: 10px;">
+                    <?php echo mysqli_fetch_assoc($idBookA)['id']; ?>
+                  </td>
+                  <td style="padding: 10px;">
+                    <?php echo $row['username']; ?>
+                  </td>
+                  <td style="padding: 10px;">
+                    <?php echo mysqli_fetch_assoc($dateBookA)['dateBook']; ?>
+                  </td>
+                  <td style="padding: 10px;">
+                    <?php $row = mysqli_fetch_assoc($collegeRoomBookA); ?>
+                    <span>
+                      <?php echo $row['roomType']; ?>
+                    </span>
+                    <span>
+                      <?php echo $row['collegename']; ?>
+                    </span>
+                  </td>
+                  <td style="padding: 10px;">
+                    <?php echo mysqli_fetch_assoc($statusBookA)['status']; ?>
+                  </td>
+                </tr>
+              <?php } ?>
+            </table>
+          <?php } ?>
+
+          <?php if ($hasPendingBookings) { ?>
+            <h2>Pending Bookings</h2>
+            <table style="margin: 20px; padding: 10px;">
+              <tr>
+                <th style="padding: 10px;">Application ID</th>
+                <th style="padding: 10px;">Student Name</th>
+                <th style="padding: 10px;">Booking Date</th>
+                <th style="padding: 10px;">College and Room</th>
+                <th style="padding: 10px;">Status</th>
+              </tr>
+              <?php while ($row = mysqli_fetch_assoc($usernameBookP)) { ?>
+                <tr>
+                  <td style="padding: 10px;">
+                    <?php echo mysqli_fetch_assoc($idBookP)['id']; ?>
+                  </td>
+                  <td style="padding: 10px;">
+                    <?php echo $row['username']; ?>
+                  </td>
+                  <td style="padding: 10px;">
+                    <?php echo mysqli_fetch_assoc($dateBookP)['dateBook']; ?>
+                  </td>
+                  <td style="padding: 10px;">
+                    <?php $row = mysqli_fetch_assoc($collegeRoomBookP); ?>
+                    <span>
+                      <?php echo $row['roomType']; ?>
+                    </span>
+                    <span>
+                      <?php echo $row['collegename']; ?>
+                    </span>
+                  </td>
+                  <td style="padding: 10px;">
+                    <?php echo mysqli_fetch_assoc($statusBookP)['status']; ?>
+                  </td>
+                </tr>
+              <?php } ?>
+            </table>
+          <?php } ?>
+
+          <?php if ($hasRejectedBookings) { ?>
+            <h2>Rejected Bookings</h2>
+            <table style="margin: 20px; padding: 10px;">
+              <tr>
+                <th style="padding: 10px;">Application ID</th>
+                <th style="padding: 10px;">Student Name</th>
+                <th style="padding: 10px;">Booking Date</th>
+                <th style="padding: 10px;">College and Room</th>
+                <th style="padding: 10px;">Status</th>
+              </tr>
+              <?php while ($row = mysqli_fetch_assoc($usernameBookR)) { ?>
+                <tr>
+                  <td style="padding: 10px;">
+                    <?php echo mysqli_fetch_assoc($idBookR)['id']; ?>
+                  </td>
+                  <td style="padding: 10px;">
+                    <?php echo $row['username']; ?>
+                  </td>
+                  <td style="padding: 10px;">
+                    <?php echo mysqli_fetch_assoc($dateBookR)['dateBook']; ?>
+                  </td>
+                  <td style="padding: 10px;">
+                    <?php $row = mysqli_fetch_assoc($collegeRoomBookR); ?>
+                    <span>
+                      <?php echo $row['roomType']; ?>
+                    </span>
+                    <span>
+                      <?php echo $row['collegename']; ?>
+                    </span>
+                  </td>
+                  <td style="padding: 10px;">
+                    <?php echo mysqli_fetch_assoc($statusBookR)['status']; ?>
+                  </td>
+                </tr>
+              <?php } ?>
+            </table>
+          <?php } ?>
+
+          <?php if (!$hasApprovedBookings && !$hasPendingBookings && !$hasRejectedBookings) { ?>
+            <p>No hostel application found.</p>
+          <?php } ?>
+
+        <?php } else { ?>
+          <p>No hostel application found.</p>
+        <?php } ?>
+
+      </div>
+    </section>
 
   </main><!-- End #main -->
 
@@ -261,7 +336,8 @@ include("studentauthentication.php")
   </footer><!-- End Footer -->
   <!-- End Footer -->
 
-  <a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+  <a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i
+      class="bi bi-arrow-up-short"></i></a>
 
   <div id="preloader"></div>
 

@@ -1,7 +1,7 @@
 <?php
 include("connection.php");
 session_start();
-include("studentauthentication.php")
+include("managerauthentication.php")
 ?>
 
 <!DOCTYPE html>

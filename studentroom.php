@@ -21,9 +21,7 @@ include("studentauthentication.php");
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600;1,700&family=Amatic+SC:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600;1,700&family=Amatic+SC:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
 
     <!-- Vendor CSS Files -->
     <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -42,6 +40,8 @@ include("studentauthentication.php");
   * Author: BootstrapMade.com
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
+
+
 </head>
 
 <body>
@@ -74,7 +74,7 @@ include("studentauthentication.php");
                         <li><a href="#">Profile</a></li>
                         <li><a href="#">Settings</a></li>
                         <li><a href="#">Tak tau</a></li>
-                        <li><a href="#">Log Out</a></li>
+                        <li><a href="logout.php">Log Out</a></li>
                     </ul>
                 </ul>
             </nav>
@@ -84,28 +84,6 @@ include("studentauthentication.php");
 
         </div>
     </header><!-- End Header -->
-    <!DOCTYPE html>
-    <html lang="en">
-
-    <head>
-        <meta charset="utf-8">
-        <meta content="width=device-width, initial-scale=1.0" name="viewport">
-        <title>UTMCollege</title>
-        <meta content="" name="description">
-        <meta content="" name="keywords">
-        <link href="assets/img/UTM-LOGO.png" rel="icon">
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link
-            href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600;1,700&family=Amatic+SC:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
-            rel="stylesheet">
-        <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-        <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-        <link href="assets/vendor/aos/aos.css" rel="stylesheet">
-        <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-        <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
-        <link href="assets/css/main.css" rel="stylesheet">
-    </head>
 
     <body>
 
@@ -128,54 +106,54 @@ include("studentauthentication.php");
                         <div class="sidebar">
                             <h2>Choose College </h2>
                             <br>
-                            <form action="" method="post">
+                            <form action="submitApplication.php" method="POST">
                                 <label>
-                                    <input type="radio" name="college" value="KTDI">
+                                    <input type="radio" onClick="changePic() " name="college" value="KTDI" required>
                                     Kolej Tun Dr Ismail
                                 </label>
                                 <br><br>
                                 <label>
-                                    <input type="radio" name="college" value="KTHO">
+                                    <input type="radio" onClick="changePic() " name="college" value="KTHO" required>
                                     Kolej Tun Hussien Onn
                                 </label>
                                 <br><br>
                                 <label>
-                                    <input type="radio" name="college" value="KTF">
+                                    <input type="radio" onClick="changePic() " name="college" value="KTF" required>
                                     Kolej Tun Fatimah
                                 </label>
                                 <br><br>
                                 <label>
-                                    <input type="radio" name="college" value="KTR">
+                                    <input type="radio" onClick="changePic() " name="college" value="KTR" required>
                                     Kolej Tun Razak
                                 </label>
                                 <br><br>
                                 <label>
-                                    <input type="radio" name="college" value="KTC">
+                                    <input type="radio" onClick="changePic() " name="college" value="KTC" required>
                                     Kolej Tun Canselor
                                 </label>
                                 <br><br>
                                 <label>
-                                    <input type="radio" name="college" value="KRP">
+                                    <input type="radio" onClick="changePic() " name="college" value="KRP" required>
                                     Kolej Rahman Putra
                                 </label>
                                 <br><br>
                                 <label>
-                                    <input type="radio" name="college" value="KDOJ">
+                                    <input type="radio" onClick="changePic() " name="college" value="KDOJ" required>
                                     Kolej Data Onn Jaafar
                                 </label>
                                 <br><br>
                                 <label>
-                                    <input type="radio" name="college" value="KP">
+                                    <input type="radio" onClick="changePic() " name="college" value="KP" required>
                                     Kolej Perdana
                                 </label>
                                 <br><br>
                                 <label>
-                                    <input type="radio" name="college" value="KDSE">
+                                    <input type="radio" onClick="changePic() " name="college" value="KDSE" required>
                                     Kolej Datin Seri Endon
                                 </label>
                                 <br><br>
                                 <label>
-                                    <input type="radio" name="college" value="K9">
+                                    <input type="radio" onClick="changePic() " name="college" value="K9K10" required>
                                     Kolej 09 & 10
                                 </label>
                                 <br>
@@ -189,50 +167,53 @@ include("studentauthentication.php");
                             <div class="containerflexbox">
                                 <div class="row">
                                     <div class="column">
-                                        <img src="assets/img/KTDI-1.jpg" alt="Hotel Image 1" width="350" height="300">
+                                        <img id="room-img" src="assets/img/KTDI-1.jpg" alt="Hotel Image 1" width="350" height="300">
                                     </div>
                                     <div class="column">
                                         <h2>Single Room With Bathroom</h2><br>
-                                        <p><strong>Price per day:</strong> RM4</p>
-                                        <p><strong>Rating:</strong> 4.5/5</p>
-                                        <p><strong>Vacant:</strong></p>
-                                        <input type="radio" name="room" value="SRB">
+                                        <p><strong>Price per day:</strong> RM8</p>
+                                        <p><strong>Rating:</strong> 5.0/5</p>
+                                        <p><strong id="singleB"></strong></p>
+                                        <input type="radio" name="room" value="onePersonBathroom"  required>
                                         Choose Single Bath Room
                                     </div>
                                 </div>
 
                                 <div class="row">
                                     <div class="column">
-                                        <img src="assets/img/KTDI-1.jpg" alt="Hotel Image 1" width="350" height="300">
+                                        <img id="room-img2" src="assets/img/KTDI-1.jpg" alt="Hotel Image 1" width="350" height="300">
                                     </div>
                                     <div class="column">
-                                        <h2>Single Room With Bathroom</h2><br>
-                                        <p><strong>Price per day:</strong> RM4</p>
-                                        <p><strong>Rating:</strong> 4.5/5</p>
-                                        <p><strong>Vacant:</strong></p>
-                                        <input type="radio" name="room" value="SR">
+                                        <h2>Single Room </h2><br>
+                                        <p><strong>Price per day:</strong> RM6</p>
+                                        <p><strong>Rating:</strong> 4.0/5</p>
+                                        <p><strong>Vacancy : </strong><strong id="single"></strong></p>
+
+                                        <input type="radio" name="room" value="onePerson"  required>
                                         Choose Single Room
                                     </div>
                                 </div>
 
                                 <div class="row">
                                     <div class="column">
-                                        <img src="assets/img/KTDI-1.jpg" alt="Hotel Image 1" width="350" height="300">
+                                        <img id="room-img3" src="assets/img/KTDI-1.jpg" alt="Hotel Image 1" width="350" height="300">
                                     </div>
                                     <div class="column">
-                                        <h2>Single Room With Bathroom</h2>
+                                        <h2>Double Room</h2>
                                         <p><strong>Price per day:</strong> RM4</p>
-                                        <p><strong>Rating:</strong> 4.5/5</p>
-                                        <p><strong>Vacant:</strong></p>
-                                        <input type="radio" name="room" value="DB">
+                                        <p><strong>Rating:</strong> 3.0/5</p>
+                                        <p><strong id="double">
+                                            </strong></p>
+                                        <input type="radio" name="room" value="twoPerson"  required>
                                         Choose Double Room
                                     </div>
                                 </div>
                                 <input type="submit" value="Submit">
+
                             </div>
-                            
                         </div>
                     </div>
+
                     </form>
             </section>
         </main>
@@ -252,8 +233,6 @@ include("studentauthentication.php");
         <script src="assets/vendor/php-email-form/validate.js"></script>
         <script src="assets/js/main.js"></script>
     </body>
-
-    </html>
 
     </main><!-- End #main -->
 
@@ -301,12 +280,9 @@ include("studentauthentication.php");
                     <h4>Follow Us</h4>
                     <div class="social-links d-flex">
                         <a href="https://twitter.com/Cristiano" class="twitter"><i class="bi bi-twitter"></i></a>
-                        <a href="https://www.facebook.com/Cristiano/" class="facebook"><i
-                                class="bi bi-facebook"></i></a>
-                        <a href="https://www.instagram.com/tauf.iqq/" class="instagram"><i
-                                class="bi bi-instagram"></i></a>
-                        <a href="https://www.linkedin.com/in/taufiqjurimi/" class="linkedin"><i
-                                class="bi bi-linkedin"></i></a>
+                        <a href="https://www.facebook.com/Cristiano/" class="facebook"><i class="bi bi-facebook"></i></a>
+                        <a href="https://www.instagram.com/tauf.iqq/" class="instagram"><i class="bi bi-instagram"></i></a>
+                        <a href="https://www.linkedin.com/in/taufiqjurimi/" class="linkedin"><i class="bi bi-linkedin"></i></a>
                     </div>
                 </div>
 
@@ -329,8 +305,7 @@ include("studentauthentication.php");
     </footer><!-- End Footer -->
     <!-- End Footer -->
 
-    <a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i
-            class="bi bi-arrow-up-short"></i></a>
+    <a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
     <div id="preloader"></div>
 
@@ -344,6 +319,131 @@ include("studentauthentication.php");
 
     <!-- Template Main JS File -->
     <script src="assets/js/main.js"></script>
+    <script>
+        window.onload = function() {
+            /* $stmt = $conn->prepare('SELECT gender FROM Student WHERE username=?');
+            $stmt->bind_param('s', $username);
+            $stmt->execute(); ?>" */
+
+            var doubleroom = document.getElementById("double");
+            var singleroom = document.getElementById("single");
+            var singleroombathroom = document.getElementById("singleB");
+
+            singleroom.textContent = "Pick a College First";
+            doubleroom.textContent = "Pick a College First";
+            singleroombathroom.textContent = "Pick a College First";
+        };
+
+
+        function changePic() {
+            var doubleroom = document.getElementById("double");
+            var singleroom = document.getElementById("single");
+            var singleroombathroom = document.getElementById("singleB");
+
+            // Get the radio button and the picture element
+            const radio = document.querySelector('input[name="college"]:checked');
+            const img = document.getElementById("room-img");
+            const img2 = document.getElementById("room-img2");
+            const img3 = document.getElementById("room-img3");
+
+            // Get the value of the selected radio button
+            const value = radio.value;
+
+            // Change the picture source based on the selected radio button
+            if (value === "KTDI") {
+                img.src = "assets/img/ktdi-image.jpg";
+                img2.src = "assets/img/ktdi-image.jpg";
+                img3.src = "assets/img/ktdi-image.jpg";
+                singleroom.textContent = "Vacancy: <?php echo mysqli_query($conn, 'SELECT availability FROM Room WHERE collegename = "KTDI" AND roomType = "onePerson" AND gender="' . $gender . '"')->fetch_assoc()['availability']; ?>";
+                doubleroom.textContent = "Vacancy: " + "<?php echo mysqli_query($conn, 'SELECT availability FROM Room WHERE collegename = "KTDI" AND roomType = "twoPerson" AND gender="' . $gender . '"')->fetch_assoc()['availability']; ?>";
+                singleroombathroom.textContent = "Vacancy: " + "<?php echo mysqli_query($conn, 'SELECT availability FROM Room WHERE collegename = "KTDI" AND roomType = "onePersonBathroom" AND gender="' . $gender . '"')->fetch_assoc()['availability']; ?>";
+
+            } else if (value === "KTR") {
+                img.src = "assets/img/ktr-image.jpg";
+                img2.src = "assets/img/ktr-image.jpg";
+                img3.src = "assets/img/ktr-image.jpg";
+
+                singleroom.textContent = "Vacancy: " + "<?php echo mysqli_query($conn, 'SELECT availability FROM Room WHERE collegename = "KTR" AND roomType = "onePerson" AND gender="' . $gender . '"')->fetch_assoc()['availability']; ?>";
+                doubleroom.textContent = "Vacancy: " + "<?php echo mysqli_query($conn, 'SELECT availability FROM Room WHERE collegename = "KTR" AND roomType = "twoPerson" AND gender="' . $gender . '"')->fetch_assoc()['availability']; ?>";
+                singleroombathroom.textContent = "Vacancy: " + "<?php echo mysqli_query($conn, 'SELECT availability FROM Room WHERE collegename = "KTR" AND roomType = "onePersonBathroom" AND gender="' . $gender . '"')->fetch_assoc()['availability']; ?>";
+
+            } else if (value === "KTHO") {
+                img.src = "assets/img/ktho-image.jpg";
+                img2.src = "assets/img/ktho-image.jpg";
+                img3.src = "assets/img/ktho-image.jpg";
+                
+                singleroom.textContent = "Vacancy: " + "<?php echo mysqli_query($conn, 'SELECT availability FROM Room WHERE collegename = "KTHO" AND roomType = "onePerson" AND gender="' . $gender . '"')->fetch_assoc()['availability']; ?>";
+                doubleroom.textContent = "Vacancy: " + "<?php echo mysqli_query($conn, 'SELECT availability FROM Room WHERE collegename = "KTHO" AND roomType = "twoPerson" AND gender="' . $gender . '"')->fetch_assoc()['availability']; ?>";
+                singleroombathroom.textContent = "Vacancy: " + "<?php echo mysqli_query($conn, 'SELECT availability FROM Room WHERE collegename = "KTHO" AND roomType = "onePersonBathroom" AND gender="' . $gender . '"')->fetch_assoc()['availability']; ?>";
+
+
+            } else if (value === "KTC") {
+                img.src = "assets/img/ktc-image.jpg";
+                img2.src = "assets/img/ktc-image.jpg";
+                img3.src = "assets/img/ktc-image.jpg";
+                
+                singleroom.textContent = "Vacancy: " + "<?php echo mysqli_query($conn, 'SELECT availability FROM Room WHERE collegename = "KTC" AND roomType = "onePerson" AND gender="' . $gender . '"')->fetch_assoc()['availability']; ?>";
+                doubleroom.textContent = "Vacancy: " + "<?php echo mysqli_query($conn, 'SELECT availability FROM Room WHERE collegename = "KTC" AND roomType = "twoPerson" AND gender="' . $gender . '"')->fetch_assoc()['availability']; ?>";
+                singleroombathroom.textContent = "Vacancy: " + "<?php echo mysqli_query($conn, 'SELECT availability FROM Room WHERE collegename = "KTC" AND roomType = "onePersonBathroom" AND gender="' . $gender . '"')->fetch_assoc()['availability']; ?>";
+
+            } else if (value === "K9K10") {
+                img.src = "assets/img/k9k10-image.jpg";
+                img2.src = "assets/img/k9k10-image.jpg";
+                img3.src = "assets/img/k9k10-image.jpg";
+                
+                singleroom.textContent = "Vacancy: " + "<?php echo mysqli_query($conn, 'SELECT availability FROM Room WHERE collegename = "K9K10" AND roomType = "onePerson" AND gender="' . $gender . '"')->fetch_assoc()['availability']; ?>";
+                doubleroom.textContent = "Vacancy: " + "<?php echo mysqli_query($conn, 'SELECT availability FROM Room WHERE collegename = "K9K10" AND roomType = "twoPerson" AND gender="' . $gender . '"')->fetch_assoc()['availability']; ?>";
+                singleroombathroom.textContent = "Vacancy: " + "<?php echo mysqli_query($conn, 'SELECT availability FROM Room WHERE collegename = "K9K10" AND roomType = "onePersonBathroom" AND gender="' . $gender . '"')->fetch_assoc()['availability']; ?>";
+
+            } else if (value === "KRP") {
+                img.src = "assets/img/krp-image.jpg";
+                img2.src = "assets/img/krp-image.jpg";
+                img3.src = "assets/img/krp-image.jpg";
+                
+                singleroom.textContent = "Vacancy: " + "<?php echo mysqli_query($conn, 'SELECT availability FROM Room WHERE collegename = "KRP" AND roomType = "onePerson" AND gender="' . $gender . '"')->fetch_assoc()['availability']; ?>";
+                doubleroom.textContent = "Vacancy: " + "<?php echo mysqli_query($conn, 'SELECT availability FROM Room WHERE collegename = "KRP" AND roomType = "twoPerson" AND gender="' . $gender . '"')->fetch_assoc()['availability']; ?>";
+                singleroombathroom.textContent = "Vacancy: " + "<?php echo mysqli_query($conn, 'SELECT availability FROM Room WHERE collegename = "KRP" AND roomType = "onePersonBathroom" AND gender="' . $gender . '"')->fetch_assoc()['availability']; ?>";
+
+            } else if (value === "KDSE") {
+                img.src = "assets/img/ktr-image.jpg";
+                img2.src = "assets/img/ktr-image.jpg";
+                img3.src = "assets/img/ktr-image.jpg";
+                
+                singleroom.textContent = "Vacancy: " + "<?php echo mysqli_query($conn, 'SELECT availability FROM Room WHERE collegename = "KDSE" AND roomType = "onePerson" AND gender="' . $gender . '"')->fetch_assoc()['availability']; ?>";
+                doubleroom.textContent = "Vacancy: " + "<?php echo mysqli_query($conn, 'SELECT availability FROM Room WHERE collegename = "KDSE" AND roomType = "twoPerson" AND gender="' . $gender . '"')->fetch_assoc()['availability']; ?>";
+                singleroombathroom.textContent = "Vacancy: " + "<?php echo mysqli_query($conn, 'SELECT availability FROM Room WHERE collegename = "KDSE" AND roomType = "onePersonBathroom" AND gender="' . $gender . '"')->fetch_assoc()['availability']; ?>";
+
+            } else if (value === "KDOJ") {
+                img.src = "assets/img/ktr-image.jpg";
+                img2.src = "assets/img/ktr-image.jpg";
+                img3.src = "assets/img/ktr-image.jpg";
+                
+                singleroom.textContent = "Vacancy: " + "<?php echo mysqli_query($conn, 'SELECT availability FROM Room WHERE collegename = "KDOJ" AND roomType = "onePerson" AND gender="' . $gender . '"')->fetch_assoc()['availability']; ?>";
+                doubleroom.textContent = "Vacancy: " + "<?php echo mysqli_query($conn, 'SELECT availability FROM Room WHERE collegename = "KDOJ" AND roomType = "twoPerson" AND gender="' . $gender . '"')->fetch_assoc()['availability']; ?>";
+                singleroombathroom.textContent = "Vacancy: " + "<?php echo mysqli_query($conn, 'SELECT availability FROM Room WHERE collegename = "KDOJ" AND roomType = "onePersonBathroom" AND gender="' . $gender . '"')->fetch_assoc()['availability']; ?>";
+
+            } else if (value === "KP") {
+                img.src = "assets/img/ktr-image.jpg";
+                img2.src = "assets/img/ktr-image.jpg";
+                img3.src = "assets/img/ktr-image.jpg";
+                
+                singleroom.textContent = "Vacancy: " + "<?php echo mysqli_query($conn, 'SELECT availability FROM Room WHERE collegename = "KP" AND roomType = "onePerson" AND gender="' . $gender . '"')->fetch_assoc()['availability']; ?>";
+                doubleroom.textContent = "Vacancy: " + "<?php echo mysqli_query($conn, 'SELECT availability FROM Room WHERE collegename = "KP" AND roomType = "twoPerson" AND gender="' . $gender . '"')->fetch_assoc()['availability']; ?>";
+                singleroombathroom.textContent = "Vacancy: " + "<?php echo mysqli_query($conn, 'SELECT availability FROM Room WHERE collegename = "KP" AND roomType = "onePersonBathroom" AND gender="' . $gender . '"')->fetch_assoc()['availability']; ?>";
+
+            } else if (value === "KTF") {
+                img.src = "assets/img/ktr-image.jpg";
+                img2.src = "assets/img/ktr-image.jpg";
+                img3.src = "assets/img/ktr-image.jpg";
+                
+                singleroom.textContent = "Vacancy: " + "<?php echo mysqli_query($conn, 'SELECT availability FROM Room WHERE collegename = "KTF" AND roomType = "onePerson" AND gender="' . $gender . '"')->fetch_assoc()['availability']; ?>";
+                doubleroom.textContent = "Vacancy: " + "<?php echo mysqli_query($conn, 'SELECT availability FROM Room WHERE collegename = "KTF" AND roomType = "twoPerson" AND gender="' . $gender . '"')->fetch_assoc()['availability']; ?>";
+                singleroombathroom.textContent = "Vacancy: " + "<?php echo mysqli_query($conn, 'SELECT availability FROM Room WHERE collegename = "KTF" AND roomType = "onePersonBathroom" AND gender="' . $gender . '"')->fetch_assoc()['availability']; ?>";
+
+            } else {
+            }
+         }
+    </script>
 
 </body>
 

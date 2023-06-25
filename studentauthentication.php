@@ -36,7 +36,6 @@ if (isset($_SESSION['last_activity'])) {
 
 $sess_username = $_SESSION['username'];
 
-
 // Prepare and execute the query using a prepared statement
 $stmt = $conn->prepare("SELECT * FROM student WHERE username = ?");
 $stmt->bind_param("s", $sess_username);
@@ -47,6 +46,7 @@ $student_result = $stmt->get_result();
 if ($student_result->num_rows > 0) {
     $student_row = $student_result->fetch_assoc();
     $username = $student_row["username"];
+    $gender = $student_row["gender"];
 }
 
 // Close the statement

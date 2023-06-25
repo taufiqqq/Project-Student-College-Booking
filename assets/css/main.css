@@ -1033,7 +1033,7 @@ section {
 
 .events .event-item {
   background-size: cover;
-  background-position: cente;
+  background-position: center;
   min-height: 600px;
   padding: 30px;
 }
@@ -1709,3 +1709,4 @@ section {
 .column:last-child {
   flex-basis: 60%;
 }
+

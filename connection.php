@@ -8,13 +8,13 @@ if (!$conn) {
 }
 
 
-// Create the 'project' database if it doesn't exist
-$createDBQuery = "CREATE DATABASE IF NOT EXISTS project";
-if (mysqli_query($conn, $createDBQuery)) {
-    echo "Database created successfully or already exists!";
-} else {
-    die("Error creating database: " . mysqli_error($conn));
-}
+ //Create the 'project' database if it doesn't exist
+////createDBQuery = "CREATE DATABASE IF NOT EXISTS project";
+//if (mysqli_query($conn, $createDBQuery)) {
+ //   echo "Database created successfully or already exists!";
+//} else {
+ //   die("Error creating database: " . mysqli_error($conn));
+//} 
 
 // Choose the 'project' database to work with
 $selected = mysqli_select_db($conn, "project");

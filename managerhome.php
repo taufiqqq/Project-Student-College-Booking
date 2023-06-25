@@ -1,23 +1,9 @@
 <?php
+include("connection.php");
 session_start();
-
-// Check if the user is already logged in and redirect to the respective home page
-if (isset($_SESSION['username'])) {
-    $userRole = $_SESSION['userRole'];
-    
-    if ($userRole === 'student') {
-        header('Location: studenthome.php');
-        exit();
-    } elseif ($userRole === 'manager') {
-        header('Location: managerhome.php');
-        exit();
-    } elseif ($userRole === 'admin') {
-        header('Location: adminhome.php');
-        exit();
-    }
-}
-
+include("managerauthentication.php")
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -35,7 +21,9 @@ if (isset($_SESSION['username'])) {
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600;1,700&family=Amatic+SC:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600;1,700&family=Amatic+SC:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
+    rel="stylesheet">
 
   <!-- Vendor CSS Files -->
   <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -70,34 +58,22 @@ if (isset($_SESSION['username'])) {
 
       <nav id="navbar" class="navbar">
         <ul>
-          <li><a href="#hero">Home</a></li>
-          <li><a href="#about">About</a></li>
-          <li><a href="#menu">Colleges</a></li>
-          <li><a href="#events">Events</a></li>
-          <li><a href="#chefs">Application</a></li>
-          <li><a href="template.html">Gallery</a></li>  
-          <li class="dropdown"><a href="#"><span>Drop Down</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
-            <ul>
-              <li><a href="#">Drop Down 1</a></li>
-              <li class="dropdown"><a href="#"><span>Deep Drop Down</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
-                <ul>
-                  <li><a href="#">Deep Drop Down 1</a></li>
-                  <li><a href="#">Deep Drop Down 2</a></li>
-                  <li><a href="#">Deep Drop Down 3</a></li>
-                  <li><a href="#">Deep Drop Down 4</a></li>
-                  <li><a href="#">Deep Drop Down 5</a></li>
-                </ul>
-              </li>
-              <li><a href="#">Drop Down 2</a></li>
-              <li><a href="#">Drop Down 3</a></li>
-              <li><a href="#">Drop Down 4</a></li>
-            </ul>
-          </li>
-          <li><a href="#contact">Contact</a></li>
+          <li><a href="managerhome.php">Home</a></li>
+          <li><a href="managerapplication.php">Student Application</a></li>
         </ul>
       </nav><!-- .navbar -->
 
-      <a class="btn-book-a-table" href="login.php">Login</a>
+      <nav id="navbar" class="navbar">
+        <ul class="dropdown"><a class="btn-book-a-table"><span>Manager</span> <i
+              class="bi bi-chevron-down dropdown-indicator"></i></a>
+          <ul>
+            <li><a href="#">Profile</a></li>
+            <li><a href="#">Settings</a></li>
+            <li><a href="#">Tak tau</a></li>
+            <li><a href="logout.php">Log Out</a></li>
+          </ul>
+        </ul>
+      </nav>
       <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
       <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
 
@@ -108,12 +84,16 @@ if (isset($_SESSION['username'])) {
   <section id="hero" class="hero d-flex align-items-center section-bg">
     <div class="container">
       <div class="row justify-content-between gy-5">
-        <div class="col-lg-5 order-2 order-lg-1 d-flex flex-column justify-content-center align-items-center align-items-lg-start text-center text-lg-start">
+        <div
+          class="col-lg-5 order-2 order-lg-1 d-flex flex-column justify-content-center align-items-center align-items-lg-start text-center text-lg-start">
           <h2 data-aos="fade-up">Welcome to<br>UTM Colleges</h2>
-          <p data-aos="fade-up" data-aos-delay="100">Book your college now! Ranging from KTDI, KTR, KDSE choose your own option</p>
+          <p data-aos="fade-up" data-aos-delay="100">Book your college now! Ranging from KTDI, KTR, KDSE choose your own
+            option</p>
           <div class="d-flex" data-aos="fade-up" data-aos-delay="200">
             <a href="#book-a-table" class="btn-book-a-table">Book Your Room Now</a>
-            <a href="https://www.youtube.com/watch?v=sesHjlVW1R0&ab_channel=MUHAMMADTAUFIQBINJURIMIA21EC0095" class="glightbox btn-watch-video d-flex align-items-center"><i class="bi bi-play-circle"></i><span>Watch Video</span></a>
+            <a href="https://www.youtube.com/watch?v=sesHjlVW1R0&ab_channel=MUHAMMADTAUFIQBINJURIMIA21EC0095"
+              class="glightbox btn-watch-video d-flex align-items-center"><i class="bi bi-play-circle"></i><span>Watch
+                Video</span></a>
           </div>
         </div>
         <div class="col-lg-5 order-1 order-lg-2 text-center text-lg-start">
@@ -135,7 +115,8 @@ if (isset($_SESSION['username'])) {
         </div>
 
         <div class="row gy-4">
-          <div class="col-lg-7 position-relative about-img" style="background-image: url(assets/img/KTDI-2.jpg) ;" data-aos="fade-up" data-aos-delay="150">
+          <div class="col-lg-7 position-relative about-img" style="background-image: url(assets/img/KTDI-2.jpg) ;"
+            data-aos="fade-up" data-aos-delay="150">
             <div class="call-us position-absolute">
               <h4>Book a Room</h4>
               <p>+60 165653191</p>
@@ -144,7 +125,8 @@ if (isset($_SESSION['username'])) {
           <div class="col-lg-5 d-flex align-items-end" data-aos="fade-up" data-aos-delay="300">
             <div class="content ps-0 ps-lg-5">
               <p class="fst-italic">
-                We are college representatives from colleges in UTM. We would love to invite you to be apart of our team and college. 
+                We are college representatives from colleges in UTM. We would love to invite you to be apart of our team
+                and college.
                 Do contact us if there is any inquiries and do not if there is none.
               </p>
               <ul>
@@ -153,8 +135,9 @@ if (isset($_SESSION['username'])) {
                 <li><i class="bi bi-check2-all"></i> Stone's throw distance to your faculty</li>
               </ul>
               <p>
-                Now what are you waiting? We will provide you with facilities such as vending machine, washing machine, water dispenser, 
-                dobby and mini mart. 
+                Now what are you waiting? We will provide you with facilities such as vending machine, washing machine,
+                water dispenser,
+                dobby and mini mart.
               </p>
 
               <div class="position-relative mt-4">
@@ -178,8 +161,10 @@ if (isset($_SESSION['username'])) {
             <div class="why-box">
               <h3>Afiq Fahmi?</h3>
               <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Duis aute irure dolor in reprehenderit
-                Asperiores dolores sed et. Tenetur quia eos. Autem tempore quibusdam vel necessitatibus optio ad corporis.
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+                dolore magna aliqua. Duis aute irure dolor in reprehenderit
+                Asperiores dolores sed et. Tenetur quia eos. Autem tempore quibusdam vel necessitatibus optio ad
+                corporis.
               </p>
               <div class="text-center">
                 <a href="#" class="more-btn">Learn More <i class="bx bx-chevron-right"></i></a>
@@ -230,28 +215,32 @@ if (isset($_SESSION['username'])) {
 
           <div class="col-lg-3 col-md-6">
             <div class="stats-item text-center w-100 h-100">
-              <span data-purecounter-start="0" data-purecounter-end="9" data-purecounter-duration="1" class="purecounter"></span>
+              <span data-purecounter-start="0" data-purecounter-end="9" data-purecounter-duration="1"
+                class="purecounter"></span>
               <p>Colleges</p>
             </div>
           </div><!-- End Stats Item -->
 
           <div class="col-lg-3 col-md-6">
             <div class="stats-item text-center w-100 h-100">
-              <span data-purecounter-start="0" data-purecounter-end="12938" data-purecounter-duration="1" class="purecounter"></span>
+              <span data-purecounter-start="0" data-purecounter-end="12938" data-purecounter-duration="1"
+                class="purecounter"></span>
               <p>Residents</p>
             </div>
           </div><!-- End Stats Item -->
 
           <div class="col-lg-3 col-md-6">
             <div class="stats-item text-center w-100 h-100">
-              <span data-purecounter-start="0" data-purecounter-end="340" data-purecounter-duration="1" class="purecounter"></span>
+              <span data-purecounter-start="0" data-purecounter-end="340" data-purecounter-duration="1"
+                class="purecounter"></span>
               <p>College Staff</p>
             </div>
           </div><!-- End Stats Item -->
 
           <div class="col-lg-3 col-md-6">
             <div class="stats-item text-center w-100 h-100">
-              <span data-purecounter-start="0" data-purecounter-end="237" data-purecounter-duration="1" class="purecounter"></span>
+              <span data-purecounter-start="0" data-purecounter-end="237" data-purecounter-duration="1"
+                class="purecounter"></span>
               <p>Buildings</p>
             </div>
           </div><!-- End Stats Item -->
@@ -309,7 +298,8 @@ if (isset($_SESSION['username'])) {
             <div class="row gy-5">
 
               <div class="col-lg-4 menu-item">
-                <a href="assets/img/KTDI-1.jpg" class="glightbox"><img src="assets/img/KTDI-1.jpg" class="menu-img img-fluid" alt=""></a>
+                <a href="assets/img/KTDI-1.jpg" class="glightbox"><img src="assets/img/KTDI-1.jpg"
+                    class="menu-img img-fluid" alt=""></a>
                 <h4>Magnam Tiste</h4>
                 <p class="ingredients">
                   Lorem, deren, trataro, filede, nerada
@@ -320,7 +310,8 @@ if (isset($_SESSION['username'])) {
               </div><!-- Menu Item -->
 
               <div class="col-lg-4 menu-item">
-                <a href="assets/img/KDSE-1.jpg" class="glightbox"><img src="assets/img/KDSE-1.jpg" class="menu-img img-fluid" alt=""></a>
+                <a href="assets/img/KDSE-1.jpg" class="glightbox"><img src="assets/img/KDSE-1.jpg"
+                    class="menu-img img-fluid" alt=""></a>
                 <h4>Aut Luia</h4>
                 <p class="ingredients">
                   Lorem, deren, trataro, filede, nerada
@@ -331,7 +322,8 @@ if (isset($_SESSION['username'])) {
               </div><!-- Menu Item -->
 
               <div class="col-lg-4 menu-item">
-                <a href="assets/img/KDOJ-1.jpg" class="glightbox"><img src="assets/img/KDOJ-1.jpg" class="menu-img img-fluid" alt=""></a>
+                <a href="assets/img/KDOJ-1.jpg" class="glightbox"><img src="assets/img/KDOJ-1.jpg"
+                    class="menu-img img-fluid" alt=""></a>
                 <h4>Est Eligendi</h4>
                 <p class="ingredients">
                   Lorem, deren, trataro, filede, nerada
@@ -342,7 +334,8 @@ if (isset($_SESSION['username'])) {
               </div><!-- Menu Item -->
 
               <div class="col-lg-4 menu-item">
-                <a href="assets/img/KTR-1.jpg" class="glightbox"><img src="assets/img/KTR-1.jpg" class="menu-img img-fluid" alt=""></a>
+                <a href="assets/img/KTR-1.jpg" class="glightbox"><img src="assets/img/KTR-1.jpg"
+                    class="menu-img img-fluid" alt=""></a>
                 <h4>Eos Luibusdam</h4>
                 <p class="ingredients">
                   Lorem, deren, trataro, filede, nerada
@@ -353,7 +346,8 @@ if (isset($_SESSION['username'])) {
               </div><!-- Menu Item -->
 
               <div class="col-lg-4 menu-item">
-                <a href="assets/img/KTC-1.jpeg" class="glightbox"><img src="assets/img/KTC-1.jpeg" class="menu-img img-fluid" alt=""></a>
+                <a href="assets/img/KTC-1.jpeg" class="glightbox"><img src="assets/img/KTC-1.jpeg"
+                    class="menu-img img-fluid" alt=""></a>
                 <h4>Eos Luibusdam</h4>
                 <p class="ingredients">
                   Lorem, deren, trataro, filede, nerada
@@ -364,7 +358,8 @@ if (isset($_SESSION['username'])) {
               </div><!-- Menu Item -->
 
               <div class="col-lg-4 menu-item">
-                <a href="assets/img/KRP-1.jpg" class="glightbox"><img src="assets/img/KRP-1.jpg" class="menu-img img-fluid" alt=""></a>
+                <a href="assets/img/KRP-1.jpg" class="glightbox"><img src="assets/img/KRP-1.jpg"
+                    class="menu-img img-fluid" alt=""></a>
                 <h4>Laboriosam Direva</h4>
                 <p class="ingredients">
                   Lorem, deren, trataro, filede, nerada
@@ -387,7 +382,8 @@ if (isset($_SESSION['username'])) {
             <div class="row gy-5">
 
               <div class="col-lg-4 menu-item">
-                <a href="assets/img/ktdi-1.jpg" class="glightbox"><img src="assets/img/ktdi-1.jpg" class="menu-img img-fluid" alt=""></a>
+                <a href="assets/img/ktdi-1.jpg" class="glightbox"><img src="assets/img/ktdi-1.jpg"
+                    class="menu-img img-fluid" alt=""></a>
                 <h4>Magnam Tiste</h4>
                 <p class="ingredients">
                   Lorem, deren, trataro, filede, nerada
@@ -398,7 +394,8 @@ if (isset($_SESSION['username'])) {
               </div><!-- Menu Item -->
 
               <div class="col-lg-4 menu-item">
-                <a href="assets/img/menu/menu-item-2.png" class="glightbox"><img src="assets/img/menu/menu-item-2.png" class="menu-img img-fluid" alt=""></a>
+                <a href="assets/img/menu/menu-item-2.png" class="glightbox"><img src="assets/img/menu/menu-item-2.png"
+                    class="menu-img img-fluid" alt=""></a>
                 <h4>Aut Luia</h4>
                 <p class="ingredients">
                   Lorem, deren, trataro, filede, nerada
@@ -409,7 +406,8 @@ if (isset($_SESSION['username'])) {
               </div><!-- Menu Item -->
 
               <div class="col-lg-4 menu-item">
-                <a href="assets/img/menu/menu-item-3.png" class="glightbox"><img src="assets/img/menu/menu-item-3.png" class="menu-img img-fluid" alt=""></a>
+                <a href="assets/img/menu/menu-item-3.png" class="glightbox"><img src="assets/img/menu/menu-item-3.png"
+                    class="menu-img img-fluid" alt=""></a>
                 <h4>Est Eligendi</h4>
                 <p class="ingredients">
                   Lorem, deren, trataro, filede, nerada
@@ -420,7 +418,8 @@ if (isset($_SESSION['username'])) {
               </div><!-- Menu Item -->
 
               <div class="col-lg-4 menu-item">
-                <a href="assets/img/menu/menu-item-4.png" class="glightbox"><img src="assets/img/menu/menu-item-4.png" class="menu-img img-fluid" alt=""></a>
+                <a href="assets/img/menu/menu-item-4.png" class="glightbox"><img src="assets/img/menu/menu-item-4.png"
+                    class="menu-img img-fluid" alt=""></a>
                 <h4>Eos Luibusdam</h4>
                 <p class="ingredients">
                   Lorem, deren, trataro, filede, nerada
@@ -431,7 +430,8 @@ if (isset($_SESSION['username'])) {
               </div><!-- Menu Item -->
 
               <div class="col-lg-4 menu-item">
-                <a href="assets/img/menu/menu-item-5.png" class="glightbox"><img src="assets/img/menu/menu-item-5.png" class="menu-img img-fluid" alt=""></a>
+                <a href="assets/img/menu/menu-item-5.png" class="glightbox"><img src="assets/img/menu/menu-item-5.png"
+                    class="menu-img img-fluid" alt=""></a>
                 <h4>Eos Luibusdam</h4>
                 <p class="ingredients">
                   Lorem, deren, trataro, filede, nerada
@@ -442,7 +442,8 @@ if (isset($_SESSION['username'])) {
               </div><!-- Menu Item -->
 
               <div class="col-lg-4 menu-item">
-                <a href="assets/img/menu/menu-item-6.png" class="glightbox"><img src="assets/img/menu/menu-item-6.png" class="menu-img img-fluid" alt=""></a>
+                <a href="assets/img/menu/menu-item-6.png" class="glightbox"><img src="assets/img/menu/menu-item-6.png"
+                    class="menu-img img-fluid" alt=""></a>
                 <h4>Laboriosam Direva</h4>
                 <p class="ingredients">
                   Lorem, deren, trataro, filede, nerada
@@ -465,7 +466,8 @@ if (isset($_SESSION['username'])) {
             <div class="row gy-5">
 
               <div class="col-lg-4 menu-item">
-                <a href="assets/img/ktdi-1.jpg" class="glightbox"><img src="assets/img/ktdi-1.jpg" class="menu-img img-fluid" alt=""></a>
+                <a href="assets/img/ktdi-1.jpg" class="glightbox"><img src="assets/img/ktdi-1.jpg"
+                    class="menu-img img-fluid" alt=""></a>
                 <h4>Magnam Tiste</h4>
                 <p class="ingredients">
                   Lorem, deren, trataro, filede, nerada
@@ -476,7 +478,8 @@ if (isset($_SESSION['username'])) {
               </div><!-- Menu Item -->
 
               <div class="col-lg-4 menu-item">
-                <a href="assets/img/menu/menu-item-2.png" class="glightbox"><img src="assets/img/menu/menu-item-2.png" class="menu-img img-fluid" alt=""></a>
+                <a href="assets/img/menu/menu-item-2.png" class="glightbox"><img src="assets/img/menu/menu-item-2.png"
+                    class="menu-img img-fluid" alt=""></a>
                 <h4>Aut Luia</h4>
                 <p class="ingredients">
                   Lorem, deren, trataro, filede, nerada
@@ -487,7 +490,8 @@ if (isset($_SESSION['username'])) {
               </div><!-- Menu Item -->
 
               <div class="col-lg-4 menu-item">
-                <a href="assets/img/menu/menu-item-3.png" class="glightbox"><img src="assets/img/menu/menu-item-3.png" class="menu-img img-fluid" alt=""></a>
+                <a href="assets/img/menu/menu-item-3.png" class="glightbox"><img src="assets/img/menu/menu-item-3.png"
+                    class="menu-img img-fluid" alt=""></a>
                 <h4>Est Eligendi</h4>
                 <p class="ingredients">
                   Lorem, deren, trataro, filede, nerada
@@ -498,7 +502,8 @@ if (isset($_SESSION['username'])) {
               </div><!-- Menu Item -->
 
               <div class="col-lg-4 menu-item">
-                <a href="assets/img/menu/menu-item-4.png" class="glightbox"><img src="assets/img/menu/menu-item-4.png" class="menu-img img-fluid" alt=""></a>
+                <a href="assets/img/menu/menu-item-4.png" class="glightbox"><img src="assets/img/menu/menu-item-4.png"
+                    class="menu-img img-fluid" alt=""></a>
                 <h4>Eos Luibusdam</h4>
                 <p class="ingredients">
                   Lorem, deren, trataro, filede, nerada
@@ -509,7 +514,8 @@ if (isset($_SESSION['username'])) {
               </div><!-- Menu Item -->
 
               <div class="col-lg-4 menu-item">
-                <a href="assets/img/menu/menu-item-5.png" class="glightbox"><img src="assets/img/menu/menu-item-5.png" class="menu-img img-fluid" alt=""></a>
+                <a href="assets/img/menu/menu-item-5.png" class="glightbox"><img src="assets/img/menu/menu-item-5.png"
+                    class="menu-img img-fluid" alt=""></a>
                 <h4>Eos Luibusdam</h4>
                 <p class="ingredients">
                   Lorem, deren, trataro, filede, nerada
@@ -520,7 +526,8 @@ if (isset($_SESSION['username'])) {
               </div><!-- Menu Item -->
 
               <div class="col-lg-4 menu-item">
-                <a href="assets/img/menu/menu-item-6.png" class="glightbox"><img src="assets/img/menu/menu-item-6.png" class="menu-img img-fluid" alt=""></a>
+                <a href="assets/img/menu/menu-item-6.png" class="glightbox"><img src="assets/img/menu/menu-item-6.png"
+                    class="menu-img img-fluid" alt=""></a>
                 <h4>Laboriosam Direva</h4>
                 <p class="ingredients">
                   Lorem, deren, trataro, filede, nerada
@@ -543,7 +550,8 @@ if (isset($_SESSION['username'])) {
             <div class="row gy-5">
 
               <div class="col-lg-4 menu-item">
-                <a href="assets/img/KTDI-1.jpg" class="glightbox"><img src="assets/img/KTDI-1.jpg" class="menu-img img-fluid" alt=""></a>
+                <a href="assets/img/KTDI-1.jpg" class="glightbox"><img src="assets/img/KTDI-1.jpg"
+                    class="menu-img img-fluid" alt=""></a>
                 <h4>Magnam Tiste</h4>
                 <p class="ingredients">
                   Lorem, deren, trataro, filede, nerada
@@ -554,7 +562,8 @@ if (isset($_SESSION['username'])) {
               </div><!-- Menu Item -->
 
               <div class="col-lg-4 menu-item">
-                <a href="assets/img/menu/menu-item-2.png" class="glightbox"><img src="assets/img/menu/menu-item-2.png" class="menu-img img-fluid" alt=""></a>
+                <a href="assets/img/menu/menu-item-2.png" class="glightbox"><img src="assets/img/menu/menu-item-2.png"
+                    class="menu-img img-fluid" alt=""></a>
                 <h4>Aut Luia</h4>
                 <p class="ingredients">
                   Lorem, deren, trataro, filede, nerada
@@ -565,7 +574,8 @@ if (isset($_SESSION['username'])) {
               </div><!-- Menu Item -->
 
               <div class="col-lg-4 menu-item">
-                <a href="assets/img/menu/menu-item-3.png" class="glightbox"><img src="assets/img/menu/menu-item-3.png" class="menu-img img-fluid" alt=""></a>
+                <a href="assets/img/menu/menu-item-3.png" class="glightbox"><img src="assets/img/menu/menu-item-3.png"
+                    class="menu-img img-fluid" alt=""></a>
                 <h4>Est Eligendi</h4>
                 <p class="ingredients">
                   Lorem, deren, trataro, filede, nerada
@@ -576,7 +586,8 @@ if (isset($_SESSION['username'])) {
               </div><!-- Menu Item -->
 
               <div class="col-lg-4 menu-item">
-                <a href="assets/img/menu/menu-item-4.png" class="glightbox"><img src="assets/img/menu/menu-item-4.png" class="menu-img img-fluid" alt=""></a>
+                <a href="assets/img/menu/menu-item-4.png" class="glightbox"><img src="assets/img/menu/menu-item-4.png"
+                    class="menu-img img-fluid" alt=""></a>
                 <h4>Eos Luibusdam</h4>
                 <p class="ingredients">
                   Lorem, deren, trataro, filede, nerada
@@ -587,7 +598,8 @@ if (isset($_SESSION['username'])) {
               </div><!-- Menu Item -->
 
               <div class="col-lg-4 menu-item">
-                <a href="assets/img/menu/menu-item-5.png" class="glightbox"><img src="assets/img/menu/menu-item-5.png" class="menu-img img-fluid" alt=""></a>
+                <a href="assets/img/menu/menu-item-5.png" class="glightbox"><img src="assets/img/menu/menu-item-5.png"
+                    class="menu-img img-fluid" alt=""></a>
                 <h4>Eos Luibusdam</h4>
                 <p class="ingredients">
                   Lorem, deren, trataro, filede, nerada
@@ -598,7 +610,8 @@ if (isset($_SESSION['username'])) {
               </div><!-- Menu Item -->
 
               <div class="col-lg-4 menu-item">
-                <a href="assets/img/menu/menu-item-6.png" class="glightbox"><img src="assets/img/menu/menu-item-6.png" class="menu-img img-fluid" alt=""></a>
+                <a href="assets/img/menu/menu-item-6.png" class="glightbox"><img src="assets/img/menu/menu-item-6.png"
+                    class="menu-img img-fluid" alt=""></a>
                 <h4>Laboriosam Direva</h4>
                 <p class="ingredients">
                   Lorem, deren, trataro, filede, nerada
@@ -635,13 +648,15 @@ if (isset($_SESSION['username'])) {
                     <div class="testimonial-content">
                       <p>
                         <i class="bi bi-quote quote-icon-left"></i>
-                        Proin iaculis purus consequat sem cure digni ssim donec porttitora entum suscipit rhoncus. Accusantium quam, ultricies eget id, aliquam eget nibh et. Maecen aliquam, risus at semper.
+                        Proin iaculis purus consequat sem cure digni ssim donec porttitora entum suscipit rhoncus.
+                        Accusantium quam, ultricies eget id, aliquam eget nibh et. Maecen aliquam, risus at semper.
                         <i class="bi bi-quote quote-icon-right"></i>
                       </p>
                       <h3>Saul Goodman</h3>
                       <h4>Ceo &amp; Founder</h4>
                       <div class="stars">
-                        <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
+                          class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
                       </div>
                     </div>
                   </div>
@@ -659,13 +674,15 @@ if (isset($_SESSION['username'])) {
                     <div class="testimonial-content">
                       <p>
                         <i class="bi bi-quote quote-icon-left"></i>
-                        Export tempor illum tamen malis malis eram quae irure esse labore quem cillum quid cillum eram malis quorum velit fore eram velit sunt aliqua noster fugiat irure amet legam anim culpa.
+                        Export tempor illum tamen malis malis eram quae irure esse labore quem cillum quid cillum eram
+                        malis quorum velit fore eram velit sunt aliqua noster fugiat irure amet legam anim culpa.
                         <i class="bi bi-quote quote-icon-right"></i>
                       </p>
                       <h3>Sara Wilsson</h3>
                       <h4>Designer</h4>
                       <div class="stars">
-                        <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
+                          class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
                       </div>
                     </div>
                   </div>
@@ -683,13 +700,15 @@ if (isset($_SESSION['username'])) {
                     <div class="testimonial-content">
                       <p>
                         <i class="bi bi-quote quote-icon-left"></i>
-                        Enim nisi quem export duis labore cillum quae magna enim sint quorum nulla quem veniam duis minim tempor labore quem eram duis noster aute amet eram fore quis sint minim.
+                        Enim nisi quem export duis labore cillum quae magna enim sint quorum nulla quem veniam duis
+                        minim tempor labore quem eram duis noster aute amet eram fore quis sint minim.
                         <i class="bi bi-quote quote-icon-right"></i>
                       </p>
                       <h3>Jena Karlis</h3>
                       <h4>Store Owner</h4>
                       <div class="stars">
-                        <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
+                          class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
                       </div>
                     </div>
                   </div>
@@ -707,13 +726,16 @@ if (isset($_SESSION['username'])) {
                     <div class="testimonial-content">
                       <p>
                         <i class="bi bi-quote quote-icon-left"></i>
-                        Quis quorum aliqua sint quem legam fore sunt eram irure aliqua veniam tempor noster veniam enim culpa labore duis sunt culpa nulla illum cillum fugiat legam esse veniam culpa fore nisi cillum quid.
+                        Quis quorum aliqua sint quem legam fore sunt eram irure aliqua veniam tempor noster veniam enim
+                        culpa labore duis sunt culpa nulla illum cillum fugiat legam esse veniam culpa fore nisi cillum
+                        quid.
                         <i class="bi bi-quote quote-icon-right"></i>
                       </p>
                       <h3>John Larson</h3>
                       <h4>Entrepreneur</h4>
                       <div class="stars">
-                        <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
+                          class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
                       </div>
                     </div>
                   </div>
@@ -743,27 +765,33 @@ if (isset($_SESSION['username'])) {
         <div class="slides-3 swiper" data-aos="fade-up" data-aos-delay="100">
           <div class="swiper-wrapper">
 
-            <div class="swiper-slide event-item d-flex flex-column justify-content-end" style="background-image: url(assets/img/events-1.jpg)">
+            <div class="swiper-slide event-item d-flex flex-column justify-content-end"
+              style="background-image: url(assets/img/events-1.jpg)">
               <h3>Custom Parties</h3>
               <div class="price align-self-start">$99</div>
               <p class="description">
-                Quo corporis voluptas ea ad. Consectetur inventore sapiente ipsum voluptas eos omnis facere. Enim facilis veritatis id est rem repudiandae nulla expedita quas.
+                Quo corporis voluptas ea ad. Consectetur inventore sapiente ipsum voluptas eos omnis facere. Enim
+                facilis veritatis id est rem repudiandae nulla expedita quas.
               </p>
             </div><!-- End Event item -->
 
-            <div class="swiper-slide event-item d-flex flex-column justify-content-end" style="background-image: url(assets/img/events-2.jpg)">
+            <div class="swiper-slide event-item d-flex flex-column justify-content-end"
+              style="background-image: url(assets/img/events-2.jpg)">
               <h3>Private Parties</h3>
               <div class="price align-self-start">$289</div>
               <p class="description">
-                In delectus sint qui et enim. Et ab repudiandae inventore quaerat doloribus. Facere nemo vero est ut dolores ea assumenda et. Delectus saepe accusamus aspernatur.
+                In delectus sint qui et enim. Et ab repudiandae inventore quaerat doloribus. Facere nemo vero est ut
+                dolores ea assumenda et. Delectus saepe accusamus aspernatur.
               </p>
             </div><!-- End Event item -->
 
-            <div class="swiper-slide event-item d-flex flex-column justify-content-end" style="background-image: url(assets/img/events-3.jpg)">
+            <div class="swiper-slide event-item d-flex flex-column justify-content-end"
+              style="background-image: url(assets/img/events-3.jpg)">
               <h3>Birthday Parties</h3>
               <div class="price align-self-start">$499</div>
               <p class="description">
-                Laborum aperiam atque omnis minus omnis est qui assumenda quos. Quis id sit quibusdam. Esse quisquam ducimus officia ipsum ut quibusdam maxime. Non enim perspiciatis.
+                Laborum aperiam atque omnis minus omnis est qui assumenda quos. Quis id sit quibusdam. Esse quisquam
+                ducimus officia ipsum ut quibusdam maxime. Non enim perspiciatis.
               </p>
             </div><!-- End Event item -->
 
@@ -799,7 +827,8 @@ if (isset($_SESSION['username'])) {
               <div class="member-info">
                 <h4>Walter White</h4>
                 <span>Master Chef</span>
-                <p>Velit aut quia fugit et et. Dolorum ea voluptate vel tempore tenetur ipsa quae aut. Ipsum exercitationem iure minima enim corporis et voluptate.</p>
+                <p>Velit aut quia fugit et et. Dolorum ea voluptate vel tempore tenetur ipsa quae aut. Ipsum
+                  exercitationem iure minima enim corporis et voluptate.</p>
               </div>
             </div>
           </div><!-- End Chefs Member -->
@@ -818,7 +847,8 @@ if (isset($_SESSION['username'])) {
               <div class="member-info">
                 <h4>Sarah Jhonson</h4>
                 <span>Patissier</span>
-                <p>Quo esse repellendus quia id. Est eum et accusantium pariatur fugit nihil minima suscipit corporis. Voluptate sed quas reiciendis animi neque sapiente.</p>
+                <p>Quo esse repellendus quia id. Est eum et accusantium pariatur fugit nihil minima suscipit corporis.
+                  Voluptate sed quas reiciendis animi neque sapiente.</p>
               </div>
             </div>
           </div><!-- End Chefs Member -->
@@ -837,7 +867,8 @@ if (isset($_SESSION['username'])) {
               <div class="member-info">
                 <h4>William Anderson</h4>
                 <span>Cook</span>
-                <p>Vero omnis enim consequatur. Voluptas consectetur unde qui molestiae deserunt. Voluptates enim aut architecto porro aspernatur molestiae modi.</p>
+                <p>Vero omnis enim consequatur. Voluptas consectetur unde qui molestiae deserunt. Voluptates enim aut
+                  architecto porro aspernatur molestiae modi.</p>
               </div>
             </div>
           </div><!-- End Chefs Member -->
@@ -858,33 +889,41 @@ if (isset($_SESSION['username'])) {
 
         <div class="row g-0">
 
-          <div class="col-lg-4 reservation-img" style="background-image: url(assets/img/reservation.jpg);" data-aos="zoom-out" data-aos-delay="200"></div>
+          <div class="col-lg-4 reservation-img" style="background-image: url(assets/img/reservation.jpg);"
+            data-aos="zoom-out" data-aos-delay="200"></div>
 
           <div class="col-lg-8 d-flex align-items-center reservation-form-bg">
-            <form action="forms/book-a-table.php" method="post" role="form" class="php-email-form" data-aos="fade-up" data-aos-delay="100">
+            <form action="forms/book-a-table.php" method="post" role="form" class="php-email-form" data-aos="fade-up"
+              data-aos-delay="100">
               <div class="row gy-4">
                 <div class="col-lg-4 col-md-6">
-                  <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars">
+                  <input type="text" name="name" class="form-control" id="name" placeholder="Your Name"
+                    data-rule="minlen:4" data-msg="Please enter at least 4 chars">
                   <div class="validate"></div>
                 </div>
                 <div class="col-lg-4 col-md-6">
-                  <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email">
+                  <input type="email" class="form-control" name="email" id="email" placeholder="Your Email"
+                    data-rule="email" data-msg="Please enter a valid email">
                   <div class="validate"></div>
                 </div>
                 <div class="col-lg-4 col-md-6">
-                  <input type="text" class="form-control" name="phone" id="phone" placeholder="Your Phone" data-rule="minlen:4" data-msg="Please enter at least 4 chars">
+                  <input type="text" class="form-control" name="phone" id="phone" placeholder="Your Phone"
+                    data-rule="minlen:4" data-msg="Please enter at least 4 chars">
                   <div class="validate"></div>
                 </div>
                 <div class="col-lg-4 col-md-6">
-                  <input type="text" name="date" class="form-control" id="date" placeholder="Date" data-rule="minlen:4" data-msg="Please enter at least 4 chars">
+                  <input type="text" name="date" class="form-control" id="date" placeholder="Date" data-rule="minlen:4"
+                    data-msg="Please enter at least 4 chars">
                   <div class="validate"></div>
                 </div>
                 <div class="col-lg-4 col-md-6">
-                  <input type="text" class="form-control" name="time" id="time" placeholder="Time" data-rule="minlen:4" data-msg="Please enter at least 4 chars">
+                  <input type="text" class="form-control" name="time" id="time" placeholder="Time" data-rule="minlen:4"
+                    data-msg="Please enter at least 4 chars">
                   <div class="validate"></div>
                 </div>
                 <div class="col-lg-4 col-md-6">
-                  <input type="number" class="form-control" name="people" id="people" placeholder="# of people" data-rule="minlen:1" data-msg="Please enter at least 1 chars">
+                  <input type="number" class="form-control" name="people" id="people" placeholder="# of people"
+                    data-rule="minlen:1" data-msg="Please enter at least 1 chars">
                   <div class="validate"></div>
                 </div>
               </div>
@@ -895,9 +934,10 @@ if (isset($_SESSION['username'])) {
               <div class="mb-3">
                 <div class="loading">Loading</div>
                 <div class="error-message"></div>
-                <div class="sent-message">Your booking request was sent. We will call back or send an Email to confirm your reservation. Thank you!</div>
+                <div class="sent-message">Your booking request was sent. We will call back or send an Email to confirm
+                  your reservation. Thank you!</div>
               </div>
-              <div class="text-center"><button type="submit">Log out</button></div>
+              <div class="text-center"><button type="submit">Book a Table</button></div>
             </form>
           </div><!-- End Reservation Form -->
 
@@ -917,14 +957,30 @@ if (isset($_SESSION['username'])) {
 
         <div class="gallery-slider swiper">
           <div class="swiper-wrapper align-items-center">
-            <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery" href="assets/img/gallery/gallery-1.jpg"><img src="assets/img/gallery/gallery-1.jpg" class="img-fluid" alt=""></a></div>
-            <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery" href="assets/img/gallery/gallery-2.jpg"><img src="assets/img/gallery/gallery-2.jpg" class="img-fluid" alt=""></a></div>
-            <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery" href="assets/img/gallery/gallery-3.jpg"><img src="assets/img/gallery/gallery-3.jpg" class="img-fluid" alt=""></a></div>
-            <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery" href="assets/img/gallery/gallery-4.jpg"><img src="assets/img/gallery/gallery-4.jpg" class="img-fluid" alt=""></a></div>
-            <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery" href="assets/img/gallery/gallery-5.jpg"><img src="assets/img/gallery/gallery-5.jpg" class="img-fluid" alt=""></a></div>
-            <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery" href="assets/img/gallery/gallery-6.jpg"><img src="assets/img/gallery/gallery-6.jpg" class="img-fluid" alt=""></a></div>
-            <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery" href="assets/img/gallery/gallery-7.jpg"><img src="assets/img/gallery/gallery-7.jpg" class="img-fluid" alt=""></a></div>
-            <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery" href="assets/img/gallery/gallery-8.jpg"><img src="assets/img/gallery/gallery-8.jpg" class="img-fluid" alt=""></a></div>
+            <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery"
+                href="assets/img/gallery/gallery-1.jpg"><img src="assets/img/gallery/gallery-1.jpg" class="img-fluid"
+                  alt=""></a></div>
+            <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery"
+                href="assets/img/gallery/gallery-2.jpg"><img src="assets/img/gallery/gallery-2.jpg" class="img-fluid"
+                  alt=""></a></div>
+            <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery"
+                href="assets/img/gallery/gallery-3.jpg"><img src="assets/img/gallery/gallery-3.jpg" class="img-fluid"
+                  alt=""></a></div>
+            <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery"
+                href="assets/img/gallery/gallery-4.jpg"><img src="assets/img/gallery/gallery-4.jpg" class="img-fluid"
+                  alt=""></a></div>
+            <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery"
+                href="assets/img/gallery/gallery-5.jpg"><img src="assets/img/gallery/gallery-5.jpg" class="img-fluid"
+                  alt=""></a></div>
+            <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery"
+                href="assets/img/gallery/gallery-6.jpg"><img src="assets/img/gallery/gallery-6.jpg" class="img-fluid"
+                  alt=""></a></div>
+            <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery"
+                href="assets/img/gallery/gallery-7.jpg"><img src="assets/img/gallery/gallery-7.jpg" class="img-fluid"
+                  alt=""></a></div>
+            <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery"
+                href="assets/img/gallery/gallery-8.jpg"><img src="assets/img/gallery/gallery-8.jpg" class="img-fluid"
+                  alt=""></a></div>
           </div>
           <div class="swiper-pagination"></div>
         </div>
@@ -942,7 +998,9 @@ if (isset($_SESSION['username'])) {
         </div>
 
         <div class="mb-3">
-          <iframe style="border:0; width: 100%; height: 350px;" src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12097.433213460943!2d-74.0062269!3d40.7101282!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xb89d1fe6bc499443!2sDowntown+Conference+Center!5e0!3m2!1smk!2sbg!4v1539943755621" frameborder="0" allowfullscreen></iframe>
+          <iframe style="border:0; width: 100%; height: 350px;"
+            src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12097.433213460943!2d-74.0062269!3d40.7101282!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xb89d1fe6bc499443!2sDowntown+Conference+Center!5e0!3m2!1smk!2sbg!4v1539943755621"
+            frameborder="0" allowfullscreen></iframe>
         </div><!-- End Google Maps -->
 
         <div class="row gy-4">
@@ -1022,73 +1080,74 @@ if (isset($_SESSION['username'])) {
   <!-- ======= Footer ======= -->
   <footer id="footer" class="footer">
 
-<div class="container">
-  <div class="row gy-3">
-    <div class="col-lg-3 col-md-6 d-flex">
-      <i class="bi bi-geo-alt icon"></i>
-      <div>
-        <h4>Address</h4>
-        <p>
-          UTM Skudai <br>
-          Johor Bahru, 81300 - Malaysia<br>
-        </p>
-      </div>
+    <div class="container">
+      <div class="row gy-3">
+        <div class="col-lg-3 col-md-6 d-flex">
+          <i class="bi bi-geo-alt icon"></i>
+          <div>
+            <h4>Address</h4>
+            <p>
+              UTM Skudai <br>
+              Johor Bahru, 81300 - Malaysia<br>
+            </p>
+          </div>
 
+        </div>
+
+        <div class="col-lg-3 col-md-6 footer-links d-flex">
+          <i class="bi bi-telephone icon"></i>
+          <div>
+            <h4>Inquiries</h4>
+            <p>
+              <strong>Phone:</strong> +60 165653191<br>
+              <strong>Email:</strong> taufiq02@graduate.utm.my<br>
+            </p>
+          </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6 footer-links d-flex">
+          <i class="bi bi-clock icon"></i>
+          <div>
+            <h4>Opening Hours</h4>
+            <p>
+              <strong>Sun-Thu: 8AM</strong> - 5PM<br>
+              Friday: Closed
+              Saturday: Closed
+            </p>
+          </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6 footer-links">
+          <h4>Follow Us</h4>
+          <div class="social-links d-flex">
+            <a href="https://twitter.com/Cristiano" class="twitter"><i class="bi bi-twitter"></i></a>
+            <a href="https://www.facebook.com/Cristiano/" class="facebook"><i class="bi bi-facebook"></i></a>
+            <a href="https://www.instagram.com/tauf.iqq/" class="instagram"><i class="bi bi-instagram"></i></a>
+            <a href="https://www.linkedin.com/in/taufiqjurimi/" class="linkedin"><i class="bi bi-linkedin"></i></a>
+          </div>
+        </div>
+
+      </div>
     </div>
 
-    <div class="col-lg-3 col-md-6 footer-links d-flex">
-      <i class="bi bi-telephone icon"></i>
-      <div>
-        <h4>Inquiries</h4>
-        <p>
-          <strong>Phone:</strong> +60 165653191<br>
-          <strong>Email:</strong> taufiq02@graduate.utm.my<br>
-        </p>
+    <div class="container">
+      <div class="copyright">
+        &copy; Copyright <strong><span>UTM</span></strong>College All Rights Reserved
+      </div>
+      <div class="credits">
+        <!-- All the links in the footer should remain intact. -->
+        <!-- You can delete the links only if you purchased the pro version. -->
+        <!-- Licensing information: https://bootstrapmade.com/license/ -->
+        <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/yummy-bootstrap-restaurant-website-template/ -->
+        Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
       </div>
     </div>
 
-    <div class="col-lg-3 col-md-6 footer-links d-flex">
-      <i class="bi bi-clock icon"></i>
-      <div>
-        <h4>Opening Hours</h4>
-        <p>
-          <strong>Sun-Thu: 8AM</strong> - 5PM<br>
-          Friday: Closed
-          Saturday: Closed
-        </p>
-      </div>
-    </div>
-
-    <div class="col-lg-3 col-md-6 footer-links">
-      <h4>Follow Us</h4>
-      <div class="social-links d-flex">
-        <a href="https://twitter.com/Cristiano" class="twitter"><i class="bi bi-twitter"></i></a>
-        <a href="https://www.facebook.com/Cristiano/" class="facebook"><i class="bi bi-facebook"></i></a>
-        <a href="https://www.instagram.com/tauf.iqq/" class="instagram"><i class="bi bi-instagram"></i></a>
-        <a href="https://www.linkedin.com/in/taufiqjurimi/" class="linkedin"><i class="bi bi-linkedin"></i></a>
-      </div>
-    </div>
-
-  </div>
-</div>
-
-<div class="container">
-  <div class="copyright">
-    &copy; Copyright <strong><span>UTM</span></strong>College All Rights Reserved
-  </div>
-  <div class="credits">
-    <!-- All the links in the footer should remain intact. -->
-    <!-- You can delete the links only if you purchased the pro version. -->
-    <!-- Licensing information: https://bootstrapmade.com/license/ -->
-    <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/yummy-bootstrap-restaurant-website-template/ -->
-    Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
-  </div>
-</div>
-
-</footer><!-- End Footer -->
+  </footer><!-- End Footer -->
   <!-- End Footer -->
 
-  <a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+  <a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i
+      class="bi bi-arrow-up-short"></i></a>
 
   <div id="preloader"></div>
 

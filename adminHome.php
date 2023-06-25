@@ -55,7 +55,7 @@ include("adminauthentication.php")
 
             <nav id="navbar" class="navbar">
                 <ul>
-                    <li><a href="studenthome.php">Home</a></li>
+                    <li><a href="adminHome.php">Home</a></li>
                     <li>
                         <ul class="dropdown"><a href="#book-a-table"><span>Feature</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
                             <ul>
@@ -65,7 +65,7 @@ include("adminauthentication.php")
                                 <li class="dropdown"><a href="#"><span>View</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
                                     <ul>
                                         <li><a href="studenthome.php">student</a></li>
-                                        <li><a href="">manager</a></li>
+                                        <li><a href="managerhome.php">manager</a></li>
                                     </ul>
                                 </li>
                             </ul>
@@ -104,16 +104,41 @@ include("adminauthentication.php")
                 </div>
             </div>
         </div>
-        <div>
-            <ul><a class="btn-book-a-table" href="adminCreateUser.php"><span>Create User</span></a></ul>
-            <ul><a class="btn-book-a-table" href="adminEditUser.php"><span>Edit User</span></a></ul>
-            <ul><a class="btn-book-a-table" href="adminDeleteUSer"><span>Delete User</span></ul>
-            <ul class="dropdown"><a class="btn-book-a-table" href="#book-a-table">View<i class="bi bi-chevron-down dropdown-indicator"></i></a>
-                <ul>
-                    <li><a href="studenthome.php">Student</a></li>
-                    <li><a href="#">manager</a></li>
-                </ul>
+        <div align="center">
+            <br><br>
+            <ul style="list-style-type: none;">
+                <li style="margin-bottom: 30px;"><a class="btn-book-a-table" href="adminCreateUser.php"><span>Create User</span></a></li>
+                <li style="margin-bottom: 30px;"><a class="btn-book-a-table" href="adminEditUser.php"><span>Edit User</span></a></li>
+                <li style="margin-bottom: 30px;"><a class="btn-book-a-table" href="adminDeleteUser.php"><span>Delete User</span></a></li>
+                <!-- <li class="dropdown" style="margin-bottom: 30px;">
+                    <a class="btn-book-a-table dropdown-toggle" href="#viewDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <span>View</span> <i class="bi bi-chevron-down dropdown-indicator"></i>
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="viewDropdown">
+                        <li><a href="studenthome.php">Student</a></li>
+                        <li><a href="managerhome.php">Manager</a></li>
+                    </ul>
+                </li> -->
+                <div style="display: flex; justify-content: center;">
+                    <nav id="navbar" class="navbar">
+                        <ul class="dropdown">
+                            <a class="btn-book-a-table" href="#book-a-table">
+                                <span>View</span><i class="bi bi-chevron-down dropdown-indicator"></i>
+                            </a>
+                            <ul>
+                                <li><a href="studenthome.php">Student</a></li>
+                                <li><a href="managerhome.php">Manager</a></li>
+                            </ul>
+                        </ul>
+                    </nav>
+                </div>
+                <br><br><br><br>
+
+
+                <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
+                <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
             </ul>
+
 
             <!-- <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
             <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i> -->
