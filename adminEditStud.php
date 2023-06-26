@@ -1,7 +1,25 @@
 <?php
+ob_start(); // Start output buffering
+
 include("connection.php");
 session_start();
-include("adminauthentication.php")
+include("adminauthentication.php");
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Check if the selected_username parameter is set in the POST request
+    if (isset($_POST['selected_username'])) {
+        // Retrieve the selected username from the POST data
+        $selectedUsername = $_POST['selected_username'];
+
+        // You can redirect the user to the adminEditStudUser.php page with the selected username
+        header("Location: adminEditStudUser.php?selected_username=" . urlencode($selectedUsername));
+        exit; // Stop executing the rest of the current script
+    } else {
+        echo "No username selected.";
+    }
+}
+
+ob_end_flush(); // Flush the output buffer and send the output to the browser
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -58,6 +76,7 @@ include("adminauthentication.php")
                     <li>
                         <ul class="dropdown"><a href="#book-a-table"><span>Feature</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
                             <ul>
+                                <li><a href="adminCreateUser">
                                 <li><a href="adminCreateUser">Create User</a></li>
                                 <li><a href="adminEditUser">Edit User</a></li>
                                 <li><a href="adminDeleteUser">Delete User</a></li>
@@ -102,7 +121,47 @@ include("adminauthentication.php")
                     </div>
                 </div>
             </div>
-            
+            <p>Choose Student you want to edit:</P><br><br>
+            <form id="submitUser" method="POST">
+                <?php
+                // Include the connection.php file and establish a database connection
+                include("connection.php");
+
+                // Query to fetch usernames from the database
+                $query = "SELECT username FROM Student";
+                $result = $conn->query($query);
+
+                // Check if any usernames were retrieved
+                if ($result->num_rows > 0) {
+                    // Loop through the result and create radio buttons for each username
+                    while ($row = $result->fetch_assoc()) {
+                        $username = $row['username'];
+                        echo '<input type="radio" name="selected_username" value="' . $username . '">' . $username . '<br>';
+                    }
+                } else {
+                    echo "No usernames found in the database.";
+                }
+
+                // Close the database connection
+                $conn->close();
+                ?>
+                <input type="submit" value="Submit">
+            </form>
+            <?php
+            if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                // Check if the selected_username parameter is set in the POST request
+                if (isset($_POST['selected_username'])) {
+                    // Retrieve the selected username from the POST data
+                    $selectedUsername = $_POST['selected_username'];
+
+                    // You can redirect the user to the adminEditStudUser.php page with the selected username
+                    header("Location: adminEditStudUser.php?selected_username=" . urlencode($selectedUsername));
+                    exit; // Stop executing the rest of the current script
+                } else {
+                    echo "No username selected.";
+                }
+            }
+            ?>
         </div>
     </main>
 
@@ -129,8 +188,7 @@ include("adminauthentication.php")
                         <h4>Inquiries</h4>
                         <p>
                             <strong>Phone:</strong> +60 165653191<br>
-                            <strong>Email:</strong> taufiq02@graduate.utm.my<br>
-                        </p>
+                            <strong>Email:</strong> taufiq
                     </div>
                 </div>
 
@@ -160,9 +218,6 @@ include("adminauthentication.php")
         </div>
 
         <div class="container">
-            <div class="copyright">
-                &copy; Copyright <strong><span>UTM</span></strong>College All Rights Reserved
-            </div>
             <div class="credits">
                 <!-- All the links in the footer should remain intact. -->
                 <!-- You can delete the links only if you purchased the pro version. -->

@@ -1,6 +1,6 @@
 <?php 
 // Check if the user is not logged in as a student
-if (!isset($_SESSION['username']) || $_SESSION['userRole'] !== 'student') {
+if (!isset($_SESSION['username']) || $_SESSION['userRole'] === 'manager') {
     header('Location: index.php');
     exit();
 }
@@ -47,6 +47,11 @@ if ($student_result->num_rows > 0) {
     $student_row = $student_result->fetch_assoc();
     $username = $student_row["username"];
     $gender = $student_row["gender"];
+}
+
+if($_SESSION['userRole']==='admin')
+{
+$username = 'admin';
 }
 
 // Close the statement

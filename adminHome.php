@@ -1,8 +1,4 @@
-<?php
-include("connection.php");
-session_start();
-include("adminauthentication.php")
-?>
+
 
 <!DOCTYPE html>
 <html lang="en">

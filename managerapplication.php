@@ -68,8 +68,6 @@ include("managerauthentication.php")
               class="bi bi-chevron-down dropdown-indicator"></i></a>
           <ul>
             <li><a href="#">Profile</a></li>
-            <li><a href="#">Settings</a></li>
-            <li><a href="#">Tak tau</a></li>
             <li><a href="logout.php">Log Out</a></li>
           </ul>
         </ul>
@@ -79,29 +77,6 @@ include("managerauthentication.php")
 
     </div>
   </header><!-- End Header -->
-
-  <!-- ======= Hero Section ======= -->
-  <section id="hero" class="hero d-flex align-items-center section-bg">
-    <div class="container">
-      <div class="row justify-content-between gy-5">
-        <div
-          class="col-lg-5 order-2 order-lg-1 d-flex flex-column justify-content-center align-items-center align-items-lg-start text-center text-lg-start">
-          <h2 data-aos="fade-up">Welcome to<br>UTM Colleges</h2>
-          <p data-aos="fade-up" data-aos-delay="100">Book your college now! Ranging from KTDI, KTR, KDSE choose your own
-            option</p>
-          <div class="d-flex" data-aos="fade-up" data-aos-delay="200">
-            <a href="#book-a-table" class="btn-book-a-table">Book Your Room Now</a>
-            <a href="https://www.youtube.com/watch?v=sesHjlVW1R0&ab_channel=MUHAMMADTAUFIQBINJURIMIA21EC0095"
-              class="glightbox btn-watch-video d-flex align-items-center"><i class="bi bi-play-circle"></i><span>Watch
-                Video</span></a>
-          </div>
-        </div>
-        <div class="col-lg-5 order-1 order-lg-2 text-center text-lg-start">
-          <img src="assets/img/KTDI-1.jpg" class="img-fluid" alt="" data-aos="zoom-out" data-aos-delay="300">
-        </div>
-      </div>
-    </div>
-  </section><!-- End Hero Section -->
 
   <main id="main">
 
@@ -124,31 +99,22 @@ include("managerauthentication.php")
       <div class="container" data-aos="fade-up">
 
       <?php 
-  $pendingBookingsQuery = mysqli_query($conn, "SELECT username, id, dateBook, collegename, roomType, status FROM Booking WHERE status = 'pending'");
-  $hasPendingBookings = mysqli_num_rows($pendingBookingsQuery) > 0;
+        $pendingBookingsQuery = mysqli_query($conn, "SELECT username, id, dateBook, collegename, roomType, status FROM Booking WHERE status = 'pending' ORDER BY username ASC");
+        $hasPendingBookings = mysqli_num_rows($pendingBookingsQuery) > 0;
+      ?>
 
-  if (isset($_POST['submit'])) {
-    $bookingStatus = $_POST['booking_status'];
-    
-    foreach ($bookingStatus as $bookingId => $status) {
-      $updateQuery = "UPDATE Booking SET status = '$status' WHERE id = '$bookingId'";
-      mysqli_query($conn, $updateQuery);
-    }
-  }
-?>
-
-<?php if ($hasPendingBookings) { ?>
-  <h2>Pending Bookings</h2>
-  <form method="post" action="">
-    <table style="margin: 20px; padding: 10px;">
-      <tr>
-        <th style="padding: 10px;">Application ID</th>
-        <th style="padding: 10px;">Student Name</th>
-        <th style="padding: 10px;">Booking Date</th>
-        <th style="padding: 10px;">College and Room</th>
-        <th style="padding: 10px;">Status</th>
-        <th style="padding: 10px;">Action</th>
-      </tr>
+      <?php if ($hasPendingBookings) { ?>
+        <h2>Pending Bookings</h2>
+        <form method="post" action="process_booking.php">
+        <table style="margin: 20px; padding: 10px;">
+          <tr>
+            <th style="padding: 10px;">Application ID</th>
+            <th style="padding: 10px;">Student Name</th>
+            <th style="padding: 10px;">Booking Date</th>
+            <th style="padding: 10px;">College and Room</th>
+            <th style="padding: 10px;">Status</th>
+            <th style="padding: 10px;">Action</th>
+          </tr>
       <?php while ($row = mysqli_fetch_assoc($pendingBookingsQuery)) { ?>
         <tr>
           <td style="padding: 10px;">
@@ -181,16 +147,15 @@ include("managerauthentication.php")
           </td>
         </tr>
       <?php } ?>
-    </table>
-    <button type="submit" name="submit">Submit</button>
-  </form>
-<?php } else {?>
-  <p>No hostel application found.</p>
-        <?php } ?>
-
+        </table>
+        <button type="submit" name="submit">Submit</button>
+        </form>
+      <?php } else {?>
+        <p>No hostel application found.</p>
+      <?php } ?>
+  
       </div>
     </section>
-
   </main><!-- End #main -->
 
   <!-- ======= Footer ======= -->

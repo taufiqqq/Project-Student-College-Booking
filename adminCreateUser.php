@@ -64,7 +64,7 @@ include("adminauthentication.php")
                                 <li class="dropdown"><a href="#"><span>View</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
                                     <ul>
                                         <li><a href="studenthome.php">student</a></li>
-                                        <li><a href="">manager</a></li>
+                                        <li><a href="managerhome.php">manager</a></li>
                                     </ul>
                                 </li>
                             </ul>

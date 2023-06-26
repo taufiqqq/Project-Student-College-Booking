@@ -64,7 +64,7 @@ include("adminauthentication.php")
                                 <li class="dropdown"><a href="#"><span>View</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
                                     <ul>
                                         <li><a href="studenthome.php">student</a></li>
-                                        <li><a href="">manager</a></li>
+                                        <li><a href="managerhome.php">manager</a></li>
                                     </ul>
                                 </li>
                             </ul>
@@ -79,8 +79,6 @@ include("adminauthentication.php")
             <nav id="navbar" class="navbar">
                 <ul class="dropdown"><a class="btn-book-a-table" href="#book-a-table"><span>Admin</span><i class="bi bi-chevron-down dropdown-indicator"></i></a>
                     <ul>
-                        <li><a href=""></a></li>
-                        <li><a href="#">drop 2</a></li>
                         <li><a href="logout.php">Logout</a></li>
                     </ul>
                 </ul>
@@ -104,7 +102,7 @@ include("adminauthentication.php")
                     </div>
                 </div>
             </div>
-            <form action="adminHome.php">
+            <form id="userTypeForm" method="POST">
                 <br><br>
                 <p>Please select type of user:</p>
                 <div>
@@ -116,18 +114,16 @@ include("adminauthentication.php")
                     <label for="manager">Manager</label>
                 </div>
                 <div>
-                    <label for="username">Name:</label>
-                    <input type="text" id="username" name="name">
-                </div>
-                <div>
-                    <label for="passuser">Password:</label>
-                    <input type="password" id="passuser" name="password">
-                </div>
-                <div>
                     <input type="submit" value="Submit">
                 </div>
             </form>
 
+            <?php
+            if (isset($_POST['user_type'])) {
+                $userType = $_POST['user_type'];
+                echo "Selected User Type: " . $userType;
+            }
+            ?>
         </div>
     </main>
 
@@ -199,6 +195,22 @@ include("adminauthentication.php")
 
     </footer><!-- End Footer -->
     <!-- End Footer -->
+    <script>
+        document.getElementById("userTypeForm").addEventListener("submit", function() {
+            var selectedValue = document.querySelector('input[name="user_type"]:checked').value;
+            var actionUrl;
+
+            if (selectedValue === "Student") {
+                actionUrl = "adminDeleteStud.php";
+            } else if (selectedValue === "Manager") {
+                actionUrl = "adminDeleteManager.php";
+            }
+
+            if (actionUrl) {
+                document.getElementById("userTypeForm").action = actionUrl;
+            }
+        });
+    </script>
 </body>
 
 </html>

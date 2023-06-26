@@ -1,6 +1,6 @@
 <?php 
 // Check if the user is not logged in as a manager
-if (!isset($_SESSION['username']) || $_SESSION['userRole'] !== 'manager') {
+if (!isset($_SESSION['username']) || $_SESSION['userRole'] === 'student') {
     header('Location: index.php');
     exit();
 }

@@ -1,18 +1,13 @@
 @import url(https://fonts.googleapis.com/css?family=Poppins:300);
 
 body {
-    height: 100vh;
-    overflow: hidden;
     font-family: "Poppins";
-    background-image: url("assets/img/UTM-skyview.jpg");
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
+ 
 }
 
 .login-page {
-    width: 400px;
-    padding: 8% 0 0;
+    width: 500px;
+    padding: 8% 0% 0;
     margin: auto;
 }
 
@@ -39,7 +34,6 @@ body {
     padding: 15px;
     box-sizing: border-box;
     font-size: 14px;
-
 }
 
 .form button {

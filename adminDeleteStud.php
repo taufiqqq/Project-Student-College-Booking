@@ -5,20 +5,6 @@ include("connection.php");
 session_start();
 include("adminauthentication.php");
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Check if the selected_username parameter is set in the POST request
-    if (isset($_POST['selected_username'])) {
-        // Retrieve the selected username from the POST data
-        $selectedUsername = $_POST['selected_username'];
-
-        // You can redirect the user to the adminEditStudUser.php page with the selected username
-        header("Location: adminEditManagerUser.php?selected_username=" . urlencode($selectedUsername));
-        exit; // Stop executing the rest of the current script
-    } else {
-        echo "No username selected.";
-    }
-}
-
 ob_end_flush(); // Flush the output buffer and send the output to the browser
 ?>
 <!DOCTYPE html>
@@ -116,24 +102,45 @@ ob_end_flush(); // Flush the output buffer and send the output to the browser
                 <div class="container">
                     <div class="d-flex justify-content-between align-items-center">
                         <h1>
-                            Edit Student Page<br>
+                            Delete Student Page<br>
                         </h1>
                     </div>
                 </div>
             </div>
-            <p>Choose Student you want to edit:</P><br><br>
-            <form id="submitUser" method="POST">
+            <p>Choose Student you want to delete:</P><br><br>
+            <?php
+            // Include the connection.php file and establish a database connection
+            include("connection.php");
+
+            if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['delete'])) {
+                // Retrieve the selected username from the form data
+                $selectedUsername = $_POST['selected_username'];
+
+                // Prepare and execute the SQL DELETE query
+                $stmt = $conn->prepare('DELETE FROM Student WHERE username = ?');
+                $stmt->bind_param('s', $selectedUsername);
+                $stmt->execute();
+
+                // Check if the query was successful
+                if ($stmt->affected_rows > 0) {
+                    echo 'Data deleted successfully.';
+                } else {
+                    echo 'Error deleting data.';
+                }
+
+                // Close the database connection
+                $stmt->close();
+            }
+
+            // Query to fetch usernames from the database
+            $query = "SELECT username FROM Student";
+            $result = $conn->query($query);
+
+            // Display the form with radio buttons for selecting the username to delete
+            ?>
+            <form id="deleteUser" method="POST">
                 <?php
-                // Include the connection.php file and establish a database connection
-                include("connection.php");
-
-                // Query to fetch usernames from the database
-                $query = "SELECT username FROM Manager";
-                $result = $conn->query($query);
-
-                // Check if any usernames were retrieved
                 if ($result->num_rows > 0) {
-                    // Loop through the result and create radio buttons for each username
                     while ($row = $result->fetch_assoc()) {
                         $username = $row['username'];
                         echo '<input type="radio" name="selected_username" value="' . $username . '">' . $username . '<br>';
@@ -141,27 +148,15 @@ ob_end_flush(); // Flush the output buffer and send the output to the browser
                 } else {
                     echo "No usernames found in the database.";
                 }
-
-                // Close the database connection
-                $conn->close();
                 ?>
-                <input type="submit" value="Submit">
+                <input type="submit" name="delete" value="Delete">
             </form>
             <?php
-            if ($_SERVER["REQUEST_METHOD"] == "POST") {
-                // Check if the selected_username parameter is set in the POST request
-                if (isset($_POST['selected_username'])) {
-                    // Retrieve the selected username from the POST data
-                    $selectedUsername = $_POST['selected_username'];
 
-                    // You can redirect the user to the adminEditStudUser.php page with the selected username
-                    header("Location: adminEditManagerUser.php?selected_username=" . urlencode($selectedUsername));
-                    exit; // Stop executing the rest of the current script
-                } else {
-                    echo "No username selected.";
-                }
-            }
+            // Close the database connection
+            $conn->close();
             ?>
+
         </div>
     </main>
 

@@ -1,26 +1,11 @@
 <?php
-ob_start(); // Start output buffering
-
+// include("adminEditStud.php");
 include("connection.php");
 session_start();
 include("adminauthentication.php");
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Check if the selected_username parameter is set in the POST request
-    if (isset($_POST['selected_username'])) {
-        // Retrieve the selected username from the POST data
-        $selectedUsername = $_POST['selected_username'];
-
-        // You can redirect the user to the adminEditStudUser.php page with the selected username
-        header("Location: adminEditManagerUser.php?selected_username=" . urlencode($selectedUsername));
-        exit; // Stop executing the rest of the current script
-    } else {
-        echo "No username selected.";
-    }
-}
-
-ob_end_flush(); // Flush the output buffer and send the output to the browser
 ?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -76,7 +61,6 @@ ob_end_flush(); // Flush the output buffer and send the output to the browser
                     <li>
                         <ul class="dropdown"><a href="#book-a-table"><span>Feature</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
                             <ul>
-                                <li><a href="adminCreateUser">
                                 <li><a href="adminCreateUser">Create User</a></li>
                                 <li><a href="adminEditUser">Edit User</a></li>
                                 <li><a href="adminDeleteUser">Delete User</a></li>
@@ -116,53 +100,119 @@ ob_end_flush(); // Flush the output buffer and send the output to the browser
                 <div class="container">
                     <div class="d-flex justify-content-between align-items-center">
                         <h1>
-                            Edit Student Page<br>
+                            Update Student Page<br>
                         </h1>
                     </div>
                 </div>
             </div>
-            <p>Choose Student you want to edit:</P><br><br>
-            <form id="submitUser" method="POST">
-                <?php
-                // Include the connection.php file and establish a database connection
-                include("connection.php");
+            <form id="submitUser" method="POST" onsubmit="return validateForm()">
+                <br><br>
+                <p>Please Fill In Those Information:</p>
+                <table>
+                    <tr>
+                        <td><label for="emailuser">Email:</label></td>
+                        <td><input type="text" id="emailuser" name="email"></td>
+                    </tr>
+                    <tr>
+                        <td><label for="name">Name:</label></td>
+                        <td><input type="text" id="name" name="name"></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>Gender:</p>
+                        </td>
+                        <td>
+                            <input type="radio" id="male" name="gender" value="Male">
+                            <label for="male">Male</label>
+                            <input type="radio" id="female" name="gender" value="Female">
+                            <label for="female">Female</label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label for="staffnum">Staff Number:</label></td>
+                        <td><input type="text" id="staffnum" name="staff_num"></td>
+                    </tr>
+                    <tr>
+                        <td><label for="nofon">No. Phone:</label></td>
+                        <td><input type="number" id="nofon" name="phone_number"></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>College:</p>
+                        </td>
+                        <td>
+                            <input type="radio" id="ktdi" name="college" value="KTDI">
+                            <label for="ktdi">Kolej Tun Dr Ismail</label>
+                            <br>
+                            <input type="radio" id="ktho" name="college" value="KTHO">
+                            <label for="ktho">Kolej Tun Hussein Onn</label>
+                            <br>
+                            <input type="radio" id="ktf" name="college" value="KTF">
+                            <label for="female">Kolej Tun Fatimah</label>
+                            <br>
+                            <input type="radio" id="ktr" name="college" value="KTR">
+                            <label for="female">Kolej Tun Razak</label>
+                            <br>
+                            <input type="radio" id="ktc" name="college" value="KTC">
+                            <label for="female">Kolej Tun Canselor</label>
+                            <br>
+                            <input type="radio" id="krp" name="college" value="KRP">
+                            <label for="female">Kolej Rahman Putra</label>
+                            <br>
+                            <input type="radio" id="kdoj" name="college" value="KDOJ">
+                            <label for="female">Kolej Dato Onn Jaafar</label>
+                            <br>
+                            <input type="radio" id="kp" name="college" value="KP">
+                            <label for="female">Kolej Perdana</label>
+                            <br>
+                            <input type="radio" id="kdse" name="college" value="KDSE">
+                            <label for="female">Kolej Dato Seri Endon</label>
+                            <br>
+                            <input type="radio" id="k9k10" name="college" value="K9K10">
+                            <label for="female">Kolej 09 & 10</label>
+                            <br>
+                        </td>
+                    </tr>
+                </table>
+                <div>
+                    <input type="submit" value="Submit" name="submit">
+                </div>
+            </form>
+            <?php
+            // Retrieve form input values
+            $managerUsername = $_GET['selected_username'];
 
-                // Query to fetch usernames from the database
-                $query = "SELECT username FROM Manager";
-                $result = $conn->query($query);
+            if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['submit'])) {
+                $email = $_POST['email'];
+                $name = $_POST['name'];
+                $gender = $_POST['gender'];
+                $staffnum = $_POST['staff_num'];
+                $nofon = $_POST['phone_number'];
+                $kolej = $_POST['college'];
 
-                // Check if any usernames were retrieved
-                if ($result->num_rows > 0) {
-                    // Loop through the result and create radio buttons for each username
-                    while ($row = $result->fetch_assoc()) {
-                        $username = $row['username'];
-                        echo '<input type="radio" name="selected_username" value="' . $username . '">' . $username . '<br>';
-                    }
+                // Sanitize and validate input (e.g., using filter_var, regex, etc.)
+                // Prepare and execute the SQL query
+                $stmt = $conn->prepare('UPDATE Manager SET email = ?, name = ?, gender = ?, staffnum = ?, phone = ?, collegeHandled = ? WHERE username = ?');
+                $stmt->bind_param('sssssss', $email, $name, $gender, $staffnum, $nofon, $kolej, $managerUsername);
+
+                $stmt->execute();
+
+                // Check if the query was successful
+                if ($stmt->affected_rows > 0) {
+                    echo 'Data inserted successfully.';
                 } else {
-                    echo "No usernames found in the database.";
+                    echo 'Error inserting data.';
                 }
 
                 // Close the database connection
-                $conn->close();
-                ?>
-                <input type="submit" value="Submit">
-            </form>
-            <?php
-            if ($_SERVER["REQUEST_METHOD"] == "POST") {
-                // Check if the selected_username parameter is set in the POST request
-                if (isset($_POST['selected_username'])) {
-                    // Retrieve the selected username from the POST data
-                    $selectedUsername = $_POST['selected_username'];
-
-                    // You can redirect the user to the adminEditStudUser.php page with the selected username
-                    header("Location: adminEditManagerUser.php?selected_username=" . urlencode($selectedUsername));
-                    exit; // Stop executing the rest of the current script
-                } else {
-                    echo "No username selected.";
-                }
+                $stmt->close();
             }
             ?>
+
+            <!--stud = username, pass, email, nama, matric, gender, no fon
+manager = username, pass, email, nama, gender, stafnum, fon, kolej(radio)-->
         </div>
+
     </main>
 
     <!-- ======= Footer ======= -->
@@ -188,7 +238,8 @@ ob_end_flush(); // Flush the output buffer and send the output to the browser
                         <h4>Inquiries</h4>
                         <p>
                             <strong>Phone:</strong> +60 165653191<br>
-                            <strong>Email:</strong> taufiq
+                            <strong>Email:</strong> taufiq02@graduate.utm.my<br>
+                        </p>
                     </div>
                 </div>
 
@@ -218,6 +269,9 @@ ob_end_flush(); // Flush the output buffer and send the output to the browser
         </div>
 
         <div class="container">
+            <div class="copyright">
+                &copy; Copyright <strong><span>UTM</span></strong>College All Rights Reserved
+            </div>
             <div class="credits">
                 <!-- All the links in the footer should remain intact. -->
                 <!-- You can delete the links only if you purchased the pro version. -->
@@ -229,6 +283,21 @@ ob_end_flush(); // Flush the output buffer and send the output to the browser
 
     </footer><!-- End Footer -->
     <!-- End Footer -->
+    <script>
+        function validateForm() {
+            // Retrieve the selected username
+            var selectedUsername = <?php $selectedUsername ?>;
+
+            if (!selectedUsername) {
+                // If no username is selected, display an error message and prevent form submission
+                alert("Please select a username.");
+                return false;
+            }
+
+            // If the validation is successful, allow form submission
+            return true;
+        }
+    </script>
 </body>
 
 </html>
