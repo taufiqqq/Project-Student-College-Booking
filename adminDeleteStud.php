@@ -116,7 +116,13 @@ ob_end_flush(); // Flush the output buffer and send the output to the browser
                 // Retrieve the selected username from the form data
                 $selectedUsername = $_POST['selected_username'];
 
-                // Prepare and execute the SQL DELETE query
+                // Delete related bookings first
+                $stmt = $conn->prepare('DELETE FROM booking WHERE username = ?');
+                $stmt->bind_param('s', $selectedUsername);
+                $stmt->execute();
+                $stmt->close();
+
+                // Proceed with deleting the student
                 $stmt = $conn->prepare('DELETE FROM Student WHERE username = ?');
                 $stmt->bind_param('s', $selectedUsername);
                 $stmt->execute();
@@ -128,7 +134,6 @@ ob_end_flush(); // Flush the output buffer and send the output to the browser
                     echo 'Error deleting data.';
                 }
 
-                // Close the database connection
                 $stmt->close();
             }
 
