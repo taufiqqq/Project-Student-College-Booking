@@ -1,6 +1,6 @@
 <?php
 // Login to MySQL Server from PHP
-$conn = mysqli_connect("localhost", "root", "");
+$conn = mysqli_connect("localhost", "utmfcstu_college", "E3zwW^9hw7Fk!Xg*2s");
 
 // If login failed, terminate the page (using the 'die' function)
 if (!$conn) {
@@ -17,7 +17,7 @@ if (!$conn) {
 //} 
 
 // Choose the 'project' database to work with
-$selected = mysqli_select_db($conn, "project");
+$selected = mysqli_select_db($conn, "utmfcstu_newproject");
 
 // If the required database cannot be used, terminate the page
 if (!$selected) {

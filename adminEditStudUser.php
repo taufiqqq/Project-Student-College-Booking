@@ -154,7 +154,7 @@ include("adminauthentication.php");
 
                 // Sanitize and validate input (e.g., using filter_var, regex, etc.)
                 // Prepare and execute the SQL query
-                $stmt = $conn->prepare('UPDATE Student SET email = ?, name = ?, matricnum = ?, gender = ?, phone = ? WHERE username = ?');
+                $stmt = $conn->prepare('UPDATE student SET email = ?, name = ?, matricnum = ?, gender = ?, phone = ? WHERE username = ?');
                 $stmt->bind_param('ssssss', $email, $name, $matric, $gender, $nofon, $studentUsername);
 
                 $stmt->execute();

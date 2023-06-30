@@ -106,11 +106,11 @@ include("adminauthentication.php")
                 <br><br>
                 <p>Please select type of user:</p>
                 <div>
-                    <input type="radio" id="stud" name="user_type" value="Student">
+                    <input type="radio" id="stud" name="user_type" value="student">
                     <label for="stud">Student</label>
                 </div>
                 <div>
-                    <input type="radio" id="manager" name="user_type" value="Manager">
+                    <input type="radio" id="manager" name="user_type" value="manager">
                     <label for="manager">Manager</label>
                 </div>
                 <div>
@@ -200,9 +200,9 @@ include("adminauthentication.php")
             var selectedValue = document.querySelector('input[name="user_type"]:checked').value;
             var actionUrl;
 
-            if (selectedValue === "Student") {
+            if (selectedValue === "student") {
                 actionUrl = "adminDeleteStud.php";
-            } else if (selectedValue === "Manager") {
+            } else if (selectedValue === "manager") {
                 actionUrl = "adminDeleteManager.php";
             }
 

@@ -12,7 +12,7 @@ if (isset($_SESSION['username'])) {
         header('Location: managerhome.php');
         exit();
     } elseif ($userRole === 'admin') {
-        header('Location: adminhome.php');
+        header('Location: adminHome.php');
         exit();
     }
 }
