@@ -1,6 +1,6 @@
-#WEB PROGRAMMING PROJECT
+# WEB PROGRAMMING PROJECT
 
-##Please do view our project here (domain valid til Jan 24):
+## Please do view our project here (domain valid til Jan 24):
 
 [UTM College Click here](https://utmfcstudent.com)
 
