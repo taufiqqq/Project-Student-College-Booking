@@ -2,9 +2,9 @@
 
 ## Please do view our project here (domain valid til Jan 24):
 
-[UTM College](https://utmfcstudent.com)
+[UTM College](https://utmfcstudent.com/college)
 
-@ https://utmfcstudent.com
+@ https://utmfcstudent.com/college
 
 
 
