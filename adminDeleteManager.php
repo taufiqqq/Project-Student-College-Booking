@@ -117,7 +117,7 @@ ob_end_flush(); // Flush the output buffer and send the output to the browser
                 $selectedUsername = $_POST['selected_username'];
 
                 // Prepare and execute the SQL DELETE query
-                $stmt = $conn->prepare('DELETE FROM Manager WHERE username = ?');
+                $stmt = $conn->prepare('DELETE FROM manager WHERE username = ?');
                 $stmt->bind_param('s', $selectedUsername);
                 $stmt->execute();
 

@@ -99,7 +99,7 @@ include("managerauthentication.php")
       <div class="container" data-aos="fade-up">
 
       <?php 
-        $pendingBookingsQuery = mysqli_query($conn, "SELECT username, id, dateBook, collegename, roomType, status FROM Booking WHERE status = 'pending' ORDER BY username ASC");
+        $pendingBookingsQuery = mysqli_query($conn, "SELECT username, id, dateBook, collegename, roomType, status FROM booking WHERE status = 'Pending' ORDER BY username ASC");
         $hasPendingBookings = mysqli_num_rows($pendingBookingsQuery) > 0;
       ?>
 

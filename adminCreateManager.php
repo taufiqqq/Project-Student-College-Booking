@@ -200,7 +200,7 @@ include("adminauthentication.php")
 
 
                 // Prepare and execute the SQL query
-                $stmt = $conn->prepare('INSERT INTO Manager (username, password, email, name, gender, staffnum, phone, collegeHandled) VALUES (?, ?, ?, ?, ?, ?, ?, ?)');
+                $stmt = $conn->prepare('INSERT INTO manager (username, password, email, name, gender, staffnum, phone, collegeHandled) VALUES (?, ?, ?, ?, ?, ?, ?, ?)');
                 $stmt->bind_param('ssssssss', $username, $password, $email, $name, $gender, $staffnum, $nofon, $kolej);
 
                 $stmt->execute();

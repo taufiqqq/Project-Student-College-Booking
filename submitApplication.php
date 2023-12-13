@@ -11,7 +11,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $username = $sess_username;
 
     // Check if the user already has a pending or accepted booking
-    $bookingQuery = "SELECT status FROM Booking WHERE username = '$username' AND (status = 'Pending' OR status = 'Approved')";
+    $bookingQuery = "SELECT status FROM booking WHERE username = '$username' AND (status = 'Pending' OR status = 'Approved')";
     $bookingResult = mysqli_query($conn, $bookingQuery);
 
     if ($bookingResult && mysqli_num_rows($bookingResult) > 0) {
@@ -26,12 +26,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
         if ($availabilityResult && mysqli_num_rows($availabilityResult) > 0) {
             // Room is available, proceed with booking
-            $sql = "INSERT INTO Booking (collegename, roomType, gender, dateBook, username, status)
+            $sql = "INSERT INTO booking (collegename, roomType, gender, dateBook, username, status)
                     VALUES ('$college', '$room', '$gender', '$dateBook', '$username', 'Pending')";
 
             if (mysqli_query($conn, $sql)) {
-                // Booking submitted successfully, display alert and redirect
-                echo "<script>alert('Booking submitted successfully.');</script>";
+                // booking submitted successfully, display alert and redirect
+                echo "<script>alert('booking submitted successfully.');</script>";
                 echo "<script>window.location.href = 'studentapplication.php';</script>";
                 exit();
             } else {

@@ -128,7 +128,7 @@ ob_end_flush(); // Flush the output buffer and send the output to the browser
                 include("connection.php");
 
                 // Query to fetch usernames from the database
-                $query = "SELECT username FROM Manager";
+                $query = "SELECT username FROM manager";
                 $result = $conn->query($query);
 
                 // Check if any usernames were retrieved

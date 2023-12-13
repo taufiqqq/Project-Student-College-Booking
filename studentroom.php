@@ -58,7 +58,7 @@ include("studentauthentication.php");
             <nav id="navbar" class="navbar">
                 <ul>
                     <li><a href="studenthome.php">Home</a></li>
-                    <li><a href="studentroom.php">Book Room</a></li>
+                    <li><a href="studentroom.php">Book room</a></li>
                     <li><a href="studentapplication.php">My Application</a></li>
                 </ul>
             </nav><!-- .navbar -->
@@ -91,7 +91,7 @@ include("studentauthentication.php");
                         <h2>Secure Your Exquisite Accommodation</h2>
                         <ol>
                             <li><a href="studenthome.php">Home</a></li>
-                            <li>Book Room</li>
+                            <li>Book room</li>
                         </ol>
                     </div>
                 </div>
@@ -159,7 +159,7 @@ include("studentauthentication.php");
                 </div>
                 <div class="col-lg-9">
                     <div class="content">
-                        <h2>Choose Your Room</h2>
+                        <h2>Choose Your room</h2>
 
                         <div class="containerflexbox">
                             <div class="row">
@@ -167,12 +167,12 @@ include("studentauthentication.php");
                                     <img id="room-img" src="assets/img/UTM-skyview.jpg" alt="Hotel Image 1" width="350" height="300">
                                 </div>
                                 <div class="column">
-                                    <h2>Single Room With Bathroom</h2><br>
+                                    <h2>Single room With Bathroom</h2><br>
                                     <p><strong>Price per day:</strong> RM8</p>
                                     <p><strong>Rating:</strong> 5.0/5</p>
                                     <p><strong id="singleB"></strong></p>
                                     <input type="radio" name="room" value="onePersonBathroom" required>
-                                    Choose Single Bath Room
+                                    Choose Single Bath room
                                 </div>
                             </div>
 
@@ -181,13 +181,13 @@ include("studentauthentication.php");
                                     <img id="room-img2" src="assets/img/UTM-skyview.jpg" alt="Hotel Image 1" width="350" height="300">
                                 </div>
                                 <div class="column">
-                                    <h2>Single Room </h2><br>
+                                    <h2>Single room </h2><br>
                                     <p><strong>Price per day:</strong> RM6</p>
                                     <p><strong>Rating:</strong> 4.0/5</p>
                                     <p><strong></strong><strong id="single"></strong></p>
 
                                     <input type="radio" name="room" value="onePerson" required>
-                                    Choose Single Room
+                                    Choose Single room
                                 </div>
                             </div>
 
@@ -196,13 +196,13 @@ include("studentauthentication.php");
                                     <img id="room-img3" src="assets/img/UTM-skyview.jpg" alt="Hotel Image 1" width="350" height="300">
                                 </div>
                                 <div class="column">
-                                    <h2>Double Room</h2>
+                                    <h2>Double room</h2>
                                     <p><strong>Price per day:</strong> RM4</p>
                                     <p><strong>Rating:</strong> 3.0/5</p>
                                     <p><strong id="double">
                                         </strong></p>
                                     <input type="radio" name="room" value="twoPerson" required>
-                                    Choose Double Room
+                                    Choose Double room
                                 </div>
                             </div>
                             <input type="submit" value="Submit"><br><br>
@@ -347,27 +347,27 @@ include("studentauthentication.php");
                 img.src = "assets/img/KTDI-SingleB.png";
                 img2.src = "assets/img/KTDI-Single.jpg";
                 img3.src = "assets/img/KTDI-Double.jpg";
-                singleroom.textContent = "Vacancy: <?php echo mysqli_query($conn, 'SELECT availability FROM Room WHERE collegename = "KTDI" AND roomType = "onePerson" AND gender="' . $gender . '"')->fetch_assoc()['availability']; ?>";
-                doubleroom.textContent = "Vacancy: " + "<?php echo mysqli_query($conn, 'SELECT availability FROM Room WHERE collegename = "KTDI" AND roomType = "twoPerson" AND gender="' . $gender . '"')->fetch_assoc()['availability']; ?>";
-                singleroombathroom.textContent = "Vacancy: " + "<?php echo mysqli_query($conn, 'SELECT availability FROM Room WHERE collegename = "KTDI" AND roomType = "onePersonBathroom" AND gender="' . $gender . '"')->fetch_assoc()['availability']; ?>";
+                singleroom.textContent = "Vacancy: <?php echo mysqli_query($conn, 'SELECT availability FROM room WHERE collegename = "KTDI" AND roomType = "onePerson" AND gender="' . $gender . '"')->fetch_assoc()['availability']; ?>";
+                doubleroom.textContent = "Vacancy: " + "<?php echo mysqli_query($conn, 'SELECT availability FROM room WHERE collegename = "KTDI" AND roomType = "twoPerson" AND gender="' . $gender . '"')->fetch_assoc()['availability']; ?>";
+                singleroombathroom.textContent = "Vacancy: " + "<?php echo mysqli_query($conn, 'SELECT availability FROM room WHERE collegename = "KTDI" AND roomType = "onePersonBathroom" AND gender="' . $gender . '"')->fetch_assoc()['availability']; ?>";
 
             } else if (value === "KTR") {
                 img.src = "assets/img/KTR-SingleB.jpg";
                 img2.src = "assets/img/KTR-Single.jpg";
                 img3.src = "assets/img/KTR-Double.jpg";
 
-                singleroom.textContent = "Vacancy: " + "<?php echo mysqli_query($conn, 'SELECT availability FROM Room WHERE collegename = "KTR" AND roomType = "onePerson" AND gender="' . $gender . '"')->fetch_assoc()['availability']; ?>";
-                doubleroom.textContent = "Vacancy: " + "<?php echo mysqli_query($conn, 'SELECT availability FROM Room WHERE collegename = "KTR" AND roomType = "twoPerson" AND gender="' . $gender . '"')->fetch_assoc()['availability']; ?>";
-                singleroombathroom.textContent = "Vacancy: " + "<?php echo mysqli_query($conn, 'SELECT availability FROM Room WHERE collegename = "KTR" AND roomType = "onePersonBathroom" AND gender="' . $gender . '"')->fetch_assoc()['availability']; ?>";
+                singleroom.textContent = "Vacancy: " + "<?php echo mysqli_query($conn, 'SELECT availability FROM room WHERE collegename = "KTR" AND roomType = "onePerson" AND gender="' . $gender . '"')->fetch_assoc()['availability']; ?>";
+                doubleroom.textContent = "Vacancy: " + "<?php echo mysqli_query($conn, 'SELECT availability FROM room WHERE collegename = "KTR" AND roomType = "twoPerson" AND gender="' . $gender . '"')->fetch_assoc()['availability']; ?>";
+                singleroombathroom.textContent = "Vacancy: " + "<?php echo mysqli_query($conn, 'SELECT availability FROM room WHERE collegename = "KTR" AND roomType = "onePersonBathroom" AND gender="' . $gender . '"')->fetch_assoc()['availability']; ?>";
 
             } else if (value === "KTHO") {
                 img.src = "assets/img/KTHO-SingleB.jpg";
                 img2.src = "assets/img/KTHO-Single.jpg";
                 img3.src = "assets/img/KTHO-Double.jpg";
 
-                singleroom.textContent = "Vacancy: " + "<?php echo mysqli_query($conn, 'SELECT availability FROM Room WHERE collegename = "KTHO" AND roomType = "onePerson" AND gender="' . $gender . '"')->fetch_assoc()['availability']; ?>";
-                doubleroom.textContent = "Vacancy: " + "<?php echo mysqli_query($conn, 'SELECT availability FROM Room WHERE collegename = "KTHO" AND roomType = "twoPerson" AND gender="' . $gender . '"')->fetch_assoc()['availability']; ?>";
-                singleroombathroom.textContent = "Vacancy: " + "<?php echo mysqli_query($conn, 'SELECT availability FROM Room WHERE collegename = "KTHO" AND roomType = "onePersonBathroom" AND gender="' . $gender . '"')->fetch_assoc()['availability']; ?>";
+                singleroom.textContent = "Vacancy: " + "<?php echo mysqli_query($conn, 'SELECT availability FROM room WHERE collegename = "KTHO" AND roomType = "onePerson" AND gender="' . $gender . '"')->fetch_assoc()['availability']; ?>";
+                doubleroom.textContent = "Vacancy: " + "<?php echo mysqli_query($conn, 'SELECT availability FROM room WHERE collegename = "KTHO" AND roomType = "twoPerson" AND gender="' . $gender . '"')->fetch_assoc()['availability']; ?>";
+                singleroombathroom.textContent = "Vacancy: " + "<?php echo mysqli_query($conn, 'SELECT availability FROM room WHERE collegename = "KTHO" AND roomType = "onePersonBathroom" AND gender="' . $gender . '"')->fetch_assoc()['availability']; ?>";
 
 
             } else if (value === "KTC") {
@@ -375,63 +375,63 @@ include("studentauthentication.php");
                 img2.src = "assets/img/KTC-Single.jpg";
                 img3.src = "assets/img/KTC-Double.jpg";
 
-                singleroom.textContent = "Vacancy: " + "<?php echo mysqli_query($conn, 'SELECT availability FROM Room WHERE collegename = "KTC" AND roomType = "onePerson" AND gender="' . $gender . '"')->fetch_assoc()['availability']; ?>";
-                doubleroom.textContent = "Vacancy: " + "<?php echo mysqli_query($conn, 'SELECT availability FROM Room WHERE collegename = "KTC" AND roomType = "twoPerson" AND gender="' . $gender . '"')->fetch_assoc()['availability']; ?>";
-                singleroombathroom.textContent = "Vacancy: " + "<?php echo mysqli_query($conn, 'SELECT availability FROM Room WHERE collegename = "KTC" AND roomType = "onePersonBathroom" AND gender="' . $gender . '"')->fetch_assoc()['availability']; ?>";
+                singleroom.textContent = "Vacancy: " + "<?php echo mysqli_query($conn, 'SELECT availability FROM room WHERE collegename = "KTC" AND roomType = "onePerson" AND gender="' . $gender . '"')->fetch_assoc()['availability']; ?>";
+                doubleroom.textContent = "Vacancy: " + "<?php echo mysqli_query($conn, 'SELECT availability FROM room WHERE collegename = "KTC" AND roomType = "twoPerson" AND gender="' . $gender . '"')->fetch_assoc()['availability']; ?>";
+                singleroombathroom.textContent = "Vacancy: " + "<?php echo mysqli_query($conn, 'SELECT availability FROM room WHERE collegename = "KTC" AND roomType = "onePersonBathroom" AND gender="' . $gender . '"')->fetch_assoc()['availability']; ?>";
 
             } else if (value === "K9K10") {
                 img.src = "assets/img/K9K10-SingleB.jpg";
                 img2.src = "assets/img/K9K10-Single.jpg";
                 img3.src = "assets/img/K9K10-Double.jpg";
 
-                singleroom.textContent = "Vacancy: " + "<?php echo mysqli_query($conn, 'SELECT availability FROM Room WHERE collegename = "K9K10" AND roomType = "onePerson" AND gender="' . $gender . '"')->fetch_assoc()['availability']; ?>";
-                doubleroom.textContent = "Vacancy: " + "<?php echo mysqli_query($conn, 'SELECT availability FROM Room WHERE collegename = "K9K10" AND roomType = "twoPerson" AND gender="' . $gender . '"')->fetch_assoc()['availability']; ?>";
-                singleroombathroom.textContent = "Vacancy: " + "<?php echo mysqli_query($conn, 'SELECT availability FROM Room WHERE collegename = "K9K10" AND roomType = "onePersonBathroom" AND gender="' . $gender . '"')->fetch_assoc()['availability']; ?>";
+                singleroom.textContent = "Vacancy: " + "<?php echo mysqli_query($conn, 'SELECT availability FROM room WHERE collegename = "K9K10" AND roomType = "onePerson" AND gender="' . $gender . '"')->fetch_assoc()['availability']; ?>";
+                doubleroom.textContent = "Vacancy: " + "<?php echo mysqli_query($conn, 'SELECT availability FROM room WHERE collegename = "K9K10" AND roomType = "twoPerson" AND gender="' . $gender . '"')->fetch_assoc()['availability']; ?>";
+                singleroombathroom.textContent = "Vacancy: " + "<?php echo mysqli_query($conn, 'SELECT availability FROM room WHERE collegename = "K9K10" AND roomType = "onePersonBathroom" AND gender="' . $gender . '"')->fetch_assoc()['availability']; ?>";
 
             } else if (value === "KRP") {
                 img.src = "assets/img/KRP-SingleB.jpg";
                 img2.src = "assets/img/KRP-Single.jpg";
                 img3.src = "assets/img/KRP-Double.jpg";
 
-                singleroom.textContent = "Vacancy: " + "<?php echo mysqli_query($conn, 'SELECT availability FROM Room WHERE collegename = "KRP" AND roomType = "onePerson" AND gender="' . $gender . '"')->fetch_assoc()['availability']; ?>";
-                doubleroom.textContent = "Vacancy: " + "<?php echo mysqli_query($conn, 'SELECT availability FROM Room WHERE collegename = "KRP" AND roomType = "twoPerson" AND gender="' . $gender . '"')->fetch_assoc()['availability']; ?>";
-                singleroombathroom.textContent = "Vacancy: " + "<?php echo mysqli_query($conn, 'SELECT availability FROM Room WHERE collegename = "KRP" AND roomType = "onePersonBathroom" AND gender="' . $gender . '"')->fetch_assoc()['availability']; ?>";
+                singleroom.textContent = "Vacancy: " + "<?php echo mysqli_query($conn, 'SELECT availability FROM room WHERE collegename = "KRP" AND roomType = "onePerson" AND gender="' . $gender . '"')->fetch_assoc()['availability']; ?>";
+                doubleroom.textContent = "Vacancy: " + "<?php echo mysqli_query($conn, 'SELECT availability FROM room WHERE collegename = "KRP" AND roomType = "twoPerson" AND gender="' . $gender . '"')->fetch_assoc()['availability']; ?>";
+                singleroombathroom.textContent = "Vacancy: " + "<?php echo mysqli_query($conn, 'SELECT availability FROM room WHERE collegename = "KRP" AND roomType = "onePersonBathroom" AND gender="' . $gender . '"')->fetch_assoc()['availability']; ?>";
 
             } else if (value === "KDSE") {
                 img.src = "assets/img/KDSE-SingleB.jpg";
                 img2.src = "assets/img/KDSE-Single.jpg";
                 img3.src = "assets/img/KDSE-Double.jpg";
 
-                singleroom.textContent = "Vacancy: " + "<?php echo mysqli_query($conn, 'SELECT availability FROM Room WHERE collegename = "KDSE" AND roomType = "onePerson" AND gender="' . $gender . '"')->fetch_assoc()['availability']; ?>";
-                doubleroom.textContent = "Vacancy: " + "<?php echo mysqli_query($conn, 'SELECT availability FROM Room WHERE collegename = "KDSE" AND roomType = "twoPerson" AND gender="' . $gender . '"')->fetch_assoc()['availability']; ?>";
-                singleroombathroom.textContent = "Vacancy: " + "<?php echo mysqli_query($conn, 'SELECT availability FROM Room WHERE collegename = "KDSE" AND roomType = "onePersonBathroom" AND gender="' . $gender . '"')->fetch_assoc()['availability']; ?>";
+                singleroom.textContent = "Vacancy: " + "<?php echo mysqli_query($conn, 'SELECT availability FROM room WHERE collegename = "KDSE" AND roomType = "onePerson" AND gender="' . $gender . '"')->fetch_assoc()['availability']; ?>";
+                doubleroom.textContent = "Vacancy: " + "<?php echo mysqli_query($conn, 'SELECT availability FROM room WHERE collegename = "KDSE" AND roomType = "twoPerson" AND gender="' . $gender . '"')->fetch_assoc()['availability']; ?>";
+                singleroombathroom.textContent = "Vacancy: " + "<?php echo mysqli_query($conn, 'SELECT availability FROM room WHERE collegename = "KDSE" AND roomType = "onePersonBathroom" AND gender="' . $gender . '"')->fetch_assoc()['availability']; ?>";
 
             } else if (value === "KDOJ") {
                 img.src = "assets/img/KDOJ-SingleB.jpg";
                 img2.src = "assets/img/KDOJ-Single.jpg";
                 img3.src = "assets/img/KDOJ-Double.jpg";
 
-                singleroom.textContent = "Vacancy: " + "<?php echo mysqli_query($conn, 'SELECT availability FROM Room WHERE collegename = "KDOJ" AND roomType = "onePerson" AND gender="' . $gender . '"')->fetch_assoc()['availability']; ?>";
-                doubleroom.textContent = "Vacancy: " + "<?php echo mysqli_query($conn, 'SELECT availability FROM Room WHERE collegename = "KDOJ" AND roomType = "twoPerson" AND gender="' . $gender . '"')->fetch_assoc()['availability']; ?>";
-                singleroombathroom.textContent = "Vacancy: " + "<?php echo mysqli_query($conn, 'SELECT availability FROM Room WHERE collegename = "KDOJ" AND roomType = "onePersonBathroom" AND gender="' . $gender . '"')->fetch_assoc()['availability']; ?>";
+                singleroom.textContent = "Vacancy: " + "<?php echo mysqli_query($conn, 'SELECT availability FROM room WHERE collegename = "KDOJ" AND roomType = "onePerson" AND gender="' . $gender . '"')->fetch_assoc()['availability']; ?>";
+                doubleroom.textContent = "Vacancy: " + "<?php echo mysqli_query($conn, 'SELECT availability FROM room WHERE collegename = "KDOJ" AND roomType = "twoPerson" AND gender="' . $gender . '"')->fetch_assoc()['availability']; ?>";
+                singleroombathroom.textContent = "Vacancy: " + "<?php echo mysqli_query($conn, 'SELECT availability FROM room WHERE collegename = "KDOJ" AND roomType = "onePersonBathroom" AND gender="' . $gender . '"')->fetch_assoc()['availability']; ?>";
 
             } else if (value === "KP") {
                 img.src = "assets/img/KP-Single.jpg";
                 img2.src = "assets/img/KP-SingleB.jpg";
                 img3.src = "assets/img/KP-Double.jpg";
 
-                singleroom.textContent = "Vacancy: " + "<?php echo mysqli_query($conn, 'SELECT availability FROM Room WHERE collegename = "KP" AND roomType = "onePerson" AND gender="' . $gender . '"')->fetch_assoc()['availability']; ?>";
-                doubleroom.textContent = "Vacancy: " + "<?php echo mysqli_query($conn, 'SELECT availability FROM Room WHERE collegename = "KP" AND roomType = "twoPerson" AND gender="' . $gender . '"')->fetch_assoc()['availability']; ?>";
-                singleroombathroom.textContent = "Vacancy: " + "<?php echo mysqli_query($conn, 'SELECT availability FROM Room WHERE collegename = "KP" AND roomType = "onePersonBathroom" AND gender="' . $gender . '"')->fetch_assoc()['availability']; ?>";
+                singleroom.textContent = "Vacancy: " + "<?php echo mysqli_query($conn, 'SELECT availability FROM room WHERE collegename = "KP" AND roomType = "onePerson" AND gender="' . $gender . '"')->fetch_assoc()['availability']; ?>";
+                doubleroom.textContent = "Vacancy: " + "<?php echo mysqli_query($conn, 'SELECT availability FROM room WHERE collegename = "KP" AND roomType = "twoPerson" AND gender="' . $gender . '"')->fetch_assoc()['availability']; ?>";
+                singleroombathroom.textContent = "Vacancy: " + "<?php echo mysqli_query($conn, 'SELECT availability FROM room WHERE collegename = "KP" AND roomType = "onePersonBathroom" AND gender="' . $gender . '"')->fetch_assoc()['availability']; ?>";
 
             } else if (value === "KTF") {
                 img.src = "assets/img/KTF-SingleB.jpg";
                 img2.src = "assets/img/KTF-Single.jpg";
                 img3.src = "assets/img/KTF-Double.jpg";
 
-                singleroom.textContent = "Vacancy: " + "<?php echo mysqli_query($conn, 'SELECT availability FROM Room WHERE collegename = "KTF" AND roomType = "onePerson" AND gender="' . $gender . '"')->fetch_assoc()['availability']; ?>";
-                doubleroom.textContent = "Vacancy: " + "<?php echo mysqli_query($conn, 'SELECT availability FROM Room WHERE collegename = "KTF" AND roomType = "twoPerson" AND gender="' . $gender . '"')->fetch_assoc()['availability']; ?>";
-                singleroombathroom.textContent = "Vacancy: " + "<?php echo mysqli_query($conn, 'SELECT availability FROM Room WHERE collegename = "KTF" AND roomType = "onePersonBathroom" AND gender="' . $gender . '"')->fetch_assoc()['availability']; ?>";
+                singleroom.textContent = "Vacancy: " + "<?php echo mysqli_query($conn, 'SELECT availability FROM room WHERE collegename = "KTF" AND roomType = "onePerson" AND gender="' . $gender . '"')->fetch_assoc()['availability']; ?>";
+                doubleroom.textContent = "Vacancy: " + "<?php echo mysqli_query($conn, 'SELECT availability FROM room WHERE collegename = "KTF" AND roomType = "twoPerson" AND gender="' . $gender . '"')->fetch_assoc()['availability']; ?>";
+                singleroombathroom.textContent = "Vacancy: " + "<?php echo mysqli_query($conn, 'SELECT availability FROM room WHERE collegename = "KTF" AND roomType = "onePersonBathroom" AND gender="' . $gender . '"')->fetch_assoc()['availability']; ?>";
 
             } else {}
         }

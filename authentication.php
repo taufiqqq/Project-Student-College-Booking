@@ -11,21 +11,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $password = $_POST['password'];
 
     // Perform authentication logic here (e.g., querying the database)
-    $queryAdmin = "SELECT 'admin' AS role, password FROM Admin WHERE username = '$username'";
-    $resultAdmin = mysqli_query($conn, $queryAdmin);
+    $queryadmin = "SELECT 'admin' AS role, password FROM admin WHERE username = '$username'";
+    $resultadmin = mysqli_query($conn, $queryadmin);
 
-    $queryStudent = "SELECT 'student' AS role, password FROM Student WHERE username = '$username'";
-    $resultStudent = mysqli_query($conn, $queryStudent);
+    $querystudent = "SELECT 'student' AS role, password FROM student WHERE username = '$username'";
+    $resultstudent = mysqli_query($conn, $querystudent);
 
-    $queryManager = "SELECT 'manager' AS role, password FROM Manager WHERE username = '$username'";
-    $resultManager = mysqli_query($conn, $queryManager);
+    $querymanager = "SELECT 'manager' AS role, password FROM manager WHERE username = '$username'";
+    $resultmanager = mysqli_query($conn, $querymanager);
 
     $queryCombined = "SELECT role, password FROM (
-        $queryAdmin
+        $queryadmin
         UNION ALL
-        $queryStudent
+        $querystudent
         UNION ALL
-        $queryManager
+        $querymanager
     ) AS combined";
     $resultCombined = mysqli_query($conn, $queryCombined);
 
@@ -55,7 +55,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     header('Location: managerhome.php');
                     exit();
                 } elseif ($userRole === 'admin') {
-                    header('Location: adminhome.php');
+                    header('Location: adminHome.php');
                     exit();
                 } else {
                     echo '<script>';

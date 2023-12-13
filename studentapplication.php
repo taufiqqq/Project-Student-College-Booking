@@ -104,43 +104,43 @@ include("studentauthentication.php");
       <div class="container" data-aos="fade-up">
 
         <?php
-        $idBooking = mysqli_query($conn, "SELECT id FROM Booking WHERE username = '" . $username . "'") != null;
+        $idbooking = mysqli_query($conn, "SELECT id FROM booking WHERE username = '" . $username . "'") != null;
 
-        $usernameBookA = mysqli_query($conn, "SELECT username FROM Booking WHERE username = '" . $username . "' AND status = 'approved'");
-        $idBookA = mysqli_query($conn, "SELECT id FROM Booking WHERE username = '" . $username . "' AND status = 'approved'");
-        $dateBookA = mysqli_query($conn, "SELECT dateBook FROM Booking WHERE username = '" . $username . "' AND status = 'approved'");
-        $collegeRoomBookA = mysqli_query($conn, "SELECT collegename, roomType FROM Booking WHERE username = '" . $username . "' AND status = 'approved'");
-        $statusBookA = mysqli_query($conn, "SELECT status FROM Booking WHERE username = '" . $username . "' AND status = 'approved'");
+        $usernameBookA = mysqli_query($conn, "SELECT username FROM booking WHERE username = '" . $username . "' AND status = 'Approved'");
+        $idBookA = mysqli_query($conn, "SELECT id FROM booking WHERE username = '" . $username . "' AND status = 'Approved'");
+        $dateBookA = mysqli_query($conn, "SELECT dateBook FROM booking WHERE username = '" . $username . "' AND status = 'Approved'");
+        $collegeRoomBookA = mysqli_query($conn, "SELECT collegename, roomType FROM booking WHERE username = '" . $username . "' AND status = 'Approved'");
+        $statusBookA = mysqli_query($conn, "SELECT status FROM booking WHERE username = '" . $username . "' AND status = 'Approved'");
 
-        $usernameBookP = mysqli_query($conn, "SELECT username FROM Booking WHERE username = '" . $username . "' AND status = 'pending'");
-        $idBookP = mysqli_query($conn, "SELECT id FROM Booking WHERE username = '" . $username . "' AND status = 'pending'");
-        $dateBookP = mysqli_query($conn, "SELECT dateBook FROM Booking WHERE username = '" . $username . "' AND status = 'pending'");
-        $collegeRoomBookP = mysqli_query($conn, "SELECT collegename, roomType FROM Booking WHERE username = '" . $username . "' AND status = 'pending'");
-        $statusBookP = mysqli_query($conn, "SELECT status FROM Booking WHERE username = '" . $username . "' AND status = 'pending'");
+        $usernameBookP = mysqli_query($conn, "SELECT username FROM booking WHERE username = '" . $username . "' AND status = 'Pending'");
+        $idBookP = mysqli_query($conn, "SELECT id FROM booking WHERE username = '" . $username . "' AND status = 'Pending'");
+        $dateBookP = mysqli_query($conn, "SELECT dateBook FROM booking WHERE username = '" . $username . "' AND status = 'Pending'");
+        $collegeRoomBookP = mysqli_query($conn, "SELECT collegename, roomType FROM booking WHERE username = '" . $username . "' AND status = 'Pending'");
+        $statusBookP = mysqli_query($conn, "SELECT status FROM booking WHERE username = '" . $username . "' AND status = 'Pending'");
 
-        $usernameBookR = mysqli_query($conn, "SELECT username FROM Booking WHERE username = '" . $username . "' AND status = 'rejected'");
-        $idBookR = mysqli_query($conn, "SELECT id FROM Booking WHERE username = '" . $username . "' AND status = 'rejected'");
-        $dateBookR = mysqli_query($conn, "SELECT dateBook FROM Booking WHERE username = '" . $username . "' AND status = 'rejected'");
-        $collegeRoomBookR = mysqli_query($conn, "SELECT collegename, roomType FROM Booking WHERE username = '" . $username . "' AND status = 'rejected'");
-        $statusBookR = mysqli_query($conn, "SELECT status FROM Booking WHERE username = '" . $username . "' AND status = 'rejected'");
+        $usernameBookR = mysqli_query($conn, "SELECT username FROM booking WHERE username = '" . $username . "' AND status = 'Rejected'");
+        $idBookR = mysqli_query($conn, "SELECT id FROM booking WHERE username = '" . $username . "' AND status = 'Rejected'");
+        $dateBookR = mysqli_query($conn, "SELECT dateBook FROM booking WHERE username = '" . $username . "' AND status = 'Rejected'");
+        $collegeRoomBookR = mysqli_query($conn, "SELECT collegename, roomType FROM booking WHERE username = '" . $username . "' AND status = 'Rejected'");
+        $statusBookR = mysqli_query($conn, "SELECT status FROM booking WHERE username = '" . $username . "' AND status = 'Rejected'");
 
-        // Check if any approved bookings found
-        $hasApprovedBookings = mysqli_num_rows($usernameBookA) > 0;
+        // Check if any Approved bookings found
+        $hasApprovedbookings = mysqli_num_rows($usernameBookA) > 0;
 
-        // Check if any pending bookings found
-        $hasPendingBookings = mysqli_num_rows($usernameBookP) > 0;
+        // Check if any Pending bookings found
+        $hasPendingbookings = mysqli_num_rows($usernameBookP) > 0;
 
-        // Check if any rejected bookings found
-        $hasRejectedBookings = mysqli_num_rows($usernameBookR) > 0;
+        // Check if any Rejected bookings found
+        $hasRejectedbookings = mysqli_num_rows($usernameBookR) > 0;
         ?>
-        <?php if ($idBooking) { ?>
-          <?php if ($hasApprovedBookings) { ?>
-            <h2>Approved Bookings</h2>
+        <?php if ($idbooking) { ?>
+          <?php if ($hasApprovedbookings) { ?>
+            <h2>Approved bookings</h2>
             <table style="margin: 20px; padding: 10px;">
               <tr>
                 <th style="padding: 10px;">Application ID</th>
                 <th style="padding: 10px;">Student Name</th>
-                <th style="padding: 10px;">Booking Date</th>
+                <th style="padding: 10px;">booking Date</th>
                 <th style="padding: 10px;">College and Room</th>
                 <th style="padding: 10px;">Status</th>
               </tr>
@@ -172,7 +172,7 @@ include("studentauthentication.php");
             </table>
           <?php } ?>
 
-          <?php if ($hasPendingBookings) { ?>
+          <?php if ($hasPendingbookings) { ?>
             <h2>Pending Bookings</h2>
             <table style="margin: 20px; padding: 10px;">
               <tr>
@@ -210,13 +210,13 @@ include("studentauthentication.php");
             </table>
           <?php } ?>
 
-          <?php if ($hasRejectedBookings) { ?>
-            <h2>Rejected Bookings</h2>
+          <?php if ($hasRejectedbookings) { ?>
+            <h2>Rejected bookings</h2>
             <table style="margin: 20px; padding: 10px;">
               <tr>
                 <th style="padding: 10px;">Application ID</th>
                 <th style="padding: 10px;">Student Name</th>
-                <th style="padding: 10px;">Booking Date</th>
+                <th style="padding: 10px;">booking Date</th>
                 <th style="padding: 10px;">College and Room</th>
                 <th style="padding: 10px;">Status</th>
               </tr>
@@ -248,7 +248,7 @@ include("studentauthentication.php");
             </table>
           <?php } ?>
 
-          <?php if (!$hasApprovedBookings && !$hasPendingBookings && !$hasRejectedBookings) { ?>
+          <?php if (!$hasApprovedbookings && !$hasPendingbookings && !$hasRejectedbookings) { ?>
             <p>No hostel application found.</p>
           <?php } ?>
 

@@ -123,7 +123,7 @@ ob_end_flush(); // Flush the output buffer and send the output to the browser
                 $stmt->close();
 
                 // Proceed with deleting the student
-                $stmt = $conn->prepare('DELETE FROM Student WHERE username = ?');
+                $stmt = $conn->prepare('DELETE FROM student WHERE username = ?');
                 $stmt->bind_param('s', $selectedUsername);
                 $stmt->execute();
 
@@ -138,7 +138,7 @@ ob_end_flush(); // Flush the output buffer and send the output to the browser
             }
 
             // Query to fetch usernames from the database
-            $query = "SELECT username FROM Student";
+            $query = "SELECT username FROM student";
             $result = $conn->query($query);
 
             // Display the form with radio buttons for selecting the username to delete

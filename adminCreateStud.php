@@ -162,7 +162,7 @@ include("adminauthentication.php")
             // Sanitize and validate input (e.g., using filter_var, regex, etc.)
 
             // Prepare and execute the SQL query
-            $stmt = $conn->prepare('INSERT INTO Student (username, password, email, name, matricnum, gender, phone) VALUES (?, ?, ?, ?, ?, ?, ?)');
+            $stmt = $conn->prepare('INSERT INTO student (username, password, email, name, matricnum, gender, phone) VALUES (?, ?, ?, ?, ?, ?, ?)');
             $stmt->bind_param('sssssss', $username, $password, $email, $name, $matric, $gender, $nofon);
 
             $stmt->execute();
